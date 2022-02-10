@@ -6,7 +6,7 @@ namespace Capstone.Classes.CateringItemsSubclasses
 {
     class Entrees : CateringItem
     {
-        public Entrees(string name, double price) : base(name, price)
+        public Entrees(string name, double price, string productId) : base(name, price, productId)
         {
 
         }

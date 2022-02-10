@@ -7,6 +7,14 @@ namespace Capstone.Classes
 {
     public class UserInterface : Catering
     {
+
+
+
+
+
+
+
+
         
         // This class provides all user communications, but not much else.
         // All the "work" of the application should be done elsewhere
@@ -31,6 +39,7 @@ namespace Capstone.Classes
                 
                 if(userInput=="1")
                 {
+                    Console.WriteLine("Product Code" + "Description".PadLeft(24) + "Qty".PadLeft(24) + "Price".PadLeft(24));
                     //Column Names&Output
 
                     //Row Output
@@ -39,7 +48,7 @@ namespace Capstone.Classes
 
                     foreach (CateringItem item in items)
                     {
-                        Console.WriteLine($"{item.Name} {item.Quantity} {item.Price}");
+                        Console.WriteLine(item.ProductId.PadRight(25) + item.Name.PadLeft(36 + item.Name.Length) + item.Quantity.ToString() + "$" + item.Price.ToString());
                     }
                 }
 

@@ -15,7 +15,7 @@ namespace Capstone.Classes
 
         //Inventory List
         public List<string> inventory = new List<string>();
-        public virtual void CateringInventory()
+        public virtual List<string> CateringInventory()
         {
             try
             {
@@ -32,6 +32,7 @@ namespace Capstone.Classes
             {
                 Console.WriteLine("An error occurred: " + ex.Message);
             }
+            return inventory;
         }
 
         //Items List
@@ -39,30 +40,33 @@ namespace Capstone.Classes
 
         public virtual List<CateringItem> CateringItems()
         {
+            Catering testobject = new Catering();
+            List<string> inventory = testobject.CateringInventory();
+
             foreach(string item in inventory)
             {
                 if (item.Substring(0, 0) == "A")
                 {
                     string[] results = item.Split("|");
-                    Appetizers appList = new Appetizers(results[2].ToString(), double.Parse(results[3]));
+                    Appetizers appList = new Appetizers(results[2].ToString(), double.Parse(results[3]), results[1]);
                     items.Add(appList);
                 }
                 if (item.Substring(0, 1) == "B")
                 {
                     string[] results = item.Split("|");
-                    Beverages appList = new Beverages(results[2].ToString(), double.Parse(results[3]));
+                    Beverages appList = new Beverages(results[2].ToString(), double.Parse(results[3]), results[1]);
                     items.Add(appList);
                 }
                 if (item.Substring(0, 1) == "D")
                 {
                     string[] results = item.Split("|");
-                    Desserts appList = new Desserts(results[2].ToString(), double.Parse(results[3]));
+                    Desserts appList = new Desserts(results[2].ToString(), double.Parse(results[3]), results[1]);
                     items.Add(appList);
                 }
                 if (item.Substring(0, 1) == "E")
                 {
                     string[] results = item.Split("|");
-                    Entrees appList = new Entrees(results[2].ToString(), double.Parse(results[3]));
+                    Entrees appList = new Entrees(results[2].ToString(), double.Parse(results[3]), results[1]);
                     items.Add(appList);
                 }
             }
@@ -70,11 +74,9 @@ namespace Capstone.Classes
         }
 
         //UserInterface Method
-        public virtual CateringItem[] GetCateringItems()
+        public virtual CateringItem[] GetCateringItems(List<CateringItem> input)
         {
-            Catering catering = new Catering();
-            catering.CateringItems();
-            CateringItem[] results = items.ToArray();
+            CateringItem[] results = input.ToArray();
             return results;
         }
 
