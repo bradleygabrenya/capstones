@@ -15,7 +15,7 @@ namespace Capstone.Classes
 
         //Inventory List
         public List<string> inventory = new List<string>();
-        public virtual List<string> CateringInventory()
+        public List<string> CateringInventory()
         {
             try
             {
@@ -32,41 +32,42 @@ namespace Capstone.Classes
             {
                 Console.WriteLine("An error occurred: " + ex.Message);
             }
+            inventory.Sort();
             return inventory;
         }
 
         //Items List
         private List<CateringItem> items = new List<CateringItem>();
 
-        public virtual List<CateringItem> CateringItems()
+        public List<CateringItem> CateringItems()
         {
             Catering testobject = new Catering();
             List<string> inventory = testobject.CateringInventory();
 
             foreach(string item in inventory)
             {
-                if (item.Substring(0, 0) == "A")
+                if (item.Substring(0, 1) == "A")
                 {
                     string[] results = item.Split("|");
-                    Appetizers appList = new Appetizers(results[2].ToString(), double.Parse(results[3]), results[1]);
+                    Appetizers appList = new Appetizers(results[2].ToString(), decimal.Parse(results[3]), results[1]);
                     items.Add(appList);
                 }
                 if (item.Substring(0, 1) == "B")
                 {
                     string[] results = item.Split("|");
-                    Beverages appList = new Beverages(results[2].ToString(), double.Parse(results[3]), results[1]);
+                    Beverages appList = new Beverages(results[2].ToString(), decimal.Parse(results[3]), results[1]);
                     items.Add(appList);
                 }
                 if (item.Substring(0, 1) == "D")
                 {
                     string[] results = item.Split("|");
-                    Desserts appList = new Desserts(results[2].ToString(), double.Parse(results[3]), results[1]);
+                    Desserts appList = new Desserts(results[2].ToString(), decimal.Parse(results[3]), results[1]);
                     items.Add(appList);
                 }
                 if (item.Substring(0, 1) == "E")
                 {
                     string[] results = item.Split("|");
-                    Entrees appList = new Entrees(results[2].ToString(), double.Parse(results[3]), results[1]);
+                    Entrees appList = new Entrees(results[2].ToString(), decimal.Parse(results[3]), results[1]);
                     items.Add(appList);
                 }
             }
@@ -74,10 +75,30 @@ namespace Capstone.Classes
         }
 
         //UserInterface Method
-        public virtual CateringItem[] GetCateringItems(List<CateringItem> input)
+        public CateringItem[] GetCateringItems(List<CateringItem> input)
         {
             CateringItem[] results = input.ToArray();
             return results;
+        }
+
+        //Add Money Method
+        public decimal Balance { get; set; } = 0.00M;
+        public decimal AddMoney(int deposit)
+        {
+            if (deposit==1 || deposit == 5 || deposit == 10 || deposit == 20 || deposit == 50 || deposit == 100 )
+            {
+                Balance += deposit;
+                if(Balance>1500.00M)
+                {
+                    throw new IndexOutOfRangeException("Balance cannot exceed $1500.");
+                }
+            }
+            else
+            {
+                throw new IndexOutOfRangeException("Not a valid bill.");
+            }
+
+            return Balance;
         }
 
 

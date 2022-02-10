@@ -8,7 +8,7 @@ namespace Capstone.Classes
     public class CateringItem : Catering
     {
         //Constructor
-        public CateringItem(string name, double price, string productId)
+        public CateringItem(string name, decimal price, string productId)
         {
             Name = name;
             Price = price;
@@ -17,7 +17,7 @@ namespace Capstone.Classes
         }
 
         //Properties
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public string Name { get; private set; }
         public int Quantity { get; set; }
         public string ProductId { get; set; }
