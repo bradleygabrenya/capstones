@@ -37,42 +37,43 @@ namespace Capstone.Classes
         //Items List
         private List<CateringItem> items = new List<CateringItem>();
 
-        public virtual void CateringItem()
+        public virtual List<CateringItem> CateringItems()
         {
             foreach(string item in inventory)
             {
                 if (item.Substring(0, 1) == "A")
                 {
-                    item.Split("|");
-                    Appetizers appList = new Appetizers(item[2].ToString(), item[3]);
+                    string[] results = item.Split("|");
+                    Appetizers appList = new Appetizers(results[2].ToString(), double.Parse(results[3]));
                     items.Add(appList);
                 }
                 if (item.Substring(0, 1) == "B")
                 {
-                    item.Split("|");
-                    Beverages appList = new Beverages(item[2].ToString(), item[3]);
+                    string[] results = item.Split("|");
+                    Beverages appList = new Beverages(results[2].ToString(), double.Parse(results[3]));
                     items.Add(appList);
                 }
                 if (item.Substring(0, 1) == "D")
                 {
-                    item.Split("|");
-                    Desserts appList = new Desserts(item[2].ToString(), item[3]);
+                    string[] results = item.Split("|");
+                    Desserts appList = new Desserts(results[2].ToString(), double.Parse(results[3]));
                     items.Add(appList);
                 }
                 if (item.Substring(0, 1) == "E")
                 {
-                    item.Split("|");
-                    Entrees appList = new Entrees(item[2].ToString(), item[3]);
+                    string[] results = item.Split("|");
+                    Entrees appList = new Entrees(results[2].ToString(), double.Parse(results[3]));
                     items.Add(appList);
                 }
             }
+            return items;
         }
 
         //UserInterface Method
         public virtual CateringItem[] GetCateringItems()
         {
             Catering catering = new Catering();
-            catering.CateringItem();
+            catering.CateringItems();
             CateringItem[] results = items.ToArray();
             return results;
         }

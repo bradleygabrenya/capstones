@@ -34,10 +34,12 @@ namespace Capstone.Classes
                     //Column Names&Output
 
                     //Row Output
-                    CateringItem[] items = catering.GetCateringItems();
+                    List<CateringItem> input = catering.CateringItems();
+                    CateringItem[] items = catering.GetCateringItems(input);
+
                     foreach (CateringItem item in items)
                     {
-                        Console.WriteLine(item.Name);
+                        Console.WriteLine($"{item.Name} {item.Quantity} {item.Price}");
                     }
                 }
 

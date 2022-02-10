@@ -18,7 +18,7 @@ namespace Capstone.Classes
         //Properties
         public double Price { get; set; }
         public string Name { get; private set; }
-        public int Quantity { get; }
+        public int Quantity { get; set; }
 
         
 
