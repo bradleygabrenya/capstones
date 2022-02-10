@@ -6,6 +6,7 @@ namespace Capstone.Classes
 {
     public class FileAccess
     {
+        //Read from inventory, write to log
         // all files for this application should in this directory
         // you will likley need to create it on your computer
         private string filePath = @"C:\Catering";

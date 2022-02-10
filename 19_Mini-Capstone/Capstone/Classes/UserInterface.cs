@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Capstone.Classes.CateringItemsSubclasses;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -21,8 +22,12 @@ namespace Capstone.Classes
             bool done = false;
             while (!done)
             {
-                Console.WriteLine("This is the UserInterface");
-                Console.ReadLine();
+                //Console.WriteLine("(1) Display Catering Items");
+                //Console.WriteLine("(2) Order");
+                //Console.WriteLine("(3) Quit");
+                //Console.ReadLine();
+                Appetizers testObject = new Appetizers("Meatballs", 1.50);
+                Console.WriteLine(testObject.CateringInventory());
             }
 
         }
