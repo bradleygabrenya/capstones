@@ -45,7 +45,7 @@ namespace Capstone.Classes
 
             foreach(string item in inventory)
             {
-                if (item.Substring(0, 1) == "A")
+                if (item.Substring(0, 0) == "A")
                 {
                     string[] results = item.Split("|");
                     Appetizers appList = new Appetizers(results[2].ToString(), double.Parse(results[3]), results[1]);
