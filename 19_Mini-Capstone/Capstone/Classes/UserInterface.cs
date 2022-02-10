@@ -48,7 +48,7 @@ namespace Capstone.Classes
 
                     foreach (CateringItem item in items)
                     {
-                        Console.WriteLine(item.ProductId.PadRight(25) + item.Name.PadLeft(36 + item.Name.Length) + item.Quantity.ToString() + "$" + item.Price.ToString());
+                        Console.WriteLine(item.ProductId.PadRight(25) + item.Name + item.Quantity.ToString().PadLeft(34 - item.Name.Length) + "$".PadLeft(21) + item.Price.ToString());
                     }
                 }
 
