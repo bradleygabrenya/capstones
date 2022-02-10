@@ -85,10 +85,10 @@ namespace Capstone.Classes
         public decimal Balance { get; set; } = 0.00M;
         public decimal AddMoney(int deposit)
         {
-            if (deposit==1 || deposit == 5 || deposit == 10 || deposit == 20 || deposit == 50 || deposit == 100 )
+            if (deposit == 1 || deposit == 5 || deposit == 10 || deposit == 20 || deposit == 50 || deposit == 100)
             {
                 Balance += deposit;
-                if(Balance>1500.00M)
+                if (Balance > 1500.00M)
                 {
                     throw new IndexOutOfRangeException("Balance cannot exceed $1500.");
                 }
@@ -101,7 +101,7 @@ namespace Capstone.Classes
             return Balance;
         }
 
-
+        
 
 
 

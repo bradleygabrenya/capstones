@@ -73,11 +73,28 @@ namespace Capstone.Classes
                         
                         
                     }
+                    
+                    else if(userInput2 == "2")
+                    {
+                        Console.WriteLine("Product Code" + "Description".PadLeft(24) + "Qty".PadLeft(24) + "Price".PadLeft(24));
 
+                        List<CateringItem> input = catering.CateringItems();
+                        CateringItem[] items = catering.GetCateringItems(input);
+
+                        foreach (CateringItem item in items)
+                        {
+
+                            Console.WriteLine(" " + item.ProductId.PadRight(24) + item.Name + item.Quantity.ToString().PadLeft(34 - item.Name.Length) + "$".PadLeft(23 - item.Quantity.ToString().Length) + item.Price.ToString());
+                        }
+                        Console.WriteLine("Please enter a valid product ID.");
+                        string productIdInput = Console.ReadLine();
+                        foreach (CateringItem item in items)
+                        {
+                            item.SelectProducts(productIdInput);
+                        }
+                    }
 
                 }
-
-
                 //Appetizers testObject = new Appetizers("Meatballs", 1.50);
                 //Console.WriteLine(testObject.CateringInventory());
             }
