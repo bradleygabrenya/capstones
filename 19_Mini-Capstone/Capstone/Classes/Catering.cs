@@ -37,30 +37,9 @@ namespace Capstone.Classes
             return CurrentBalance;
         }
 
-        
+        //SelectProducts & Subtract from Balance Method
         public Dictionary<string, int> shoppingCart = new Dictionary<string, int>();
-
-        
-
-        public void CompleteTransaction()
-        {
-            List<CateringItem> results = fileAccess.GetCateringItemList();
-
-            foreach (KeyValuePair<string, int> kvp in shoppingCart)
-            {
-                foreach (CateringItem item in results)
-                {
-                    if (item.ProductId == kvp.Key)
-                    {
-                        item.Quantity -= kvp.Value;
-                        CurrentBalance -= item.Price * kvp.Value;
-                    }
-                }
-            }
-        }
-
-        
-        public /*Dictionary<CateringItem>*/ void SelectProducts(string productIdInput, int quantity)
+        public decimal SelectProducts(string productIdInput, int quantity)
         {
             Catering catering = new Catering();
             fileAccess.CateringInventory();
@@ -68,28 +47,42 @@ namespace Capstone.Classes
 
             foreach (CateringItem item in results)
             {
-                if (CurrentBalance < item.Price)
+                if (item.ProductId == productIdInput)
                 {
-                    throw new Exception("Insufficient funds.");
-                }
-                else if (item.Quantity.ToString() == "SOLD OUT")
-                {
-                    throw new Exception("Item not available.");
-                }
-                //else if (!fileAccess.inventory.Contains(productIdInput))
-                //{
-                //    throw new Exception("Product not found.");
-                //}
-                else if (item.ProductId == productIdInput)
-                {
+                    if (CurrentBalance < (item.Price * quantity))
+                    {
+                        throw new Exception("Insufficient funds.");
+                    }
+                    else if (item.Quantity.ToString() == "SOLD OUT")
+                    {
+                        throw new Exception("Item not available.");
+                    }
+                    //else if (!results.Contains(base.productIdInput))
+                    //{
+                    //    throw new Exception("Product not found.");
+                    //}
                     shoppingCart.Add(item.ProductId, quantity);
-                    catering.CurrentBalance -= item.Price;
+                    CurrentBalance -= (item.Price * quantity);
                 }
             }
-            //return results;
+            return CurrentBalance;
         }
 
+        //public void CompleteTransaction()
+        //{
+        //    List<CateringItem> results = fileAccess.GetCateringItemList();
 
-
+        //    foreach (KeyValuePair<string, int> kvp in shoppingCart)
+        //    {
+        //        foreach (CateringItem item in results)
+        //        {
+        //            if (item.ProductId == kvp.Key)
+        //            {
+        //                item.Quantity -= kvp.Value;
+        //                CurrentBalance -= item.Price * kvp.Value;
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

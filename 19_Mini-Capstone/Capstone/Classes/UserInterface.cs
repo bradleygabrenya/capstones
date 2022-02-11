@@ -23,6 +23,7 @@ namespace Capstone.Classes
             bool done = false;
             while (!done)
             {
+                //Main Menu
                 Console.WriteLine("(1) Display Catering Items");
                 Console.WriteLine("(2) Order");
                 Console.WriteLine("(3) Quit");
@@ -35,10 +36,11 @@ namespace Capstone.Classes
                 }
                 else if(userInput=="2")
                 {
+                    //Sub Menu
                     Console.WriteLine("(1) Add Money");
                     Console.WriteLine("(2) Select Products");
                     Console.WriteLine("(3) Complete Transaction");
-                    Console.WriteLine("Current Account Balance: $" + CurrentBalance);
+                    Console.WriteLine("Current Account Balance: $" + catering.CurrentBalance);
                     string userInput2 = Console.ReadLine();
                     if (userInput2 == "1")
                     {
@@ -48,22 +50,21 @@ namespace Capstone.Classes
                     {
                         SelectProducts();
                     }
-                    else if (userInput2 == "3")
-                    {
-                        catering.CompleteTransaction();
-                    }
+                    //else if (userInput2 == "3")
+                    //{
+                    //    catering.CompleteTransaction();
+                    //}
                 }
             }
         }
 
+        //Void DisplayInterface Method
         private void DisplayInterface()
         {
-            //Column Names&Output
+            //Column Names
             Console.WriteLine("Product Code" + "Description".PadLeft(24) + "Qty".PadLeft(24) + "Price".PadLeft(24));
 
             //Row Output
-            //List<CateringItem> input = catering.CateringItems();
-            //CateringItem[] items = catering.GetCateringItems(input);
             List<CateringItem> list = fileAccess.GetCateringItemList();
             foreach (CateringItem item in list)
             {
@@ -71,6 +72,7 @@ namespace Capstone.Classes
             }
         }
 
+        //Void AddMoney Method
         private void AddMoney()
         {
                 try
@@ -87,23 +89,20 @@ namespace Capstone.Classes
                     Console.WriteLine();
                 }
         }
+        //Void SelectProducts Method
         private void SelectProducts()
         {
             try
             {
-                DisplayInterface();
-                //List<CateringItem> input = catering.CateringItems();
-                //CateringItem[] items = catering.GetCateringItems(input);
+                DisplayInterface();               
 
                 Console.WriteLine("Please enter a valid product ID.");
-
                 string productIdInput = Console.ReadLine();
 
                 Console.WriteLine("Input the quantity.");
                 int quantity = int.Parse(Console.ReadLine());
-                catering.SelectProducts(productIdInput, quantity);
-                
-                
+
+                catering.SelectProducts(productIdInput, quantity);               
             }
             catch(Exception ex)
             {

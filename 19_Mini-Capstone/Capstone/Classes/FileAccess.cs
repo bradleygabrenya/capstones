@@ -13,18 +13,19 @@ namespace Capstone.Classes
         // you will likley need to create it on your computer
         // private string filePath = @"C:\Catering";
         // This class should contain any and all details of access to files
+
         //FilePath
         string fullPath = @"C:\Users\Student\source\repos\pairs\c-sharp-mini-capstone-module-1-team-0\19_Mini-Capstone\cateringsystem.csv";
 
-        //Inventory List
-        public List<string> inventory = new List<string>();
         //Items List
         private List<CateringItem> items = new List<CateringItem>();
         public List<CateringItem> GetCateringItemList()
         {
             return items;
         }
-        
+
+        //Inventory List
+        public List<string> inventory = new List<string>();
         public void CateringInventory()
         {
             try
@@ -62,10 +63,7 @@ namespace Capstone.Classes
             catch (IOException ex)
             {
                 Console.WriteLine("An error occurred: " + ex.Message);
-            }
-            
-        }
-        
-
+            }            
+        }       
     }
 }
