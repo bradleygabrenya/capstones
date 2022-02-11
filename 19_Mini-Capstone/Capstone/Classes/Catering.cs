@@ -60,8 +60,10 @@ namespace Capstone.Classes
                     CurrentBalance -= item.Price;
                 }
             }
+            catering.CurrentBalance = CurrentBalance;
             return results;
         }
+
 
 
         
