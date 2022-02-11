@@ -48,6 +48,10 @@ namespace Capstone.Classes
                     {
                         SelectProducts();
                     }
+                    else if (userInput2 == "3")
+                    {
+                        catering.CompleteTransaction();
+                    }
                 }
             }
         }
@@ -62,9 +66,9 @@ namespace Capstone.Classes
             //CateringItem[] items = catering.GetCateringItems(input);
             List<CateringItem> list = fileAccess.GetCateringItemList();
             foreach (CateringItem item in list)
-                {
-                    Console.WriteLine(" " + item.ProductId.PadRight(24) + item.Name + item.Quantity.ToString().PadLeft(34 - item.Name.Length) + "$".PadLeft(23 - item.Quantity.ToString().Length) + item.Price.ToString());
-                }
+            {
+                Console.WriteLine(" " + item.ProductId.PadRight(24) + item.Name + item.Quantity.ToString().PadLeft(34 - item.Name.Length) + "$".PadLeft(23 - item.Quantity.ToString().Length) + item.Price.ToString());
+            }
         }
 
         private void AddMoney()
@@ -94,7 +98,10 @@ namespace Capstone.Classes
                 Console.WriteLine("Please enter a valid product ID.");
 
                 string productIdInput = Console.ReadLine();
-                catering.SelectProducts(productIdInput);
+
+                Console.WriteLine("Input the quantity.");
+                int quantity = int.Parse(Console.ReadLine());
+                catering.SelectProducts(productIdInput, quantity);
                 
                 
             }
