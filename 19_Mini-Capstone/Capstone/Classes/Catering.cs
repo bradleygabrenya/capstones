@@ -8,77 +8,13 @@ namespace Capstone.Classes
 {
     public class Catering
     {
-        // This class should contain all the "work" for catering
-
-        //FilePath
-        string fullPath = @"C:\Users\Student\source\repos\pairs\c-sharp-mini-capstone-module-1-team-0\19_Mini-Capstone\cateringsystem.csv";
-
-        //Inventory List
-        public List<string> inventory = new List<string>();
-        public List<string> CateringInventory()
-        {
-            try
-            {
-                using (StreamReader sr = new StreamReader(fullPath))
-                {
-                    while (!sr.EndOfStream)
-                    {
-                        string line = sr.ReadLine();
-                        inventory.Add(line);
-                    }
-                }
-            }
-            catch (IOException ex)
-            {
-                Console.WriteLine("An error occurred: " + ex.Message);
-            }
-            inventory.Sort();
-            return inventory;
-        }
-
-        //Items List
-        private List<CateringItem> items = new List<CateringItem>();
-
-        public List<CateringItem> CateringItems()
-        {
-            Catering testobject = new Catering();
-            List<string> inventory = testobject.CateringInventory();
-
-            foreach(string item in inventory)
-            {
-                if (item.Substring(0, 1) == "A")
-                {
-                    string[] results = item.Split("|");
-                    Appetizers appList = new Appetizers(results[2].ToString(), decimal.Parse(results[3]), results[1]);
-                    items.Add(appList);
-                }
-                if (item.Substring(0, 1) == "B")
-                {
-                    string[] results = item.Split("|");
-                    Beverages appList = new Beverages(results[2].ToString(), decimal.Parse(results[3]), results[1]);
-                    items.Add(appList);
-                }
-                if (item.Substring(0, 1) == "D")
-                {
-                    string[] results = item.Split("|");
-                    Desserts appList = new Desserts(results[2].ToString(), decimal.Parse(results[3]), results[1]);
-                    items.Add(appList);
-                }
-                if (item.Substring(0, 1) == "E")
-                {
-                    string[] results = item.Split("|");
-                    Entrees appList = new Entrees(results[2].ToString(), decimal.Parse(results[3]), results[1]);
-                    items.Add(appList);
-                }
-            }
-            return items;
-        }
-
+        //This class should contain all the "work" for catering
         //UserInterface Method
-        public CateringItem[] GetCateringItems(List<CateringItem> input)
+        FileAccess fileAccess = new FileAccess();
+        public CateringItem[] GetCateringItems()
         {
-            CateringItem[] results = input.ToArray();
-            return results;
+            List<CateringItem> items = fileAccess.GetCateringItemList();
+            return items.ToArray();
         }
 
         //Add Money Method
@@ -97,20 +33,34 @@ namespace Capstone.Classes
             {
                 throw new IndexOutOfRangeException("Not a valid bill.");
             }
-
             return Balance;
         }
 
-        
+        public void SelectProducts(string productIdInput)
+        {
+            CateringItem[] results = GetCateringItems();
+            foreach (CateringItem item in results)
+            {
+                if (Balance < item.Price)
+                {
+                    throw new Exception("Insufficient funds.");
+                }
+                else if (item.Quantity.ToString() == "SOLD OUT")
+                {
+                    throw new Exception("Item not available.");
+                }
+                else if (!fileAccess.inventory.Contains(productIdInput))
+                {
+                    throw new Exception("Product not found.");
+                }
+                else if (productIdInput == item.ProductId)
+                {
+                    item.Quantity -= 1;
+                    Balance -= item.Price;
+                }
+            }
 
-
-
-
-
-
-
-
-
+        }
         //string fullPath = @"C:\Users\Student\source\repos\pairs\c-sharp-mini-capstone-module-1-team-0\19_Mini-Capstone\cateringsystem.csv";
 
         //foreach(string item in inventory)

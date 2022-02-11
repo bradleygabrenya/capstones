@@ -16,9 +16,10 @@ namespace Capstone.Classes
         // in any other class.
 
         private Catering catering = new Catering();
-
+        FileAccess fileAccess = new FileAccess();
         public void RunInterface()
         {
+            fileAccess.CateringInventory();
             bool done = false;
             while (!done)
             {
@@ -30,14 +31,10 @@ namespace Capstone.Classes
                 
                 if(userInput=="1")
                 {
-
                     DisplayInterface();
                 }
                 else if(userInput=="2")
                 {
-                    decimal balance = 0.00M;
-                   
-
                     Console.WriteLine("(1) Add Money");
                     Console.WriteLine("(2) Select Products");
                     Console.WriteLine("(3) Complete Transaction");
@@ -47,49 +44,31 @@ namespace Capstone.Classes
                     {
                         AddMoney();
                     }
-
-
-
                     else if(userInput2 == "2")
                     {
-
-                        DisplayInterface();
-
-                        List<CateringItem> input = catering.CateringItems();
-                        CateringItem[] items = catering.GetCateringItems(input);
-
-                        Console.WriteLine("Please enter a valid product ID.");
-
-                        string productIdInput = Console.ReadLine();
-                        SelectProducts(items, productIdInput);
+                        SelectProducts();
                     }
-
                 }
-                //Appetizers testObject = new Appetizers("Meatballs", 1.50);
-                //Console.WriteLine(testObject.CateringInventory());
             }
-
         }
+
         private void DisplayInterface()
         {
-            Console.WriteLine("Product Code" + "Description".PadLeft(24) + "Qty".PadLeft(24) + "Price".PadLeft(24));
             //Column Names&Output
+            Console.WriteLine("Product Code" + "Description".PadLeft(24) + "Qty".PadLeft(24) + "Price".PadLeft(24));
 
             //Row Output
-            List<CateringItem> input = catering.CateringItems();
-            CateringItem[] items = catering.GetCateringItems(input);
-
-            foreach (CateringItem item in items)
-            {
-
-                Console.WriteLine(" " + item.ProductId.PadRight(24) + item.Name + item.Quantity.ToString().PadLeft(34 - item.Name.Length) + "$".PadLeft(23 - item.Quantity.ToString().Length) + item.Price.ToString());
-            }
+            //List<CateringItem> input = catering.CateringItems();
+            //CateringItem[] items = catering.GetCateringItems(input);
+            List<CateringItem> list = fileAccess.GetCateringItemList();
+            foreach (CateringItem item in list)
+                {
+                    Console.WriteLine(" " + item.ProductId.PadRight(24) + item.Name + item.Quantity.ToString().PadLeft(34 - item.Name.Length) + "$".PadLeft(23 - item.Quantity.ToString().Length) + item.Price.ToString());
+                }
         }
+
         private void AddMoney()
         {
-
-
-            {
                 try
                 {
                     Console.WriteLine("Please enter a $1, $5, $10, $20, $50 or $100 bill.");
@@ -103,35 +82,27 @@ namespace Capstone.Classes
                     Console.WriteLine(ex.Message);
                     Console.WriteLine();
                 }
-
-
-            }
         }
-
-
-        private void SelectProducts(CateringItem[] items, string productIdInput)
+        private void SelectProducts()
         {
-            foreach (CateringItem item in items)
+            try
             {
-                if (Balance < item.Price)
-                {
-                    throw new Exception("Insufficient funds.");
-                }
-                //else if (Quantity.ToString() == "SOLD OUT")
-                //{
-                //    throw new Exception("Item not available.");
-                //}
-                else if (!base.inventory.Contains(productIdInput))
-                {
-                    throw new Exception("Product not found.");
-                }
-                else if (productIdInput == item.ProductId)
-                {
-                    item.Quantity -= 1;
-                    Balance -= item.Price;
-                }
-            }
+                DisplayInterface();
+                //List<CateringItem> input = catering.CateringItems();
+                //CateringItem[] items = catering.GetCateringItems(input);
 
+                Console.WriteLine("Please enter a valid product ID.");
+
+                string productIdInput = Console.ReadLine();
+                catering.SelectProducts(productIdInput);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine();
+            }
         }
+
+        
     }
 }
