@@ -11,10 +11,10 @@ namespace Capstone.Classes
         //This class should contain all the "work" for catering
         //UserInterface Method
         FileAccess fileAccess = new FileAccess();
-        public CateringItem[] GetCateringItems()
+        public List<CateringItem> GetCateringItems()
         {
             List<CateringItem> items = fileAccess.GetCateringItemList();
-            return items.ToArray();
+            return items;
         }
 
         //Add Money Method
@@ -36,10 +36,36 @@ namespace Capstone.Classes
             }
             return CurrentBalance;
         }
-        public List<CateringItem> SelectProducts(string productIdInput, decimal CurrentBalance)
+
+        
+        public Dictionary<string, int> shoppingCart = new Dictionary<string, int>();
+
+        
+
+        public void CompleteTransaction()
+        {
+            List<CateringItem> results = fileAccess.GetCateringItemList();
+
+            foreach (KeyValuePair<string, int> kvp in shoppingCart)
+            {
+                foreach (CateringItem item in results)
+                {
+                    if (item.ProductId == kvp.Key)
+                    {
+                        item.Quantity -= kvp.Value;
+                        CurrentBalance -= item.Price * kvp.Value;
+                    }
+                }
+            }
+        }
+
+        
+        public /*Dictionary<CateringItem>*/ void SelectProducts(string productIdInput, int quantity)
         {
             Catering catering = new Catering();
-            List<CateringItem> results = fileAccess.GetCateringItemList();
+            fileAccess.CateringInventory();
+            List<CateringItem> results = GetCateringItems();
+
             foreach (CateringItem item in results)
             {
                 if (CurrentBalance < item.Price)
@@ -50,21 +76,20 @@ namespace Capstone.Classes
                 {
                     throw new Exception("Item not available.");
                 }
-                else if (!fileAccess.inventory.Contains(productIdInput))
+                //else if (!fileAccess.inventory.Contains(productIdInput))
+                //{
+                //    throw new Exception("Product not found.");
+                //}
+                else if (item.ProductId == productIdInput)
                 {
-                    throw new Exception("Product not found.");
-                }
-                else if (item.ProductId.Contains(productIdInput))
-                {
-                    item.Quantity -= 1;
-                    CurrentBalance -= item.Price;
+                    shoppingCart.Add(item.ProductId, quantity);
+                    catering.CurrentBalance -= item.Price;
                 }
             }
-            return results;
+            //return results;
         }
 
 
-        
 
     }
 }
