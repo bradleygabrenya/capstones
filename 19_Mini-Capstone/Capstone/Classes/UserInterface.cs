@@ -7,6 +7,9 @@ namespace Capstone.Classes
 {
     public class UserInterface : Catering
     {
+
+
+
         // This class provides all user communications, but not much else.
         // All the "work" of the application should be done elsewhere
 
@@ -16,10 +19,20 @@ namespace Capstone.Classes
         // in any other class.
 
         private Catering catering = new Catering();
+<<<<<<< HEAD
+
+
+
+        public void RunInterface()
+        {
+            
+
+=======
         FileAccess fileAccess = new FileAccess();
         public void RunInterface()
         {
             fileAccess.CateringInventory();
+>>>>>>> 655367ebf69042c2221d448bd133c44504a4c8e5
             bool done = false;
             while (!done)
             {
@@ -46,7 +59,17 @@ namespace Capstone.Classes
                     }
                     else if(userInput2 == "2")
                     {
+<<<<<<< HEAD
+
+                        DisplayInterface();
+
+                        Console.WriteLine("Please enter a valid product ID.");
+
+                        string productIdInput = Console.ReadLine();
+                        SelectProducts(productIdInput);
+=======
                         SelectProducts();
+>>>>>>> 655367ebf69042c2221d448bd133c44504a4c8e5
                     }
                 }
             }
@@ -93,6 +116,32 @@ namespace Capstone.Classes
 
                 Console.WriteLine("Please enter a valid product ID.");
 
+<<<<<<< HEAD
+        private void SelectProducts(string productIdInput)
+        {
+            List<CateringItem> input = catering.CateringItems();
+            CateringItem[] items = catering.GetCateringItems(input);
+
+            foreach (CateringItem item in items)
+            {
+                if (Balance < item.Price)
+                {
+                    throw new Exception("Insufficient funds.");
+                }
+                //else if (Quantity.ToString() == "SOLD OUT")
+                //{
+                //    throw new Exception("Item not available.");
+                //}
+                else if (base.inventory.Contains(productIdInput))
+                {
+                    throw new Exception("Product not found.");
+                }
+                else if (productIdInput == item.ProductId)
+                {
+                    item.Quantity -= 1;
+                    Balance -= item.Price;
+                }
+=======
                 string productIdInput = Console.ReadLine();
                 catering.SelectProducts(productIdInput,CurrentBalance);
                 
@@ -102,6 +151,7 @@ namespace Capstone.Classes
             {
                 Console.WriteLine(ex.Message);
                 Console.WriteLine();
+>>>>>>> 655367ebf69042c2221d448bd133c44504a4c8e5
             }
         }
 
