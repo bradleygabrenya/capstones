@@ -31,18 +31,7 @@ namespace Capstone.Classes
                 if(userInput=="1")
                 {
 
-                    Console.WriteLine("Product Code" + "Description".PadLeft(24) + "Qty".PadLeft(24) + "Price".PadLeft(24));
-                    //Column Names&Output
-
-                    //Row Output
-                    List<CateringItem> input = catering.CateringItems();
-                    CateringItem[] items = catering.GetCateringItems(input);
-
-                    foreach (CateringItem item in items)
-                    {
-                        
-                        Console.WriteLine(" "+item.ProductId.PadRight(24) + item.Name + item.Quantity.ToString().PadLeft(34-item.Name.Length) + "$".PadLeft(23-item.Quantity.ToString().Length) + item.Price.ToString());
-                    }
+                    DisplayInterface();
                 }
                 else if(userInput=="2")
                 {
@@ -54,49 +43,93 @@ namespace Capstone.Classes
                     Console.WriteLine("(3) Complete Transaction");
                     Console.WriteLine("Current Account Balance: $" + Balance);
                     string userInput2 = Console.ReadLine();
-
-                    if(userInput2=="1")
+                    if (userInput2 == "1")
                     {
-                        try
-                        {
-                            Console.WriteLine("Please enter a $1, $5, $10, $20, $50 or $100 bill.");
-                            int deposit = int.Parse(Console.ReadLine());
-                            balance = catering.AddMoney(deposit);
-                            Balance = balance;
-                            Console.WriteLine("$" + Balance);
-                        }
-                        catch(IndexOutOfRangeException ex)
-                        {
-                            Console.WriteLine(ex.Message);
-                            Console.WriteLine();
-                        }
-                        
-                        
+                        AddMoney();
                     }
-                    
+
+
+
                     else if(userInput2 == "2")
                     {
-                        Console.WriteLine("Product Code" + "Description".PadLeft(24) + "Qty".PadLeft(24) + "Price".PadLeft(24));
+
+                        DisplayInterface();
 
                         List<CateringItem> input = catering.CateringItems();
                         CateringItem[] items = catering.GetCateringItems(input);
 
-                        foreach (CateringItem item in items)
-                        {
-
-                            Console.WriteLine(" " + item.ProductId.PadRight(24) + item.Name + item.Quantity.ToString().PadLeft(34 - item.Name.Length) + "$".PadLeft(23 - item.Quantity.ToString().Length) + item.Price.ToString());
-                        }
                         Console.WriteLine("Please enter a valid product ID.");
+
                         string productIdInput = Console.ReadLine();
-                        foreach (CateringItem item in items)
-                        {
-                            item.SelectProducts(productIdInput);
-                        }
+                        SelectProducts(items, productIdInput);
                     }
 
                 }
                 //Appetizers testObject = new Appetizers("Meatballs", 1.50);
                 //Console.WriteLine(testObject.CateringInventory());
+            }
+
+        }
+        private void DisplayInterface()
+        {
+            Console.WriteLine("Product Code" + "Description".PadLeft(24) + "Qty".PadLeft(24) + "Price".PadLeft(24));
+            //Column Names&Output
+
+            //Row Output
+            List<CateringItem> input = catering.CateringItems();
+            CateringItem[] items = catering.GetCateringItems(input);
+
+            foreach (CateringItem item in items)
+            {
+
+                Console.WriteLine(" " + item.ProductId.PadRight(24) + item.Name + item.Quantity.ToString().PadLeft(34 - item.Name.Length) + "$".PadLeft(23 - item.Quantity.ToString().Length) + item.Price.ToString());
+            }
+        }
+        private void AddMoney()
+        {
+
+
+            {
+                try
+                {
+                    Console.WriteLine("Please enter a $1, $5, $10, $20, $50 or $100 bill.");
+                    int deposit = int.Parse(Console.ReadLine());
+                    decimal balance = catering.AddMoney(deposit);
+                    Balance = balance;
+                    Console.WriteLine("$" + Balance);
+                }
+                catch (IndexOutOfRangeException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Console.WriteLine();
+                }
+
+
+            }
+        }
+
+
+        private void SelectProducts(CateringItem[] items, string productIdInput)
+        {
+            foreach (CateringItem item in items)
+            {
+                if (Balance < item.Price)
+                {
+                    throw new Exception("Insufficient funds.");
+                }
+                //else if (Quantity.ToString() == "SOLD OUT")
+                //{
+                //    throw new Exception("Item not available.");
+                //}
+                else if (!base.inventory.Contains(productIdInput))
+                {
+                    throw new Exception("Product not found.");
+                }
+                else if (productIdInput == item.ProductId)
+                {
+                    item.Quantity -= 1;
+                    Balance -= item.Price;
+                }
             }
 
         }

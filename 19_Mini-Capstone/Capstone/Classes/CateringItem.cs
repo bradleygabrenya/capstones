@@ -40,24 +40,27 @@ namespace Capstone.Classes
         public string ProductId { get; set; }
 
 
-        public void SelectProducts(string productIdInput)
+        public void SelectProducts(CateringItem[] items, string productIdInput)
         {
-            if (base.Balance < Price)
+            foreach (CateringItem item in items)
             {
-                throw new Exception("Insufficient funds.");
-            }
-            else if (Quantity.ToString() == "SOLD OUT")
-            {
-                throw new Exception("Item not available.");
-            }
-            else if (!base.inventory.Contains(productIdInput))
-            {
-                throw new Exception("Product not found.");
-            }
-            else if (productIdInput == ProductId)
-            {
-                Quantity -= 1;
-                base.Balance -= Price;
+                if (base.Balance < Price)
+                {
+                    throw new Exception("Insufficient funds.");
+                }
+                else if (Quantity.ToString() == "SOLD OUT")
+                {
+                    throw new Exception("Item not available.");
+                }
+                else if (!base.inventory.Contains(productIdInput))
+                {
+                    throw new Exception("Product not found.");
+                }
+                else if (productIdInput == ProductId)
+                {
+                    Quantity -= 1;
+                    base.Balance -= Price;
+                }
             }
             
         }
