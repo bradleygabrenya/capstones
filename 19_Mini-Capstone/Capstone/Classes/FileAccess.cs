@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Capstone.Classes
 {
-    public class FileAccess 
+    public class FileAccess
     {
         // Read from inventory, write to log
         // all files for this application should in this directory
@@ -24,7 +24,7 @@ namespace Capstone.Classes
         {
             return items;
         }
-
+        
         public void CateringInventory()
         {
             try
@@ -66,5 +66,6 @@ namespace Capstone.Classes
             
         }
         
+
     }
 }

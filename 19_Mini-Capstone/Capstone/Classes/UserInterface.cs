@@ -38,7 +38,7 @@ namespace Capstone.Classes
                     Console.WriteLine("(1) Add Money");
                     Console.WriteLine("(2) Select Products");
                     Console.WriteLine("(3) Complete Transaction");
-                    Console.WriteLine("Current Account Balance: $" + Balance);
+                    Console.WriteLine("Current Account Balance: $" + CurrentBalance);
                     string userInput2 = Console.ReadLine();
                     if (userInput2 == "1")
                     {
@@ -74,8 +74,8 @@ namespace Capstone.Classes
                     Console.WriteLine("Please enter a $1, $5, $10, $20, $50 or $100 bill.");
                     int deposit = int.Parse(Console.ReadLine());
                     decimal balance = catering.AddMoney(deposit);
-                    Balance = balance;
-                    Console.WriteLine("$" + Balance);
+                    CurrentBalance = balance;
+                    Console.WriteLine("$" + CurrentBalance);
                 }
                 catch (IndexOutOfRangeException ex)
                 {
@@ -94,7 +94,9 @@ namespace Capstone.Classes
                 Console.WriteLine("Please enter a valid product ID.");
 
                 string productIdInput = Console.ReadLine();
-                catering.SelectProducts(productIdInput);
+                catering.SelectProducts(productIdInput,CurrentBalance);
+                
+                
             }
             catch(Exception ex)
             {

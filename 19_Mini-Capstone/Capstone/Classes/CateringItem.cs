@@ -25,6 +25,7 @@ namespace Capstone.Classes
         public decimal Price { get; set; }
         public string Name { get; private set; }
         public int Quantity { get; set; }
+        public decimal CurrentBalance { get; set; } = 0.00M;
         //{
         //    get
         //    {
@@ -41,7 +42,7 @@ namespace Capstone.Classes
 
         //    }
         //}
-           
+
         public string ProductId { get; set; }
 
         //public void SelectProducts(CateringItem[] items, string productIdInput)
