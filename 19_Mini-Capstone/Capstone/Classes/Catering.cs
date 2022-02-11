@@ -68,21 +68,23 @@ namespace Capstone.Classes
             return CurrentBalance;
         }
 
-        //public void CompleteTransaction()
-        //{
-        //    List<CateringItem> results = fileAccess.GetCateringItemList();
+        public List<CateringItem> CompleteTransaction()
+        {
+            List<CateringItem> results = fileAccess.GetCateringItemList();
 
-        //    foreach (KeyValuePair<string, int> kvp in shoppingCart)
-        //    {
-        //        foreach (CateringItem item in results)
-        //        {
-        //            if (item.ProductId == kvp.Key)
-        //            {
-        //                item.Quantity -= kvp.Value;
-        //                CurrentBalance -= item.Price * kvp.Value;
-        //            }
-        //        }
-        //    }
-        //}
+            foreach (KeyValuePair<string, int> kvp in shoppingCart)
+            {
+                foreach (CateringItem item in results)
+                {
+                    if (item.ProductId == kvp.Key)
+                    {
+                        item.Quantity -= kvp.Value;
+
+                    }
+                }
+            }
+            return results;
+            
+        }
     }
 }

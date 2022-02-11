@@ -50,10 +50,10 @@ namespace Capstone.Classes
                     {
                         SelectProducts();
                     }
-                    //else if (userInput2 == "3")
-                    //{
-                    //    catering.CompleteTransaction();
-                    //}
+                    else if (userInput2 == "3")
+                    {
+                        catering.CompleteTransaction();
+                    }
                 }
             }
         }
@@ -89,6 +89,7 @@ namespace Capstone.Classes
                     Console.WriteLine();
                 }
         }
+
         //Void SelectProducts Method
         private void SelectProducts()
         {
@@ -109,6 +110,12 @@ namespace Capstone.Classes
                 Console.WriteLine(ex.Message);
                 Console.WriteLine();
             }
+        }
+
+        //Void CompleteTransaction Method
+        private void CompleteTransaction()
+        {
+
         }
 
         
