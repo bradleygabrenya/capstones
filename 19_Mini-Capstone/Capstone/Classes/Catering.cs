@@ -86,20 +86,10 @@ namespace Capstone.Classes
                     catering.CurrentBalance -= item.Price;
                 }
             }
-<<<<<<< HEAD
             //return results;
         }
 
 
-=======
-            catering.CurrentBalance = CurrentBalance;
-            return results;
-        }
-
-
-
-        
->>>>>>> 95c047a720aa8fa3bb09709a49703d63b8a56b00
 
     }
 }
