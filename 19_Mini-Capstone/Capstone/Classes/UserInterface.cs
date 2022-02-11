@@ -94,7 +94,7 @@ namespace Capstone.Classes
                 Console.WriteLine("Please enter a valid product ID.");
 
                 string productIdInput = Console.ReadLine();
-                catering.SelectProducts(productIdInput,CurrentBalance);
+                catering.SelectProducts(productIdInput);
                 
                 
             }

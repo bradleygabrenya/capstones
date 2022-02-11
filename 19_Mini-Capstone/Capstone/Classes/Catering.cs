@@ -11,10 +11,10 @@ namespace Capstone.Classes
         //This class should contain all the "work" for catering
         //UserInterface Method
         FileAccess fileAccess = new FileAccess();
-        public CateringItem[] GetCateringItems()
+        public List<CateringItem> GetCateringItems()
         {
             List<CateringItem> items = fileAccess.GetCateringItemList();
-            return items.ToArray();
+            return items;
         }
 
         //Add Money Method
@@ -36,10 +36,10 @@ namespace Capstone.Classes
             }
             return CurrentBalance;
         }
-        public List<CateringItem> SelectProducts(string productIdInput, decimal CurrentBalance)
+        public List<CateringItem> SelectProducts(string productIdInput)
         {
             Catering catering = new Catering();
-            List<CateringItem> results = fileAccess.GetCateringItemList();
+            List<CateringItem> results = GetCateringItems();
             foreach (CateringItem item in results)
             {
                 if (CurrentBalance < item.Price)
