@@ -16,6 +16,11 @@ namespace Capstone.Classes
             Quantity = 25;
         }
 
+        public CateringItem()
+        {
+
+        }
+
         //Properties
         public decimal Price { get; set; }
         public string Name { get; private set; }
@@ -39,31 +44,30 @@ namespace Capstone.Classes
            
         public string ProductId { get; set; }
 
-
-        public void SelectProducts(CateringItem[] items, string productIdInput)
-        {
-            foreach (CateringItem item in items)
-            {
-                if (base.Balance < Price)
-                {
-                    throw new Exception("Insufficient funds.");
-                }
-                else if (Quantity.ToString() == "SOLD OUT")
-                {
-                    throw new Exception("Item not available.");
-                }
-                else if (!base.inventory.Contains(productIdInput))
-                {
-                    throw new Exception("Product not found.");
-                }
-                else if (productIdInput == ProductId)
-                {
-                    Quantity -= 1;
-                    base.Balance -= Price;
-                }
-            }
+        //public void SelectProducts(CateringItem[] items, string productIdInput)
+        //{
+        //    foreach (CateringItem item in items)
+        //    {
+        //        if (base.Balance < Price)
+        //        {
+        //            throw new Exception("Insufficient funds.");
+        //        }
+        //        else if (Quantity.ToString() == "SOLD OUT")
+        //        {
+        //            throw new Exception("Item not available.");
+        //        }
+        //        else if (!base.inventory.Contains(productIdInput))
+        //        {
+        //            throw new Exception("Product not found.");
+        //        }
+        //        else if (productIdInput == ProductId)
+        //        {
+        //            Quantity -= 1;
+        //            base.Balance -= Price;
+        //        }
+        //    }
             
-        }
+        //}
 
 
     }
