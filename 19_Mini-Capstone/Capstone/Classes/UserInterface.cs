@@ -7,6 +7,9 @@ namespace Capstone.Classes
 {
     public class UserInterface : Catering
     {
+
+
+
         // This class provides all user communications, but not much else.
         // All the "work" of the application should be done elsewhere
 
@@ -17,8 +20,12 @@ namespace Capstone.Classes
 
         private Catering catering = new Catering();
 
+
+
         public void RunInterface()
         {
+            
+
             bool done = false;
             while (!done)
             {
@@ -55,13 +62,10 @@ namespace Capstone.Classes
 
                         DisplayInterface();
 
-                        List<CateringItem> input = catering.CateringItems();
-                        CateringItem[] items = catering.GetCateringItems(input);
-
                         Console.WriteLine("Please enter a valid product ID.");
 
                         string productIdInput = Console.ReadLine();
-                        SelectProducts(items, productIdInput);
+                        SelectProducts(productIdInput);
                     }
 
                 }
@@ -109,8 +113,11 @@ namespace Capstone.Classes
         }
 
 
-        private void SelectProducts(CateringItem[] items, string productIdInput)
+        private void SelectProducts(string productIdInput)
         {
+            List<CateringItem> input = catering.CateringItems();
+            CateringItem[] items = catering.GetCateringItems(input);
+
             foreach (CateringItem item in items)
             {
                 if (Balance < item.Price)
@@ -121,7 +128,7 @@ namespace Capstone.Classes
                 //{
                 //    throw new Exception("Item not available.");
                 //}
-                else if (!base.inventory.Contains(productIdInput))
+                else if (base.inventory.Contains(productIdInput))
                 {
                     throw new Exception("Product not found.");
                 }
