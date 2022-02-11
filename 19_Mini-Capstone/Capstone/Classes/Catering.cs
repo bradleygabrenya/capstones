@@ -18,13 +18,14 @@ namespace Capstone.Classes
         }
 
         //Add Money Method
-        public decimal Balance { get; set; } = 0.00M;
-        public decimal AddMoney(int deposit)
+        public decimal CurrentBalance { get; set; } = 0.00M;
+        public decimal AddMoney(decimal deposit)
         {
             if (deposit == 1 || deposit == 5 || deposit == 10 || deposit == 20 || deposit == 50 || deposit == 100)
             {
-                Balance += deposit;
-                if (Balance > 1500.00M)
+                CurrentBalance += deposit;
+
+                if (CurrentBalance > 1500.00M)
                 {
                     throw new IndexOutOfRangeException("Balance cannot exceed $1500.");
                 }
@@ -33,15 +34,15 @@ namespace Capstone.Classes
             {
                 throw new IndexOutOfRangeException("Not a valid bill.");
             }
-            return Balance;
+            return CurrentBalance;
         }
-
-        public void SelectProducts(string productIdInput)
+        public List<CateringItem> SelectProducts(string productIdInput, decimal CurrentBalance)
         {
-            CateringItem[] results = GetCateringItems();
+            Catering catering = new Catering();
+            List<CateringItem> results = fileAccess.GetCateringItemList();
             foreach (CateringItem item in results)
             {
-                if (Balance < item.Price)
+                if (CurrentBalance < item.Price)
                 {
                     throw new Exception("Insufficient funds.");
                 }
@@ -53,35 +54,17 @@ namespace Capstone.Classes
                 {
                     throw new Exception("Product not found.");
                 }
-                else if (productIdInput == item.ProductId)
+                else if (item.ProductId.Contains(productIdInput))
                 {
                     item.Quantity -= 1;
-                    Balance -= item.Price;
+                    CurrentBalance -= item.Price;
                 }
             }
-
+            return results;
         }
-        //string fullPath = @"C:\Users\Student\source\repos\pairs\c-sharp-mini-capstone-module-1-team-0\19_Mini-Capstone\cateringsystem.csv";
 
-        //foreach(string item in inventory)
-        //public virtual void CateringInventory()
-        //{
-        //    try
-        //    {
-        //        using (StreamReader sr = new StreamReader(fullPath))
-        //        {
-        //            while (!sr.EndOfStream)
-        //            {
-        //                string line = sr.ReadLine();
-        //                items.Add(line);
-        //            }
-        //        }
-        //    }
-        //    catch (IOException ex)
-        //    {
-        //        Console.WriteLine("An error occurred: " + ex.Message);
-        //    }
-        //}
+
+        
 
     }
 }
