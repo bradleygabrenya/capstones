@@ -52,7 +52,7 @@ namespace Capstone.Classes
                     }
                     else if (userInput2 == "3")
                     {
-                        catering.CompleteTransaction();
+                        CompleteTransaction();
                     }
                 }
             }
@@ -115,7 +115,7 @@ namespace Capstone.Classes
         //Void CompleteTransaction Method
         private void CompleteTransaction()
         {
-
+            Console.WriteLine(catering.PrintScreen());
         }
 
         
