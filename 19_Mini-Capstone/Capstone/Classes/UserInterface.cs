@@ -116,7 +116,9 @@ namespace Capstone.Classes
             List<string> lines = catering.ReceiptPrinter();
             foreach (string line in lines)
             {
-                Console.WriteLine(line);
+                string[] newLines = line.Split("|");
+                string note = catering.GetNotes(newLines);
+                Console.WriteLine(newLines[0].PadLeft(3) + " " + newLines[1] + " " + newLines[2].PadLeft(27 - newLines[1].Length) + " " + newLines[3].PadLeft(10) + " " + newLines[4].PadLeft(10) + "  " + note);
             }
             Console.WriteLine(catering.GetTotal());
             Console.WriteLine(catering.PrintScreen());

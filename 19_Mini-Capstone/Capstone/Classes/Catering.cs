@@ -83,48 +83,71 @@ namespace Capstone.Classes
             return items;
 
         }
-        public string BeveragePrint()
+        //public string BeveragePrint()
+        //{
+        //    List<string> lines = new List<string>();
+        //    string output = "";
+        //    foreach (KeyValuePair<string, int> kvp in shoppingCart)
+        //    {
+        //        foreach (CateringItem item in items)
+        //        {
+        //            if (kvp.Key.Substring(0, 2) == item.ProductId)
+        //            {
+        //                string note = "";
+        //                string typeOfFood = "";
+        //                if (kvp.Key.Substring(0, 1) == "A")
+        //                {
+        //                    typeOfFood = "Appetizer";
+        //                    note = "You might need extra plates.";
+        //                }
+        //                else if (kvp.Key.Substring(0, 1) == "B")
+        //                {
+        //                    typeOfFood = "Beverage";
+        //                    note = "Don't forget ice.";
+        //                }
+        //                else if (kvp.Key.Substring(0, 1) == "D")
+        //                {
+        //                    typeOfFood = "Dessert";
+        //                    note = "Coffee goes with dessert.";
+        //                }
+        //                else if (kvp.Key.Substring(0, 1) == "E")
+        //                {
+        //                    typeOfFood = "Entree";
+        //                    note = "Did you remember dessert?";
+        //                }
+        //                output = kvp.Value + " " + typeOfFood + " " + item.Name + " " + "$" + item.Price + " " + "$" + (item.Price * kvp.Value) + " " + note;
+        //                lines.Add(output);
+        //            }
+        //        }
+        //    }
+        //    return output;
+
+
+
+        //}
+
+        public string GetNotes(string [] input)
         {
-            List<string> lines = new List<string>();
-            string output = "";
-            foreach (KeyValuePair<string, int> kvp in shoppingCart)
+            string note = "";
+            if(input[1].Substring(0, 1) == "A")
             {
-                foreach (CateringItem item in items)
-                {
-                    if (kvp.Key.Substring(0, 2) == item.ProductId)
-                    {
-                        string note = "";
-                        string typeOfFood = "";
-                        if (kvp.Key.Substring(0, 1) == "A")
-                        {
-                            typeOfFood = "Appetizer";
-                            note = "You might need extra plates.";
-                        }
-                        else if (kvp.Key.Substring(0, 1) == "B")
-                        {
-                            typeOfFood = "Beverage";
-                            note = "Don't forget ice.";
-                        }
-                        else if (kvp.Key.Substring(0, 1) == "D")
-                        {
-                            typeOfFood = "Dessert";
-                            note = "Coffee goes with dessert.";
-                        }
-                        else if (kvp.Key.Substring(0, 1) == "E")
-                        {
-                            typeOfFood = "Entree";
-                            note = "Did you remember dessert?";
-                        }
-                        output = kvp.Value + " " + typeOfFood + " " + item.Name + " " + "$" + item.Price + " " + "$" + (item.Price * kvp.Value) + " " + note;
-                        lines.Add(output);
-                    }
-                }
+                note = "You might need extra plates.";
             }
-            return output;
-
-
-                
+            if (input[1].Substring(0, 1) == "B")
+            {
+                note = "Don't forget ice.";
+            }
+            if (input[1].Substring(0, 1) == "D")
+            {
+                note = "Coffee goes with dessert.";
+            }
+            if (input[1].Substring(0, 1) == "E")
+            {
+                note = "Did you remember dessert?";
+            }
+                return note;
         }
+
 
         public List<string> ReceiptPrinter()
         {
@@ -159,7 +182,7 @@ namespace Capstone.Classes
                                 typeOfFood = "Entree";
                                 note = "Did you remember dessert?";
                             }
-                            output = kvp.Value + " " + typeOfFood + " " + item.Name + " " + "$" + item.Price + " " + "$" + (item.Price * kvp.Value) + " " + note;
+                            output = kvp.Value + "|" + typeOfFood + "|" + item.Name + "|" + "$" + item.Price + "|" + "$" + (item.Price * kvp.Value);
                             lines.Add(output);
                         }
                     }
