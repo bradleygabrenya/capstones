@@ -81,6 +81,7 @@ namespace Capstone.Classes
                 {
                     Console.WriteLine("Please enter a $1, $5, $10, $20, $50 or $100 bill.");
                     int deposit = int.Parse(Console.ReadLine());
+
                     decimal balance = catering.AddMoney(deposit);
                     CurrentBalance = balance;
                     Console.WriteLine("$" + CurrentBalance);
@@ -105,7 +106,7 @@ namespace Capstone.Classes
                 Console.WriteLine("Input the quantity.");
                 int quantity = int.Parse(Console.ReadLine());
 
-                catering.SelectProducts(productIdInput, quantity);               
+                catering.SelectProducts(productIdInput, quantity);
             }
             catch(Exception ex)
             {
@@ -128,7 +129,5 @@ namespace Capstone.Classes
             Console.WriteLine(catering.GetTotal());
             Console.WriteLine(catering.PrintChange());
         }
-
-
     }
 }

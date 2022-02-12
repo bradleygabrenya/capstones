@@ -14,13 +14,12 @@ namespace Capstone.Classes
         // private string filePath = @"C:\Catering";
         // This class should contain any and all details of access to files
 
-        //FilePath
-        string fullPath = @"C:\Users\Student\source\repos\pairs\c-sharp-mini-capstone-module-1-team-0\19_Mini-Capstone\cateringsystem.csv";
-        string destPath = @"C:\Users\Student\source\repos\pairs\c-sharp-mini-capstone-module-1-team-0\19_Mini-Capstone";
-        
-        //Items List
-        //Inventory List
-        
+        //FilePaths
+        string fullPath = @"C:\Catering\cateringsystem.csv";
+        string destPathLog = @"C:\Catering";
+        string destPathSalesRep = @"C:\Catering";
+    
+        //Inventory/Item List
         public List<CateringItem> CateringInventory()
         {
             List<CateringItem> items = new List<CateringItem>();
@@ -38,7 +37,7 @@ namespace Capstone.Classes
                             items.Add(appList);
                         }
                         if (line.Substring(0, 1) == "B")
-                        {                           
+                        {
                             Beverages appList = new Beverages(results[2].ToString(), decimal.Parse(results[3]), results[1]);
                             items.Add(appList);
                         }
@@ -61,23 +60,47 @@ namespace Capstone.Classes
             }
             return items;
         }
-        //public void AuditLog()
-        //{
-        //    try
-        //    {
-        //        using (StreamWriter sw = new StreamWriter(destPath)
-        //        {
-        //            if ()
-        //                    sw.WriteLine($"{DateTime.Now}" + );
-        //        }
 
-        //    }
-        //    catch
-        //    {
-        //    }
+        //Log Output Methods
+        public void AddMoneyLog(decimal deposit, decimal currentBalance)
+        {
+            using (StreamWriter sw = new StreamWriter(@$"{destPathLog}\Log.txt",true))
+            {            
+                    sw.WriteLine($"{DateTime.Now} ADD MONEY: ${deposit}.00 ${currentBalance}");
+            }
         }
-         
+        public void ChangeLog(decimal returnBalance)
+        {
+            using (StreamWriter sw = new StreamWriter(@$"{destPathLog}\Log.txt", true))
+            {
+                sw.WriteLine($"{DateTime.Now} GIVE CHANGE: ${returnBalance} $0.00");
+            }
+        }
+        public void OrderLog(int quantity, string name, string prodId, decimal totalCost, decimal currentBalance)
+        {
+            using (StreamWriter sw = new StreamWriter(@$"{destPathLog}\Log.txt", true))
+            {
+                sw.WriteLine($"{DateTime.Now} {quantity} {name} {prodId} ${totalCost} ${currentBalance}");
+            }
+        }
 
+        //Sales Report Output Methods
+        public void SalesReportLines(int quantity, string name, string prodId, decimal totalCost, decimal currentBalance)
+        {
+            using (StreamWriter sw = new StreamWriter(@$"{destPathSalesRep}\TotalSales.rpt",true))
+            {
+                sw.WriteLine($"{name}|{quantity}|${totalCost}");
+                
+            }
+        }
+        public void SalesReportEnd(decimal totalCost)
+        {
+            using (StreamWriter sw = new StreamWriter(@$"{destPathSalesRep}\TotalSales.rpt", true))
+            {
+                sw.WriteLine($"**TOTAL SALES** ${totalCost}");
+            }
+        }
 
     }
+}
 
