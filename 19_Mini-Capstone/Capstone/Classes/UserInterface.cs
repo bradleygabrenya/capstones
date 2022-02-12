@@ -50,7 +50,7 @@ namespace Capstone.Classes
                     }
                     else if (userInput2 == "3")
                     {
-                        CompleteTransaction();
+                        CompleteTransaction(); ;
                     }
                 }
             }
@@ -110,11 +110,18 @@ namespace Capstone.Classes
         }
 
         //Void CompleteTransaction Method
-        //private void CompleteTransaction()
-        //{
-        //    Console.WriteLine(catering.PrintScreen());
-        //}
+        private void CompleteTransaction()
+        {
+            catering.CompleteTransaction();
+            List<string> lines = catering.ReceiptPrinter();
+            foreach (string line in lines)
+            {
+                Console.WriteLine(line);
+            }
+            Console.WriteLine(catering.GetTotal());
+            Console.WriteLine(catering.PrintScreen());
+        }
 
-        
+
     }
 }

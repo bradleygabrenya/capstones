@@ -58,8 +58,11 @@ namespace Capstone.Classes
                     //{
                     //    throw new Exception("Product not found.");
                     //}
-                    shoppingCart.Add(item.ProductId, quantity);
-                    CurrentBalance -= (item.Price * quantity);
+                    else
+                    {
+                        shoppingCart.Add(item.ProductId, quantity);
+                        CurrentBalance -= (item.Price * quantity);
+                    }
                 }
             }
             return CurrentBalance;
@@ -80,117 +83,245 @@ namespace Capstone.Classes
             return items;
 
         }
+        public string BeveragePrint()
+        {
+            List<string> lines = new List<string>();
+            string output = "";
+            foreach (KeyValuePair<string, int> kvp in shoppingCart)
+            {
+                foreach (CateringItem item in items)
+                {
+                    if (kvp.Key.Substring(0, 2) == item.ProductId)
+                    {
+                        string note = "";
+                        string typeOfFood = "";
+                        if (kvp.Key.Substring(0, 1) == "A")
+                        {
+                            typeOfFood = "Appetizer";
+                            note = "You might need extra plates.";
+                        }
+                        else if (kvp.Key.Substring(0, 1) == "B")
+                        {
+                            typeOfFood = "Beverage";
+                            note = "Don't forget ice.";
+                        }
+                        else if (kvp.Key.Substring(0, 1) == "D")
+                        {
+                            typeOfFood = "Dessert";
+                            note = "Coffee goes with dessert.";
+                        }
+                        else if (kvp.Key.Substring(0, 1) == "E")
+                        {
+                            typeOfFood = "Entree";
+                            note = "Did you remember dessert?";
+                        }
+                        output = kvp.Value + " " + typeOfFood + " " + item.Name + " " + "$" + item.Price + " " + "$" + (item.Price * kvp.Value) + " " + note;
+                        lines.Add(output);
+                    }
+                }
+            }
+            return output;
 
-        //public string PrintScreen()
-        //{
-        //    foreach(KeyValuePair<string, int> kvp in shoppingCart)
-        //    {
-        //        string typeOfFood;
-        //        if (kvp.Key.Substring(0,1) == "A")
-        //        {
-        //             typeOfFood = "Appetizer";
-        //        }
-        //        else if (kvp.Key.Substring(0, 1) == "B")
-        //        {
-        //             typeOfFood = "Beverage";
-        //        }
-        //        else if (kvp.Key.Substring(0, 1) == "D")
-        //        {
-        //             typeOfFood = "Dessert";
-        //        }
-        //        else if (kvp.Key.Substring(0, 1) == "E")
-        //        {
-        //             typeOfFood = "Entree";
-        //        }
-        //        //string shoppingCartOutput = kvp.Value + " " + typeOfFood + kvp.
-        //    }
 
-        //    int nickels = 0;
-        //    int dimes = 0;
-        //    int quarters = 0;
-        //    int ones = 0;
-        //    int fives = 0;
-        //    int tens = 0;
-        //    int twenties = 0;
-        //    int fifties = 0;
+                
+        }
 
-        //    if (CurrentBalance >= 50.00M)
-        //    {
-        //        fifties = (int)(CurrentBalance % 50.00M);
-        //        CurrentBalance -= (fifties * 50.00M);
-        //    }
-        //    if (CurrentBalance >= 20.00M)
-        //    {
-        //        twenties = (int)(CurrentBalance % 20.00M);
-        //        CurrentBalance -= (twenties * 20.00M);
-        //    }
-        //    if (CurrentBalance >= 10.00M)
-        //    {
-        //        tens = (int)(CurrentBalance % 10.00M);
-        //        CurrentBalance -= (tens * 10.00M);
-        //    }
-        //    if (CurrentBalance >= 5.00M)
-        //    {
-        //        fives = (int)(CurrentBalance % 5.00M);
-        //        CurrentBalance -= (fives * 5.00M);
-        //    }
-        //    if (CurrentBalance >= 1.00M)
-        //    {
-        //        ones = (int)(CurrentBalance % 1.00M);
-        //        CurrentBalance -= (ones * 1.00M);
-        //    }
-        //    if (CurrentBalance >= 0.25M)
-        //    {
-        //        quarters = (int)(CurrentBalance % 0.25M);
-        //        CurrentBalance -= (quarters * 0.25M);
-        //    }
-        //    if (CurrentBalance >= 0.10M)
-        //    {
-        //        dimes = (int)(CurrentBalance % 0.10M);
-        //        CurrentBalance -= (dimes * 0.10M);
-        //    }
-        //    if (CurrentBalance >= 0.05M)
-        //    {
-        //        nickels = (int)(CurrentBalance % 0.05M);
-        //        CurrentBalance -= (nickels * 0.05M);
-        //    }
+        public List<string> ReceiptPrinter()
+        {
+            List<string> lines = new List<string>();
+            {
+                string output = "";
+                foreach (KeyValuePair<string, int> kvp in shoppingCart)
+                {
+                    foreach (CateringItem item in items)
+                    {
+                        if (kvp.Key.Substring(0, 2) == item.ProductId)
+                        {
+                            string note = "";
+                            string typeOfFood = "";
+                            if (kvp.Key.Substring(0, 1) == "A")
+                            {
+                                typeOfFood = "Appetizer";
+                                note = "You might need extra plates.";
+                            }
+                            else if (kvp.Key.Substring(0, 1) == "B")
+                            {
+                                typeOfFood = "Beverage";
+                                note = "Don't forget ice.";
+                            }
+                            else if (kvp.Key.Substring(0, 1) == "D")
+                            {
+                                typeOfFood = "Dessert";
+                                note = "Coffee goes with dessert.";
+                            }
+                            else if (kvp.Key.Substring(0, 1) == "E")
+                            {
+                                typeOfFood = "Entree";
+                                note = "Did you remember dessert?";
+                            }
+                            output = kvp.Value + " " + typeOfFood + " " + item.Name + " " + "$" + item.Price + " " + "$" + (item.Price * kvp.Value) + " " + note;
+                            lines.Add(output);
+                        }
+                    }
+                }
+            }
+            return lines;
+        }
 
-        //    string change = "You received";
+        public string GetTotal()
+        { 
+            decimal total = 0;
+            List<string> lines = new List<string>();
+            {
 
-        //    if (fifties != 0)
-        //    {
-        //        change += " ,(" + fifties + ") Fifties";
-        //    }
-        //    if (twenties != 0)
-        //    {
-        //        change += " ,(" + twenties + ") Twenties";
-        //    }
-        //    if (tens != 0)
-        //    {
-        //        change += " ,(" + tens + ") Tens";
-        //    }
-        //    if (fives != 0)
-        //    {
-        //        change += " ,(" + fives + ") Fives";
-        //    }
-        //    if (ones != 0)
-        //    {
-        //        change += " ,(" + ones + ") Ones";
-        //    }
-        //    if (quarters != 0)
-        //    {
-        //        change += " ,(" + quarters + ") Quarters";
-        //    }
-        //    if (dimes != 0)
-        //    {
-        //        change += " ,(" + dimes + ") Dimes";
-        //    }
-        //    if (nickels != 0)
-        //    {
-        //        change += " ,(" + nickels + ") Nickels ";
-        //    }
-        //    change += "in change.";
-        //    return change;
-        //}
+                foreach (KeyValuePair<string, int> kvp in shoppingCart)
+                {
+                    foreach (CateringItem item in items)
+                    {
+                        if (kvp.Key.Substring(0, 2) == item.ProductId)
+                        {
+                            total += (kvp.Value * item.Price);
+                        }
+                    }
+                }
+            }
+            string output = "Total: $" + total;
+            return output;
+        }
+
+        public string PrintScreen()
+        {
+            //foreach (KeyValuePair<string, int> kvp in shoppingCart)
+            //{
+            //    foreach (CateringItem item in items)
+            //    {
+            //        if (item.ProductId == kvp.Key)
+            //        {
+            //            item.Quantity -= kvp.Value;
+            //        }
+            //    }
+            //}
+            
+
+
+
+
+
+
+
+            //foreach (KeyValuePair<string, int> kvp in shoppingCart)
+            //{
+            //    string typeOfFood;
+            //    if (kvp.Key.Substring(0, 1) == "A")
+            //    {
+            //        typeOfFood = "Appetizer";
+            //    }
+            //    else if (kvp.Key.Substring(0, 1) == "B")
+            //    {
+            //        typeOfFood = "Beverage";
+            //    }
+            //    else if (kvp.Key.Substring(0, 1) == "D")
+            //    {
+            //        typeOfFood = "Dessert";
+            //    }
+            //    else if (kvp.Key.Substring(0, 1) == "E")
+            //    {
+            //        typeOfFood = "Entree";
+            //    }
+            //    //string shoppingCartOutput = kvp.Value + " " + typeOfFood + kvp.
+            //}
+
+            int nickels = 0;
+            int dimes = 0;
+            int quarters = 0;
+            int ones = 0;
+            int fives = 0;
+            int tens = 0;
+            int twenties = 0;
+            int fifties = 0;
+
+            decimal coinMoney = CurrentBalance;
+            coinMoney = ((CurrentBalance - (int)CurrentBalance) * 100);
+
+            if ((int)coinMoney >= 25)
+            {
+                quarters = ((int)coinMoney / 25);
+                coinMoney -= (quarters * 25);
+            }
+            if ((int)coinMoney >= 10)
+            {
+                dimes = ((int)coinMoney / 10);
+                coinMoney -= (dimes * 10);
+            }
+            if ((int)coinMoney >= 5)
+            {
+                nickels = ((int)coinMoney / 5);
+                coinMoney -= (nickels * 5);
+            }
+
+
+            if (CurrentBalance >= 50.00M)
+            {
+                fifties = (int)(CurrentBalance / 50);
+                CurrentBalance -= (fifties * 50);
+            }
+            if (CurrentBalance >= 20.00M)
+            {
+                twenties = (int)(CurrentBalance / 20);
+                CurrentBalance -= (twenties * 20);
+            }
+            if (CurrentBalance >= 10.00M)
+            {
+                tens = (int)(CurrentBalance / 10);
+                CurrentBalance -= (tens * 10);
+            }
+            if (CurrentBalance >= 5.00M)
+            {
+                fives = (int)(CurrentBalance / 5);
+                CurrentBalance -= (fives * 5);
+            }
+            if (CurrentBalance >= 1.00M)
+            {
+                ones = (int)(CurrentBalance / 1);
+                CurrentBalance -= (ones * 1);
+            }
+            
+            string change = "You received";
+
+            if (fifties != 0)
+            {
+                change += " (" + fifties + ") Fifties";
+            }
+            if (twenties != 0)
+            {
+                change += " (" + twenties + ") Twenties";
+            }
+            if (tens != 0)
+            {
+                change += " (" + tens + ") Tens";
+            }
+            if (fives != 0)
+            {
+                change += " (" + fives + ") Fives";
+            }
+            if (ones != 0)
+            {
+                change += " (" + ones + ") Ones";
+            }
+            if (quarters != 0)
+            {
+                change += " (" + quarters + ") Quarters";
+            }
+            if (dimes != 0)
+            {
+                change += " (" + dimes + ") Dimes";
+            }
+            if (nickels != 0)
+            {
+                change += " (" + nickels + ") Nickels";
+            }
+            change += " in change.";
+            return change;
+        }
     }
 }
