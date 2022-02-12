@@ -64,6 +64,7 @@ namespace Capstone.Classes
                         CurrentBalance -= (item.Price * quantity);
                     }
                 }
+
             }
             return CurrentBalance;
         }
@@ -83,48 +84,7 @@ namespace Capstone.Classes
             return items;
 
         }
-        //public string BeveragePrint()
-        //{
-        //    List<string> lines = new List<string>();
-        //    string output = "";
-        //    foreach (KeyValuePair<string, int> kvp in shoppingCart)
-        //    {
-        //        foreach (CateringItem item in items)
-        //        {
-        //            if (kvp.Key.Substring(0, 2) == item.ProductId)
-        //            {
-        //                string note = "";
-        //                string typeOfFood = "";
-        //                if (kvp.Key.Substring(0, 1) == "A")
-        //                {
-        //                    typeOfFood = "Appetizer";
-        //                    note = "You might need extra plates.";
-        //                }
-        //                else if (kvp.Key.Substring(0, 1) == "B")
-        //                {
-        //                    typeOfFood = "Beverage";
-        //                    note = "Don't forget ice.";
-        //                }
-        //                else if (kvp.Key.Substring(0, 1) == "D")
-        //                {
-        //                    typeOfFood = "Dessert";
-        //                    note = "Coffee goes with dessert.";
-        //                }
-        //                else if (kvp.Key.Substring(0, 1) == "E")
-        //                {
-        //                    typeOfFood = "Entree";
-        //                    note = "Did you remember dessert?";
-        //                }
-        //                output = kvp.Value + " " + typeOfFood + " " + item.Name + " " + "$" + item.Price + " " + "$" + (item.Price * kvp.Value) + " " + note;
-        //                lines.Add(output);
-        //            }
-        //        }
-        //    }
-        //    return output;
-
-
-
-        //}
+        
 
         public string GetNotes(string [] input)
         {
@@ -160,27 +120,22 @@ namespace Capstone.Classes
                     {
                         if (kvp.Key.Substring(0, 2) == item.ProductId)
                         {
-                            string note = "";
                             string typeOfFood = "";
                             if (kvp.Key.Substring(0, 1) == "A")
                             {
                                 typeOfFood = "Appetizer";
-                                note = "You might need extra plates.";
                             }
                             else if (kvp.Key.Substring(0, 1) == "B")
                             {
                                 typeOfFood = "Beverage";
-                                note = "Don't forget ice.";
                             }
                             else if (kvp.Key.Substring(0, 1) == "D")
                             {
                                 typeOfFood = "Dessert";
-                                note = "Coffee goes with dessert.";
                             }
                             else if (kvp.Key.Substring(0, 1) == "E")
                             {
                                 typeOfFood = "Entree";
-                                note = "Did you remember dessert?";
                             }
                             output = kvp.Value + "|" + typeOfFood + "|" + item.Name + "|" + "$" + item.Price + "|" + "$" + (item.Price * kvp.Value);
                             lines.Add(output);
@@ -212,48 +167,8 @@ namespace Capstone.Classes
             return output;
         }
 
-        public string PrintScreen()
+        public string PrintChange()
         {
-            //foreach (KeyValuePair<string, int> kvp in shoppingCart)
-            //{
-            //    foreach (CateringItem item in items)
-            //    {
-            //        if (item.ProductId == kvp.Key)
-            //        {
-            //            item.Quantity -= kvp.Value;
-            //        }
-            //    }
-            //}
-            
-
-
-
-
-
-
-
-            //foreach (KeyValuePair<string, int> kvp in shoppingCart)
-            //{
-            //    string typeOfFood;
-            //    if (kvp.Key.Substring(0, 1) == "A")
-            //    {
-            //        typeOfFood = "Appetizer";
-            //    }
-            //    else if (kvp.Key.Substring(0, 1) == "B")
-            //    {
-            //        typeOfFood = "Beverage";
-            //    }
-            //    else if (kvp.Key.Substring(0, 1) == "D")
-            //    {
-            //        typeOfFood = "Dessert";
-            //    }
-            //    else if (kvp.Key.Substring(0, 1) == "E")
-            //    {
-            //        typeOfFood = "Entree";
-            //    }
-            //    //string shoppingCartOutput = kvp.Value + " " + typeOfFood + kvp.
-            //}
-
             int nickels = 0;
             int dimes = 0;
             int quarters = 0;

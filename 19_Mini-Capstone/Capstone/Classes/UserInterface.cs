@@ -126,7 +126,7 @@ namespace Capstone.Classes
                 Console.WriteLine(newLines[0].PadLeft(3) + " " + newLines[1] + " " + newLines[2].PadLeft(27 - newLines[1].Length) + " " + newLines[3].PadLeft(10) + " " + newLines[4].PadLeft(10) + "  " + note);
             }
             Console.WriteLine(catering.GetTotal());
-            Console.WriteLine(catering.PrintScreen());
+            Console.WriteLine(catering.PrintChange());
         }
 
 
