@@ -16,18 +16,14 @@ namespace Capstone.Classes
 
         //FilePath
         string fullPath = @"C:\Users\Student\source\repos\pairs\c-sharp-mini-capstone-module-1-team-0\19_Mini-Capstone\cateringsystem.csv";
-
+        string destPath = @"C:\Users\Student\source\repos\pairs\c-sharp-mini-capstone-module-1-team-0\19_Mini-Capstone";
+        
         //Items List
-        private List<CateringItem> items = new List<CateringItem>();
-        public List<CateringItem> GetCateringItemList()
-        {
-            return items;
-        }
-
         //Inventory List
-        public List<string> inventory = new List<string>();
-        public void CateringInventory()
+        
+        public List<CateringItem> CateringInventory()
         {
+            List<CateringItem> items = new List<CateringItem>();
             try
             {
                 using (StreamReader sr = new StreamReader(fullPath))
@@ -35,7 +31,6 @@ namespace Capstone.Classes
                     while (!sr.EndOfStream)
                     {
                         string line = sr.ReadLine();
-                        inventory.Add(line);
                         string[] results = line.Split("|");
                         if (line.Substring(0, 1) == "A")
                         {
@@ -63,7 +58,26 @@ namespace Capstone.Classes
             catch (IOException ex)
             {
                 Console.WriteLine("An error occurred: " + ex.Message);
-            }            
-        }       
+            }
+            return items;
+        }
+        //public void AuditLog()
+        //{
+        //    try
+        //    {
+        //        using (StreamWriter sw = new StreamWriter(destPath)
+        //        {
+        //            if ()
+        //                    sw.WriteLine($"{DateTime.Now}" + );
+        //        }
+
+        //    }
+        //    catch
+        //    {
+        //    }
+        }
+         
+
+
     }
-}
+

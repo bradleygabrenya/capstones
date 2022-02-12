@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Capstone.Classes
 {
-    public class CateringItem : Catering
+    public class CateringItem
     {
         //Constructor
         public CateringItem(string name, decimal price, string productId)

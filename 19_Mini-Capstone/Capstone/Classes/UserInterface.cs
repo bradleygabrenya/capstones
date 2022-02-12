@@ -16,10 +16,8 @@ namespace Capstone.Classes
         // in any other class.
 
         private Catering catering = new Catering();
-        FileAccess fileAccess = new FileAccess();
         public void RunInterface()
         {
-            fileAccess.CateringInventory();
             bool done = false;
             while (!done)
             {
@@ -65,8 +63,7 @@ namespace Capstone.Classes
             Console.WriteLine("Product Code" + "Description".PadLeft(24) + "Qty".PadLeft(24) + "Price".PadLeft(24));
 
             //Row Output
-            List<CateringItem> list = fileAccess.GetCateringItemList();
-            foreach (CateringItem item in list)
+            foreach (CateringItem item in catering.items)
             {
                 Console.WriteLine(" " + item.ProductId.PadRight(24) + item.Name + item.Quantity.ToString().PadLeft(34 - item.Name.Length) + "$".PadLeft(23 - item.Quantity.ToString().Length) + item.Price.ToString());
             }
@@ -113,10 +110,10 @@ namespace Capstone.Classes
         }
 
         //Void CompleteTransaction Method
-        private void CompleteTransaction()
-        {
-            Console.WriteLine(catering.PrintScreen());
-        }
+        //private void CompleteTransaction()
+        //{
+        //    Console.WriteLine(catering.PrintScreen());
+        //}
 
         
     }

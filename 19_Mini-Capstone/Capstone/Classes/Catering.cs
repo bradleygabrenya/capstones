@@ -8,14 +8,15 @@ namespace Capstone.Classes
 {
     public class Catering
     {
-        //This class should contain all the "work" for catering
-        //UserInterface Method
-        FileAccess fileAccess = new FileAccess();
-        public List<CateringItem> GetCateringItems()
+        private FileAccess fileAccess = new FileAccess();
+        public List<CateringItem> items = new List<CateringItem>();
+
+        public Catering ()
         {
-            List<CateringItem> items = fileAccess.GetCateringItemList();
-            return items;
+            items = fileAccess.CateringInventory();
         }
+
+        //This class should contain all the "work" for catering
 
         //Add Money Method
         public decimal CurrentBalance { get; set; } = 0.00M;
@@ -41,11 +42,7 @@ namespace Capstone.Classes
         public Dictionary<string, int> shoppingCart = new Dictionary<string, int>();
         public decimal SelectProducts(string productIdInput, int quantity)
         {
-            Catering catering = new Catering();
-            fileAccess.CateringInventory();
-            List<CateringItem> results = GetCateringItems();
-
-            foreach (CateringItem item in results)
+            foreach (CateringItem item in items)
             {
                 if (item.ProductId == productIdInput)
                 {
@@ -70,133 +67,130 @@ namespace Capstone.Classes
 
         public List<CateringItem> CompleteTransaction()
         {
-            List<CateringItem> results = fileAccess.GetCateringItemList();
-
             foreach (KeyValuePair<string, int> kvp in shoppingCart)
             {
-                foreach (CateringItem item in results)
+                foreach (CateringItem item in items)
                 {
                     if (item.ProductId == kvp.Key)
                     {
                         item.Quantity -= kvp.Value;
-
                     }
                 }
             }
-            return results;
-            
+            return items;
+
         }
 
-        public string PrintScreen()
-        {
-            foreach(KeyValuePair<string, int> kvp in shoppingCart)
-            {
-                string typeOfFood;
-                if (kvp.Key.Substring(0,1) == "A")
-                {
-                     typeOfFood = "Appetizer";
-                }
-                else if (kvp.Key.Substring(0, 1) == "B")
-                {
-                     typeOfFood = "Beverage";
-                }
-                else if (kvp.Key.Substring(0, 1) == "D")
-                {
-                     typeOfFood = "Dessert";
-                }
-                else if (kvp.Key.Substring(0, 1) == "E")
-                {
-                     typeOfFood = "Entree";
-                }
-                //string shoppingCartOutput = kvp.Value + " " + typeOfFood + kvp.
-            }
+        //public string PrintScreen()
+        //{
+        //    foreach(KeyValuePair<string, int> kvp in shoppingCart)
+        //    {
+        //        string typeOfFood;
+        //        if (kvp.Key.Substring(0,1) == "A")
+        //        {
+        //             typeOfFood = "Appetizer";
+        //        }
+        //        else if (kvp.Key.Substring(0, 1) == "B")
+        //        {
+        //             typeOfFood = "Beverage";
+        //        }
+        //        else if (kvp.Key.Substring(0, 1) == "D")
+        //        {
+        //             typeOfFood = "Dessert";
+        //        }
+        //        else if (kvp.Key.Substring(0, 1) == "E")
+        //        {
+        //             typeOfFood = "Entree";
+        //        }
+        //        //string shoppingCartOutput = kvp.Value + " " + typeOfFood + kvp.
+        //    }
 
-            int nickels = 0;
-            int dimes = 0;
-            int quarters = 0;
-            int ones = 0;
-            int fives = 0;
-            int tens = 0;
-            int twenties = 0;
-            int fifties = 0;
+        //    int nickels = 0;
+        //    int dimes = 0;
+        //    int quarters = 0;
+        //    int ones = 0;
+        //    int fives = 0;
+        //    int tens = 0;
+        //    int twenties = 0;
+        //    int fifties = 0;
 
-            if (CurrentBalance >= 50.00M)
-            {
-                fifties = (int)(CurrentBalance % 50.00M);
-                CurrentBalance -= (fifties * 50.00M);
-            }
-            if (CurrentBalance >= 20.00M)
-            {
-                twenties = (int)(CurrentBalance % 20.00M);
-                CurrentBalance -= (twenties * 20.00M);
-            }
-            if (CurrentBalance >= 10.00M)
-            {
-                tens = (int)(CurrentBalance % 10.00M);
-                CurrentBalance -= (tens * 10.00M);
-            }
-            if (CurrentBalance >= 5.00M)
-            {
-                fives = (int)(CurrentBalance % 5.00M);
-                CurrentBalance -= (fives * 5.00M);
-            }
-            if (CurrentBalance >= 1.00M)
-            {
-                ones = (int)(CurrentBalance % 1.00M);
-                CurrentBalance -= (ones * 1.00M);
-            }
-            if (CurrentBalance >= 0.25M)
-            {
-                quarters = (int)(CurrentBalance % 0.25M);
-                CurrentBalance -= (quarters * 0.25M);
-            }
-            if (CurrentBalance >= 0.10M)
-            {
-                dimes = (int)(CurrentBalance % 0.10M);
-                CurrentBalance -= (dimes * 0.10M);
-            }
-            if (CurrentBalance >= 0.05M)
-            {
-                nickels = (int)(CurrentBalance % 0.05M);
-                CurrentBalance -= (nickels * 0.05M);
-            }
+        //    if (CurrentBalance >= 50.00M)
+        //    {
+        //        fifties = (int)(CurrentBalance % 50.00M);
+        //        CurrentBalance -= (fifties * 50.00M);
+        //    }
+        //    if (CurrentBalance >= 20.00M)
+        //    {
+        //        twenties = (int)(CurrentBalance % 20.00M);
+        //        CurrentBalance -= (twenties * 20.00M);
+        //    }
+        //    if (CurrentBalance >= 10.00M)
+        //    {
+        //        tens = (int)(CurrentBalance % 10.00M);
+        //        CurrentBalance -= (tens * 10.00M);
+        //    }
+        //    if (CurrentBalance >= 5.00M)
+        //    {
+        //        fives = (int)(CurrentBalance % 5.00M);
+        //        CurrentBalance -= (fives * 5.00M);
+        //    }
+        //    if (CurrentBalance >= 1.00M)
+        //    {
+        //        ones = (int)(CurrentBalance % 1.00M);
+        //        CurrentBalance -= (ones * 1.00M);
+        //    }
+        //    if (CurrentBalance >= 0.25M)
+        //    {
+        //        quarters = (int)(CurrentBalance % 0.25M);
+        //        CurrentBalance -= (quarters * 0.25M);
+        //    }
+        //    if (CurrentBalance >= 0.10M)
+        //    {
+        //        dimes = (int)(CurrentBalance % 0.10M);
+        //        CurrentBalance -= (dimes * 0.10M);
+        //    }
+        //    if (CurrentBalance >= 0.05M)
+        //    {
+        //        nickels = (int)(CurrentBalance % 0.05M);
+        //        CurrentBalance -= (nickels * 0.05M);
+        //    }
 
-            string change = "You received";
+        //    string change = "You received";
 
-            if (fifties != 0)
-            {
-                change += " ,(" + fifties + ") Fifties";
-            }
-            if (twenties != 0)
-            {
-                change += " ,(" + twenties + ") Twenties";
-            }
-            if (tens != 0)
-            {
-                change += " ,(" + tens + ") Tens";
-            }
-            if (fives != 0)
-            {
-                change += " ,(" + fives + ") Fives";
-            }
-            if (ones != 0)
-            {
-                change += " ,(" + ones + ") Ones";
-            }
-            if (quarters != 0)
-            {
-                change += " ,(" + quarters + ") Quarters";
-            }
-            if (dimes != 0)
-            {
-                change += " ,(" + dimes + ") Dimes";
-            }
-            if (nickels != 0)
-            {
-                change += " ,(" + nickels + ") Nickels ";
-            }
-            change += "in change.";
-            return change;
-        }
+        //    if (fifties != 0)
+        //    {
+        //        change += " ,(" + fifties + ") Fifties";
+        //    }
+        //    if (twenties != 0)
+        //    {
+        //        change += " ,(" + twenties + ") Twenties";
+        //    }
+        //    if (tens != 0)
+        //    {
+        //        change += " ,(" + tens + ") Tens";
+        //    }
+        //    if (fives != 0)
+        //    {
+        //        change += " ,(" + fives + ") Fives";
+        //    }
+        //    if (ones != 0)
+        //    {
+        //        change += " ,(" + ones + ") Ones";
+        //    }
+        //    if (quarters != 0)
+        //    {
+        //        change += " ,(" + quarters + ") Quarters";
+        //    }
+        //    if (dimes != 0)
+        //    {
+        //        change += " ,(" + dimes + ") Dimes";
+        //    }
+        //    if (nickels != 0)
+        //    {
+        //        change += " ,(" + nickels + ") Nickels ";
+        //    }
+        //    change += "in change.";
+        //    return change;
+        //}
     }
 }
