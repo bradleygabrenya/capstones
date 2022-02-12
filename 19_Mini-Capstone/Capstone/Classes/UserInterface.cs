@@ -53,6 +53,11 @@ namespace Capstone.Classes
                         CompleteTransaction(); ;
                     }
                 }
+                else if (userInput == "3")
+                {
+                    Console.WriteLine("Thank you!");
+                    done = true;
+                }
             }
         }
 
