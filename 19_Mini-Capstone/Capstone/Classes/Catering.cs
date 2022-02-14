@@ -6,17 +6,23 @@ using System.Text;
 
 namespace Capstone.Classes
 {
-    public class Catering
+    public class Catering //: IComparable
     {
+        //This class should contain all the "work" for catering
+
+        //Objects
         private FileAccess fileAccess = new FileAccess();
         public List<CateringItem> items = new List<CateringItem>();
 
-        public Catering ()
+        //Constructors
+        public Catering()
         {
             items = fileAccess.CateringInventory();
         }
-
-        //This class should contain all the "work" for catering
+        //public string CompareTo(Catering items)
+        //{
+        //    return items.ToString();
+        //}
 
         //Add Money Method
         public decimal CurrentBalance { get; set; } = 0.00M;
@@ -25,7 +31,6 @@ namespace Capstone.Classes
             if (deposit == 1 || deposit == 5 || deposit == 10 || deposit == 20 || deposit == 50 || deposit == 100)
             {
                 CurrentBalance += deposit;
-
                 if (CurrentBalance > 1500.00M)
                 {
                     throw new IndexOutOfRangeException("Balance cannot exceed $1500.");
@@ -35,15 +40,29 @@ namespace Capstone.Classes
             {
                 throw new IndexOutOfRangeException("Not a valid bill.");
             }
+            fileAccess.AddMoneyLog(deposit, CurrentBalance); //Log Output
+
             return CurrentBalance;
         }
 
         //SelectProducts & Subtract from Balance Method
         public Dictionary<string, int> shoppingCart = new Dictionary<string, int>();
         public decimal SelectProducts(string productIdInput, int quantity)
-        {
+        {         
+            bool idValidity = false;
             foreach (CateringItem item in items)
             {
+                foreach (CateringItem item2 in items)
+                {
+                    if (item2.ProductId == productIdInput)
+                    {
+                        idValidity = true;
+                    }
+                }
+                if(idValidity==false)
+                {
+                    throw new Exception("Product not found.");
+                }
                 if (item.ProductId == productIdInput)
                 {
                     if (CurrentBalance < (item.Price * quantity))
@@ -54,21 +73,17 @@ namespace Capstone.Classes
                     {
                         throw new Exception("Item not available.");
                     }
-                    //else if (!results.Contains(base.productIdInput))
-                    //{
-                    //    throw new Exception("Product not found.");
-                    //}
                     else
                     {
                         shoppingCart.Add(item.ProductId, quantity);
                         CurrentBalance -= (item.Price * quantity);
                     }
                 }
-
             }
             return CurrentBalance;
         }
 
+        //Complete Transactions Method
         public List<CateringItem> CompleteTransaction()
         {
             foreach (KeyValuePair<string, int> kvp in shoppingCart)
@@ -82,10 +97,9 @@ namespace Capstone.Classes
                 }
             }
             return items;
-
         }
         
-
+        //Get Notes Method
         public string GetNotes(string [] input)
         {
             string note = "";
@@ -108,7 +122,7 @@ namespace Capstone.Classes
                 return note;
         }
 
-
+        //Receipt Printer Method
         public List<string> ReceiptPrinter()
         {
             List<string> lines = new List<string>();
@@ -139,19 +153,20 @@ namespace Capstone.Classes
                             }
                             output = kvp.Value + "|" + typeOfFood + "|" + item.Name + "|" + "$" + item.Price + "|" + "$" + (item.Price * kvp.Value);
                             lines.Add(output);
-                        }
+                            fileAccess.OrderLog(kvp.Value, item.Name, item.ProductId, item.Price * kvp.Value, CurrentBalance); //Log Output
+                        }  
                     }
                 }
             }
             return lines;
         }
 
+        //Get Total Method
         public string GetTotal()
         { 
             decimal total = 0;
             List<string> lines = new List<string>();
             {
-
                 foreach (KeyValuePair<string, int> kvp in shoppingCart)
                 {
                     foreach (CateringItem item in items)
@@ -167,8 +182,10 @@ namespace Capstone.Classes
             return output;
         }
 
+        //Print Change Method
         public string PrintChange()
         {
+            decimal returnBalance = CurrentBalance;
             int nickels = 0;
             int dimes = 0;
             int quarters = 0;
@@ -180,23 +197,6 @@ namespace Capstone.Classes
 
             decimal coinMoney = CurrentBalance;
             coinMoney = ((CurrentBalance - (int)CurrentBalance) * 100);
-
-            if ((int)coinMoney >= 25)
-            {
-                quarters = ((int)coinMoney / 25);
-                coinMoney -= (quarters * 25);
-            }
-            if ((int)coinMoney >= 10)
-            {
-                dimes = ((int)coinMoney / 10);
-                coinMoney -= (dimes * 10);
-            }
-            if ((int)coinMoney >= 5)
-            {
-                nickels = ((int)coinMoney / 5);
-                coinMoney -= (nickels * 5);
-            }
-
 
             if (CurrentBalance >= 50.00M)
             {
@@ -223,9 +223,24 @@ namespace Capstone.Classes
                 ones = (int)(CurrentBalance / 1);
                 CurrentBalance -= (ones * 1);
             }
-            
+            if ((int)coinMoney >= 25)
+            {
+                quarters = ((int)coinMoney / 25);
+                coinMoney -= (quarters * 25);
+            }
+            if ((int)coinMoney >= 10)
+            {
+                dimes = ((int)coinMoney / 10);
+                coinMoney -= (dimes * 10);
+            }
+            if ((int)coinMoney >= 5)
+            {
+                nickels = ((int)coinMoney / 5);
+                coinMoney -= (nickels * 5);
+            }
+         
+            //String Concatenation
             string change = "You received";
-
             if (fifties != 0)
             {
                 change += " (" + fifties + ") Fifties";
@@ -259,6 +274,7 @@ namespace Capstone.Classes
                 change += " (" + nickels + ") Nickels";
             }
             change += " in change.";
+            fileAccess.ChangeLog(returnBalance); //Log Output
             return change;
         }
     }

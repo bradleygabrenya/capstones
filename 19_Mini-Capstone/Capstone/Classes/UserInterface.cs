@@ -65,12 +65,19 @@ namespace Capstone.Classes
         private void DisplayInterface()
         {
             //Column Names
-            Console.WriteLine("Product Code" + "Description".PadLeft(24) + "Qty".PadLeft(24) + "Price".PadLeft(24));
+            Console.WriteLine("  Product Code" + "Description".PadLeft(16) + "Qty".PadLeft(16) + "Price".PadLeft(13));
 
             //Row Output
             foreach (CateringItem item in catering.items)
             {
-                Console.WriteLine(" " + item.ProductId.PadRight(24) + item.Name + item.Quantity.ToString().PadLeft(34 - item.Name.Length) + "$".PadLeft(23 - item.Quantity.ToString().Length) + item.Price.ToString());
+                if(item.Quantity<=0)
+                {
+                    Console.WriteLine("   " + item.ProductId.PadRight(16) + item.Name + item.Quantity.ToString("SOLD OUT").PadLeft(32 - item.Name.Length) + "$".PadLeft(5 - item.Quantity.ToString().Length) + item.Price.ToString());
+                }
+                else
+                {
+                    Console.WriteLine("   " + item.ProductId.PadRight(16) + item.Name + item.Quantity.ToString().PadLeft(26 - item.Name.Length) + "$".PadLeft(12 - item.Quantity.ToString().Length) + item.Price.ToString());
+                }
             }
         }
 
@@ -81,6 +88,7 @@ namespace Capstone.Classes
                 {
                     Console.WriteLine("Please enter a $1, $5, $10, $20, $50 or $100 bill.");
                     int deposit = int.Parse(Console.ReadLine());
+
                     decimal balance = catering.AddMoney(deposit);
                     CurrentBalance = balance;
                     Console.WriteLine("$" + CurrentBalance);
@@ -105,7 +113,7 @@ namespace Capstone.Classes
                 Console.WriteLine("Input the quantity.");
                 int quantity = int.Parse(Console.ReadLine());
 
-                catering.SelectProducts(productIdInput, quantity);               
+                catering.SelectProducts(productIdInput, quantity);
             }
             catch(Exception ex)
             {
@@ -128,7 +136,5 @@ namespace Capstone.Classes
             Console.WriteLine(catering.GetTotal());
             Console.WriteLine(catering.PrintChange());
         }
-
-
     }
 }
