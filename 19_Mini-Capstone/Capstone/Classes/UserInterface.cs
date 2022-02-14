@@ -70,7 +70,14 @@ namespace Capstone.Classes
             //Row Output
             foreach (CateringItem item in catering.items)
             {
-                Console.WriteLine(" " + item.ProductId.PadRight(24) + item.Name + item.Quantity.ToString().PadLeft(34 - item.Name.Length) + "$".PadLeft(23 - item.Quantity.ToString().Length) + item.Price.ToString());
+                if(item.Quantity==0)
+                {
+                    Console.WriteLine(" " + item.ProductId.PadRight(24) + item.Name + item.Quantity.ToString("SOLD OUT").PadLeft(34 - item.Name.Length) + "$".PadLeft(23 - item.Quantity.ToString().Length) + item.Price.ToString());
+                }
+                else
+                {
+                    Console.WriteLine(" " + item.ProductId.PadRight(24) + item.Name + item.Quantity.ToString().PadLeft(34 - item.Name.Length) + "$".PadLeft(23 - item.Quantity.ToString().Length) + item.Price.ToString());
+                }
             }
         }
 

@@ -23,22 +23,6 @@ namespace Capstone.Classes
         public decimal Price { get; set; }
         public string Name { get; private set; }
         public int Quantity { get; set; }
-        //{
-        //    get
-        //    {
-        //        //if (Quantity == 0)
-        //        //{
-        //        //    Quantity.ToString("SOLD OUT");
-        //        //}
-        //        //return Quantity
-        //        return Quantity;
-
-        //    }
-        //    set
-        //    {
-
-        //    }
-        //}
         public string ProductId { get; set; }
     }
 }
