@@ -65,18 +65,18 @@ namespace Capstone.Classes
         private void DisplayInterface()
         {
             //Column Names
-            Console.WriteLine("Product Code" + "Description".PadLeft(24) + "Qty".PadLeft(24) + "Price".PadLeft(24));
+            Console.WriteLine("  Product Code" + "Description".PadLeft(16) + "Qty".PadLeft(16) + "Price".PadLeft(13));
 
             //Row Output
             foreach (CateringItem item in catering.items)
             {
-                if(item.Quantity==0)
+                if(item.Quantity<=0)
                 {
-                    Console.WriteLine(" " + item.ProductId.PadRight(24) + item.Name + item.Quantity.ToString("SOLD OUT").PadLeft(34 - item.Name.Length) + "$".PadLeft(23 - item.Quantity.ToString().Length) + item.Price.ToString());
+                    Console.WriteLine("   " + item.ProductId.PadRight(16) + item.Name + item.Quantity.ToString("SOLD OUT").PadLeft(32 - item.Name.Length) + "$".PadLeft(5 - item.Quantity.ToString().Length) + item.Price.ToString());
                 }
                 else
                 {
-                    Console.WriteLine(" " + item.ProductId.PadRight(24) + item.Name + item.Quantity.ToString().PadLeft(34 - item.Name.Length) + "$".PadLeft(23 - item.Quantity.ToString().Length) + item.Price.ToString());
+                    Console.WriteLine("   " + item.ProductId.PadRight(16) + item.Name + item.Quantity.ToString().PadLeft(26 - item.Name.Length) + "$".PadLeft(12 - item.Quantity.ToString().Length) + item.Price.ToString());
                 }
             }
         }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Capstone.Classes
 {
-    public class Catering
+    public class Catering //: IComparable
     {
         //This class should contain all the "work" for catering
 
@@ -15,10 +15,14 @@ namespace Capstone.Classes
         public List<CateringItem> items = new List<CateringItem>();
 
         //Constructors
-        public Catering ()
+        public Catering()
         {
             items = fileAccess.CateringInventory();
         }
+        //public string CompareTo(Catering items)
+        //{
+        //    return items.ToString();
+        //}
 
         //Add Money Method
         public decimal CurrentBalance { get; set; } = 0.00M;
