@@ -9,7 +9,7 @@ namespace Capstone.DAO.Interfaces
     public interface IWorkoutDAO
     {
         public List<DailyWorkout> GetDailyWorkouts(int userId);
-        public List<UseTracking> GetWorkoutDetails(int userId, int workoutId);
+        public List<UseTracking> GetWorkoutDetails(int workoutId);
 
         
     }

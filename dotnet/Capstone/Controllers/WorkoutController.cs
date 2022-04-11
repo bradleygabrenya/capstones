@@ -28,11 +28,11 @@ namespace Capstone.Controllers
             return dailyWorkouts;
         }
 
-        [HttpGet("/workouts/{userId}/{workoutId}")]
+        [HttpGet("/workoutdetails/{workoutId}")]
         //[Authorize]
-        public List<UseTracking> GetUseTrackings(int userId, int workoutId)
+        public List<UseTracking> GetUseTrackings(int workoutId)
         {
-            List<UseTracking> useTrackings = workoutDAO.GetWorkoutDetails(userId, workoutId);
+            List<UseTracking> useTrackings = workoutDAO.GetWorkoutDetails(workoutId);
             return useTrackings;
         }
 

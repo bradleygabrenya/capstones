@@ -10,7 +10,7 @@ namespace Capstone.DAO
 {
     public class WorkoutDAO : IWorkoutDAO
     {
-        private string getDetails = "SELECT * FROM use_tracking WHERE user_id = @user_id AND workout_id = @workout_id";
+        private string getDetails = "SELECT * FROM use_tracking WHERE workout_id = @workout_id";
         private string getWorkouts = "SELECT * FROM daily_workout WHERE user_id = @user_id";
         private readonly string connectionString;
 
@@ -52,7 +52,7 @@ namespace Capstone.DAO
             }
             return dailyWorkouts;
         }
-        public List<UseTracking> GetWorkoutDetails(int userId, int workoutId)
+        public List<UseTracking> GetWorkoutDetails(int workoutId)
         {
             List<UseTracking> returnUseTracking = new List<UseTracking>();
 
@@ -63,7 +63,6 @@ namespace Capstone.DAO
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(getDetails, conn);
-                    cmd.Parameters.AddWithValue("@user_id", userId);
                     cmd.Parameters.AddWithValue("@workout_id", workoutId);
                     SqlDataReader reader = cmd.ExecuteReader();
 

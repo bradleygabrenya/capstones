@@ -5,6 +5,9 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
+import DailyWorkouts from '../views/DailyWorkouts.vue'
+import WorkoutDetails from '../views/WorkoutDetails.vue'
+
 
 Vue.use(Router)
 
@@ -53,6 +56,22 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+      path: "/workouts/:UserId",
+      name: "workouts",
+      component: DailyWorkouts,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/workoutdetails/:workoutId",
+      name:"workoutdetails",
+      component: WorkoutDetails,
+      meta: {
+        requiresAuth: false
+      },
+    }
   ]
 })
 
