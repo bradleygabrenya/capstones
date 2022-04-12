@@ -8,4 +8,8 @@ export default {
         return axios.get(path + '/' + userId)
     },
 
+    addDailyWorkout(userId) {
+        return axios.post(path + '/' + userId)
+    },
+
 }

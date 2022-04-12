@@ -10,11 +10,12 @@ namespace Capstone.Models
         public int TrackingId { get; set; }
         public int UserId { get; set; }
         public int WorkoutId { get; set; }
-        public int EquipmentId { get; set; }
+        //public int EquipmentId { get; set; }
         public int Reps { get; set; }
         public decimal Weight { get; set; }
         public DateTime UseStart { get; set; }
         public DateTime UseStop { get; set; }
+        public string EquipmentName { get; set; }
 
     }
 }

@@ -10,8 +10,10 @@ namespace Capstone.DAO
 {
     public class WorkoutDAO : IWorkoutDAO
     {
-        private string getDetails = "SELECT * FROM use_tracking WHERE workout_id = @workout_id";
+        //private string getDetails = "SELECT * FROM use_tracking WHERE workout_id = @workout_id";
+        private string getDetails = "SELECT ut.*,e.equipment_name FROM use_tracking ut JOIN equipment e ON ut.equipment_id = e.equipment_id WHERE ut.workout_id = @workout_id ";
         private string getWorkouts = "SELECT * FROM daily_workout WHERE user_id = @user_id";
+        private string addDailyWorkout = "INSERT INTO daily_workout(user_id, check_in, check_out) VALUES (@user_id, Getdate(), '12/31/9999')";
         private readonly string connectionString;
 
         public WorkoutDAO(string dbConnectionString)
@@ -72,7 +74,7 @@ namespace Capstone.DAO
                         useTracking.TrackingId = Convert.ToInt32(reader["tracking_id"]);
                         useTracking.UserId = Convert.ToInt32(reader["user_id"]);
                         useTracking.WorkoutId = Convert.ToInt32(reader["workout_id"]);
-                        useTracking.EquipmentId = Convert.ToInt32(reader["equipment_id"]);
+                        useTracking.EquipmentName = Convert.ToString(reader["equipment_name"]);
                         useTracking.Reps = Convert.ToInt32(reader["reps"]);
                         useTracking.Weight = Convert.ToDecimal(reader["weight"]);
                         useTracking.UseStart = Convert.ToDateTime(reader["use_start"]);
@@ -87,6 +89,29 @@ namespace Capstone.DAO
             }
 
             return returnUseTracking;
+        }
+
+        public String StartDailyWorkout(int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(addDailyWorkout, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+                    cmd.ExecuteNonQuery();
+
+                   
+                }
+            }
+            catch (SqlException)
+            {
+                return "unsuccessful";
+            }
+
+            return "successful";
         }
     }
 }
