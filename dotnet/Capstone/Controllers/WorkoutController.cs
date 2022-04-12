@@ -37,13 +37,18 @@ namespace Capstone.Controllers
         }
 
         [HttpPost("/workouts/{userId}")]
-        public String PostDailyWorkout(int userId)
+        public string PostDailyWorkout(int userId)
         {
             string completed = workoutDAO.StartDailyWorkout(userId);
             return completed;
         }
 
-
+        [HttpPost("/workoutdetails/{workoutId}")]
+        public string PostUseTracking(UseTracking useTracking)
+        {
+            string completed = workoutDAO.CreateUseTracking(useTracking);
+            return completed;
+        }
 
     }
 }

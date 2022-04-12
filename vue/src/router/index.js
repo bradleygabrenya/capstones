@@ -8,6 +8,7 @@ import store from '../store/index'
 import DailyWorkouts from '../views/DailyWorkouts.vue'
 import WorkoutDetails from '../views/WorkoutDetails.vue'
 import UserList from '../views/UsersView.vue'
+import UseTrackingForm from '../views/UseTrackingForm.vue'
 
 
 Vue.use(Router)
@@ -75,11 +76,19 @@ const router = new Router({
     },
     {
       path: "/workoutdetails/:workoutId",
-      name:"workoutdetails",
+      name:"workout-details",
       component: WorkoutDetails,
       meta: {
         requiresAuth: false
-      },
+      }
+    },
+    {
+      path: "/usetrackingform",
+      name: "use-tracking-form",
+      component: UseTrackingForm,
+      meta: {
+        requiresAuth: false
+      }
     },
   ]
 })
