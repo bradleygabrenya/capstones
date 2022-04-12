@@ -12,7 +12,7 @@
                     <td>{{(Date.parse(details.useStop) - Date.parse(details.useStart)) / 60000}} Minutes</td>
                 </tr>
                 <tr>
-                    <td></td>
+                    <td>Equipment Name: {{details.equipmentName}}</td>
                 </tr>
             </tbody>
         </table>
