@@ -30,6 +30,14 @@ namespace Capstone.Controllers
             return "Server is ready with " + users.Count.ToString() + " users.";
         }
 
+        [HttpGet("/userList")]
+        //[Authorize]
+        public List<User> GetUserList()
+        {
+            List<User> users = userDao.GetUsers();
+            return users;
+        }
+
         [HttpGet("check")]
         [Authorize]
         public string Check()

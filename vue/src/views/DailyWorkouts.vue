@@ -2,7 +2,7 @@
   <div>
     <daily-workout-details v-bind:workouts="workouts" />
     
-    <h1>asdfasdfsadf</h1>
+    
   </div>
 </template>
 

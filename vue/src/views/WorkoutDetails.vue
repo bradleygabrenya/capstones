@@ -2,7 +2,7 @@
   <div>
     <use-tracking v-bind:workoutDetails="workoutDetails" />
     
-    <h1>asdfasdfsadf</h1>
+    
   </div>
 </template>
 

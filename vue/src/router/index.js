@@ -7,6 +7,7 @@ import Register from '../views/Register.vue'
 import store from '../store/index'
 import DailyWorkouts from '../views/DailyWorkouts.vue'
 import WorkoutDetails from '../views/WorkoutDetails.vue'
+import UserList from '../views/UsersView.vue'
 
 
 Vue.use(Router)
@@ -36,6 +37,14 @@ const router = new Router({
       path: "/login",
       name: "login",
       component: Login,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/userList",
+      name: "user-list",
+      component: UserList,
       meta: {
         requiresAuth: false
       }
