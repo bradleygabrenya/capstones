@@ -13,6 +13,7 @@ namespace Capstone.DAO
         //private string getDetails = "SELECT * FROM use_tracking WHERE workout_id = @workout_id";
         private string getDetails = "SELECT ut.*,e.equipment_name FROM use_tracking ut JOIN equipment e ON ut.equipment_id = e.equipment_id WHERE ut.workout_id = @workout_id ";
         private string getWorkouts = "SELECT * FROM daily_workout WHERE user_id = @user_id";
+        private string addDailyWorkout = "INSERT INTO daily_workout(user_id, check_in, check_out) VALUES (@user_id, Getdate(), '12/31/9999')";
         private readonly string connectionString;
 
         public WorkoutDAO(string dbConnectionString)
@@ -88,6 +89,29 @@ namespace Capstone.DAO
             }
 
             return returnUseTracking;
+        }
+
+        public String StartDailyWorkout(int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(addDailyWorkout, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+                    cmd.ExecuteNonQuery();
+
+                   
+                }
+            }
+            catch (SqlException)
+            {
+                return "unsuccessful";
+            }
+
+            return "successful";
         }
     }
 }
