@@ -12,9 +12,14 @@ namespace Capstone.DAO
     {
         private string getDetails = "SELECT ut.*,e.equipment_name FROM use_tracking ut JOIN equipment e ON ut.equipment_id = e.equipment_id WHERE ut.workout_id = @workout_id ";
         private string getWorkouts = "SELECT * FROM daily_workout WHERE user_id = @user_id";
-        private string addDailyWorkout = "INSERT INTO daily_workout(user_id, check_in, check_out) VALUES (@user_id, Getdate(), '12/31/9999')";
+        private string addDailyWorkout = "INSERT INTO daily_workout(user_id, check_in, check_out) " +
+            " OUTPUT Inserted.workout_id " +
+            " VALUES (@user_id, Getdate(), '12/31/9999')";
         private string createUseTracking = "INSERT INTO use_tracking (user_id, workout_id, equipment_id, reps, weight, use_start, use_stop) " +
-            "VALUES (@user_id, @workout_id, @equipment_id, 0, 0, GETDATE(), '12/31/9999')";
+            " OUTPUT Inserted.tracking_id " +
+            " VALUES (@user_id, @workout_id, @equipment_id, 0, 0, GETDATE(), '12/31/9999')";
+        private string putUseTracking = "UPDATE use_tracking set reps = @reps, weight = @weight, use_stop = GETDATE() where tracking_id = @trackingId";
+
         private readonly string connectionString;
 
         public WorkoutDAO(string dbConnectionString)
@@ -92,8 +97,9 @@ namespace Capstone.DAO
             return returnUseTracking;
         }
 
-        public string StartDailyWorkout(int userId)
+        public int StartDailyWorkout(int userId)
         {
+            int workoutId = 0;
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -102,21 +108,22 @@ namespace Capstone.DAO
 
                     SqlCommand cmd = new SqlCommand(addDailyWorkout, conn);
                     cmd.Parameters.AddWithValue("@user_id", userId);
-                    cmd.ExecuteNonQuery();
+                    workoutId = (int)cmd.ExecuteScalar();
 
 
                 }
             }
             catch (SqlException)
             {
-                return "unsuccessful";
+                throw;
             }
 
-            return "successful";
+            return workoutId;
         }
 
-        public string CreateUseTracking(UseTracking useTracking)
+        public int CreateUseTracking(UseTracking useTracking)
         {
+            int trackingId = 0;
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -127,13 +134,36 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@user_id", useTracking.UserId);
                     cmd.Parameters.AddWithValue("@workout_id", useTracking.WorkoutId);
                     cmd.Parameters.AddWithValue("@equipment_id", useTracking.EquipmentId);
-                    cmd.ExecuteNonQuery();
+                    trackingId = (int)cmd.ExecuteScalar();
 
                 }
             }
             catch (SqlException)
             {
-                return "unsuccessful";
+                throw;
+            }
+
+            return trackingId;
+        }
+
+        public string PutUseTracking(UseTracking useTracking)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(putUseTracking, conn);
+                    cmd.Parameters.AddWithValue("@trackingId", useTracking.TrackingId);
+                    cmd.Parameters.AddWithValue("@reps", useTracking.Reps);
+                    cmd.Parameters.AddWithValue("@weight", useTracking.Weight);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
             }
 
             return "successful";

@@ -67,7 +67,7 @@ const router = new Router({
       }
     },
     {
-      path: "/workouts/:UserId",
+      path: "/workouts/:userId",
       name: "workouts",
       component: DailyWorkouts,
       meta: {

@@ -10,5 +10,10 @@ export default {
 
     postUseTracking(useTracking) {
         return axios.post(path + '/' + useTracking.workoutId)
+    },
+
+    putUseTracking(useTracking) {
+        return axios.put(path + '/' + useTracking.trackingId)
     }
+
 }

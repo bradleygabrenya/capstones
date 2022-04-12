@@ -1,8 +1,6 @@
 <template>
   <div>
       <button type="button" class="btn btn-primary btn-lg" v-on:click="startWorkout">Start Workout</button>
-
-      <!--<a href="" class="btn btn-primary btn-lg">Start Workout</a> -->
   </div>
 </template>
 
@@ -15,8 +13,8 @@ export default {
 methods: {
     startWorkout() {
         workoutService.addDailyWorkout(this.$store.state.user.userId).then((response) => {
-            if(response.status === 201) {
-                this.$router.push()
+            if(response.status === 200) {
+                this.$router.push({name: 'use-tracking-form', params:{workoutId: "response.data"}})
             }
         })
     }

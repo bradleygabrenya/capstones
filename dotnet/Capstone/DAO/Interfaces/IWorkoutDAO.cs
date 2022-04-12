@@ -10,8 +10,9 @@ namespace Capstone.DAO.Interfaces
     {
         public List<DailyWorkout> GetDailyWorkouts(int userId);
         public List<UseTracking> GetWorkoutDetails(int workoutId);
-        public string StartDailyWorkout(int userId);
-        public string CreateUseTracking(UseTracking useTracking);
+        public int StartDailyWorkout(int userId);
+        public int CreateUseTracking(UseTracking useTracking);
+        public string PutUseTracking(UseTracking useTracking);
 
         
     }
