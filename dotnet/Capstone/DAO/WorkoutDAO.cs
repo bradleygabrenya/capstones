@@ -10,10 +10,11 @@ namespace Capstone.DAO
 {
     public class WorkoutDAO : IWorkoutDAO
     {
-        //private string getDetails = "SELECT * FROM use_tracking WHERE workout_id = @workout_id";
         private string getDetails = "SELECT ut.*,e.equipment_name FROM use_tracking ut JOIN equipment e ON ut.equipment_id = e.equipment_id WHERE ut.workout_id = @workout_id ";
         private string getWorkouts = "SELECT * FROM daily_workout WHERE user_id = @user_id";
         private string addDailyWorkout = "INSERT INTO daily_workout(user_id, check_in, check_out) VALUES (@user_id, Getdate(), '12/31/9999')";
+        private string createUseTracking = "INSERT INTO use_tracking (user_id, workout_id, equipment_id, reps, weight, use_start, use_stop) " +
+            "VALUES (@user_id, @workout_id, @equipment_id, 0, 0, GETDATE(), '12/31/9999')";
         private readonly string connectionString;
 
         public WorkoutDAO(string dbConnectionString)
@@ -28,7 +29,7 @@ namespace Capstone.DAO
 
             try
             {
-                using(SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
 
@@ -36,7 +37,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@user_id", userId);
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         DailyWorkout dailyWorkout = new DailyWorkout();
 
@@ -48,9 +49,9 @@ namespace Capstone.DAO
                     }
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
-
+                throw;
             }
             return dailyWorkouts;
         }
@@ -91,7 +92,7 @@ namespace Capstone.DAO
             return returnUseTracking;
         }
 
-        public String StartDailyWorkout(int userId)
+        public string StartDailyWorkout(int userId)
         {
             try
             {
@@ -103,7 +104,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@user_id", userId);
                     cmd.ExecuteNonQuery();
 
-                   
+
                 }
             }
             catch (SqlException)
@@ -113,5 +114,30 @@ namespace Capstone.DAO
 
             return "successful";
         }
+
+        public string CreateUseTracking(UseTracking useTracking)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(createUseTracking, conn);
+                    cmd.Parameters.AddWithValue("@user_id", useTracking.UserId);
+                    cmd.Parameters.AddWithValue("@workout_id", useTracking.WorkoutId);
+                    cmd.Parameters.AddWithValue("@equipment_id", useTracking.EquipmentId);
+                    cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (SqlException)
+            {
+                return "unsuccessful";
+            }
+
+            return "successful";
+        }
+
     }
 }

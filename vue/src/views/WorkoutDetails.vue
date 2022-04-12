@@ -17,8 +17,6 @@ export default {
     };
   },
 
-  //params: ["workoutId"],
-
   components: {
     UseTracking,
   },
@@ -27,7 +25,6 @@ export default {
     workoutDetailsService.getWorkoutDetails(this.$route.params.workoutId).then((response) => {
         this.workoutDetails = response.data;
 
-        console.log("Reached getWorkoutDetails", this.workoutDetails)
     });
   },
 };
