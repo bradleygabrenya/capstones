@@ -81,7 +81,7 @@ namespace Capstone.Controllers
             return result;
         }
 
-        [HttpPost("register")]
+        [HttpPost("/register")]
         public IActionResult Register(RegisterUser userParam)
         {
             IActionResult result;

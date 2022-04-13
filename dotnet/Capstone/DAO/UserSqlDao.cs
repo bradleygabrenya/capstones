@@ -85,15 +85,15 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("INSERT INTO users (username, password_hash, salt, user_role, email, workout_goals, workout_profile, photo) VALUES (@username, @password_hash, @salt, @user_role, @email, @workout_goals, @workout_profile, @photo)", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO users (username, password_hash, salt, user_role) VALUES (@username, @password_hash, @salt, @user_role)", conn);
                     cmd.Parameters.AddWithValue("@username", username);
                     cmd.Parameters.AddWithValue("@password_hash", hash.Password);
                     cmd.Parameters.AddWithValue("@salt", hash.Salt);
                     cmd.Parameters.AddWithValue("@user_role", role);
-                    cmd.Parameters.AddWithValue("@email", email);
-                    cmd.Parameters.AddWithValue("@workout_goals", workoutGoals);
-                    cmd.Parameters.AddWithValue("@workout_profile", workoutProfile);
-                    cmd.Parameters.AddWithValue("@photo", photo);
+                    //cmd.Parameters.AddWithValue("@email", email);
+                    //cmd.Parameters.AddWithValue("@workout_goals", workoutGoals);
+                    //cmd.Parameters.AddWithValue("@workout_profile", workoutProfile);
+                    //cmd.Parameters.AddWithValue("@photo", photo);
                     cmd.ExecuteNonQuery();
                 }
             }
