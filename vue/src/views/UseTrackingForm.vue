@@ -1,6 +1,6 @@
 <template>
   <div>
-    <create-use-tracking v-bind:equipmentDetails="equipmentDetails"/>
+    <create-use-tracking v-bind:workoutId="workoutId" v-bind:equipmentDetails="equipmentDetails"/>
   </div>
 </template>
 

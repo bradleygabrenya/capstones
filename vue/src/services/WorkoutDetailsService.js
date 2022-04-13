@@ -9,7 +9,7 @@ export default {
     },
 
     postUseTracking(useTracking) {
-        return axios.post(path + '/' + useTracking.workoutId)
+        return axios.post(path, useTracking)
     },
 
     putUseTracking(useTracking) {

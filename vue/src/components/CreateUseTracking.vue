@@ -9,10 +9,10 @@
     </form>
     <form v-show="equipmentSelected">
       <label for="reps">Reps</label>
-      <input type="number" id="reps" name="reps" min="0" v-model="useTracking.reps">
+      <input type="number" id="reps" name="reps" min="0" v-model.number="useTracking.reps">
       <br>
       <label for="weight">Weight</label>
-      <input type="number" id="weight" name="weight" min="0" step=".5" v-model="useTracking.weight">
+      <input type="number" id="weight" name="weight" min="0" step=".5" v-model.number="useTracking.weight">
       <br>
       <button type="button" class="btn btn-primary btn-lg" v-on:click="endTheSet">End Set</button>
       <br>
@@ -36,6 +36,8 @@ data(){
       reps: 0,
       weight: 0,
       trackingId: 0,
+      equipmentId: 2000,
+      workoutId: parseInt(this.workoutId)
     }
   }
 },
@@ -47,10 +49,10 @@ methods:{
     startWorkout() {
       this.toggleEquipmentSelected();
         workoutDetailsService.postUseTracking(this.useTracking).then((response) => {
+            console.log("Reached", response.data)
             if(response.status === 200) {
               this.useTracking.trackingId = response.data;
               console.log(response.data)
-                this.$router.push()
             }
         })
     },
@@ -68,7 +70,8 @@ methods:{
   },
 
 },
-  props: { equipmentDetails: Array },
+  props: { equipmentDetails: Array,
+  workoutId: Number },
 };
 
 </script>

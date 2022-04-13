@@ -44,7 +44,7 @@ namespace Capstone.Controllers
             return completed;
         }
 
-        [HttpPost("/workoutdetails/{workoutId}")]
+        [HttpPost("/workoutdetails")]
         //[Authorize]
         public int PostUseTracking(UseTracking useTracking)
         {

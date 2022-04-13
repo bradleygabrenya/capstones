@@ -155,7 +155,7 @@ namespace Capstone.DAO
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(putUseTracking, conn);
-                    cmd.Parameters.AddWithValue("@trackingId", useTracking.TrackingId);
+                    cmd.Parameters.AddWithValue("@tracking_id", useTracking.TrackingId);
                     cmd.Parameters.AddWithValue("@reps", useTracking.Reps);
                     cmd.Parameters.AddWithValue("@weight", useTracking.Weight);
                     cmd.ExecuteNonQuery();
