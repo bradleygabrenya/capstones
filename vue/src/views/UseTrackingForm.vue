@@ -18,10 +18,14 @@ export default {
   data() {
     return {
       equipmentDetails: [],
+      workoutId: 0,
     };
   },
 
   created() {
+    this.workoutId = this.$route.params.workoutId
+    console.log("In use-tracking-form", this.workoutId)
+
     EquipmentService.getEquipmentList().then((response) => {
       this.equipmentDetails = response.data;
     });

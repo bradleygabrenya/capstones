@@ -14,7 +14,7 @@ methods: {
     startWorkout() {
         workoutService.addDailyWorkout(this.$store.state.user.userId).then((response) => {
             if(response.status === 200) {
-                this.$router.push({name: 'use-tracking-form', params:{workoutId: "response.data"}})
+                this.$router.push({name: 'use-tracking-form', params:{workoutId: response.data}})
             }
         })
     }

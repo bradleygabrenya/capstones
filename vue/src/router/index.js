@@ -83,7 +83,7 @@ const router = new Router({
       }
     },
     {
-      path: "/usetrackingform",
+      path: "/usetrackingform/:workoutId",
       name: "use-tracking-form",
       component: UseTrackingForm,
       meta: {
