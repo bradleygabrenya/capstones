@@ -11,7 +11,7 @@
                     <td>{{workout.checkOut}}</td>
                 </tr>
             </tbody>
-            <router-link :to="{ name: 'workoutdetails', params: { workoutId: workout.workoutId} }">View Details </router-link>
+            <router-link :to="{ name: 'workout-details', params: { workoutId: workout.workoutId} }">View Details </router-link>
         </table>
     </div>
 </template>

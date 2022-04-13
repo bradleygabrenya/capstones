@@ -52,7 +52,7 @@ namespace Capstone.Controllers
             return completed;
         }
 
-        [HttpPut("/workoutdetails/{trackingId}")]
+        [HttpPut("/workoutdetails")]
         //[Authorize]
         public string PutUseTracking(UseTracking useTracking)
         {

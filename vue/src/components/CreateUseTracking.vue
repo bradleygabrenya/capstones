@@ -1,11 +1,11 @@
 <template>
   <div>
     <form v-show="!equipmentSelected">
-      <select class="form-control">
+      <select class="form-control" v-model="equipmentName">
           <option selected>Select Equipment</option>
           <option v-for="equipment in equipmentDetails" v-bind:key="equipment.equipmentId">{{equipment.name}}</option>
       </select>
-      <button type="button" class="btn btn-primary btn-lg" v-on:click="startWorkout">Start Workout</button>
+      <button type="button" class="btn btn-primary btn-lg" v-on:click="startWorkout">Start Set</button>
     </form>
     <form v-show="equipmentSelected">
       <label for="reps">Reps</label>
@@ -36,42 +36,49 @@ data(){
       reps: 0,
       weight: 0,
       trackingId: 0,
-      equipmentId: 2000,
+      equipmentId: 0,
       workoutId: parseInt(this.workoutId)
-    }
+    },
+
+    equipmentName: ""
   }
 },
+
 methods:{
   toggleEquipmentSelected(){
     this.equipmentSelected = true;
+    this.equipmentDetails.forEach((e) => {
+      if (e.name == this.equipmentName) {
+        this.useTracking.equipmentId = e.equipmentId
+      }
+    })
   },
 
     startWorkout() {
       this.toggleEquipmentSelected();
         workoutDetailsService.postUseTracking(this.useTracking).then((response) => {
-            console.log("Reached", response.data)
             if(response.status === 200) {
               this.useTracking.trackingId = response.data;
-              console.log(response.data)
             }
         })
     },
-
-  
 
   endTheSet(){
     workoutDetailsService.putUseTracking(this.useTracking).then((response) => {
             if(response.status === 200) {
               this.equipmentSelected = false;
-              this.$router.push()
             }
         })
-        this.equipmentSelected = false;
+        this.useTracking.reps = 0;
+        this.useTracking.weight = 0;
   },
 
+  
 },
+
   props: { equipmentDetails: Array,
   workoutId: Number },
+
 };
 
 </script>

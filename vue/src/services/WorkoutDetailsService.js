@@ -13,7 +13,7 @@ export default {
     },
 
     putUseTracking(useTracking) {
-        return axios.put(path + '/' + useTracking.trackingId)
+        return axios.put(path, useTracking)
     }
 
 }
