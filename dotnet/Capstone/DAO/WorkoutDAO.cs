@@ -14,12 +14,16 @@ namespace Capstone.DAO
         private string getWorkouts = "SELECT * FROM daily_workout WHERE user_id = @user_id";
         private string addDailyWorkout = "INSERT INTO daily_workout(user_id, check_in, check_out) " +
             " OUTPUT Inserted.workout_id " +
-            " VALUES (@user_id, Getdate(), '12/31/9999')";
+            " VALUES (@user_id, Getdate(), '12/31/9999'); " +
+            "UPDATE users SET check_in = 'true' WHERE user_id = @user_id;";
         private string createUseTracking = "INSERT INTO use_tracking (user_id, workout_id, equipment_id, reps, weight, use_start, use_stop) " +
             " OUTPUT Inserted.tracking_id " +
             " VALUES (@user_id, @workout_id, @equipment_id, 0, 0, GETDATE(), '12/31/9999')";
         private string putUseTracking = "UPDATE use_tracking set reps = @reps, weight = @weight, use_stop = GETDATE() where tracking_id = @tracking_id";
-        private string putDailyWorkout = "UPDATE daily_workout SET check_out = GETDATE() WHERE workout_id = @workout_id";
+        //private string putDailyWorkout = "UPDATE daily_workout SET check_out = GETDATE() WHERE workout_id = @workout_id";
+        private string putDailyWorkout = "update dw set check_out = getdate() from daily_workout dw join users u on dw.user_id = u.user_id where u.user_id = @userID AND dw.check_out > getdate();" +
+            "";
+        
 
         private readonly string connectionString;
 

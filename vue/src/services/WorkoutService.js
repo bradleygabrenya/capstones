@@ -12,4 +12,5 @@ export default {
         return axios.post(path + '/' + userId)
     },
 
+    
 }

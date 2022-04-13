@@ -11,7 +11,8 @@ namespace Capstone.DAO
     public class UserSqlDao : IUserDao
     {
         private readonly string connectionString;
-
+        
+        private string checkOutUser = "UPDATE users SET check_in = 'false' WHERE user_id = @user_id";
         public UserSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;
@@ -117,7 +118,8 @@ namespace Capstone.DAO
                 Email = Convert.ToString(reader["email"]),
                 WorkoutGoals = Convert.ToString(reader["workout_goals"]),
                 WorkoutProfile = Convert.ToString(reader["workout_profile"]),
-                Photo = Convert.ToString(reader["photo"])
+                Photo = Convert.ToString(reader["photo"]),
+                CheckedIn = Convert.ToString(reader["check_in"])
             };
 
             return u;

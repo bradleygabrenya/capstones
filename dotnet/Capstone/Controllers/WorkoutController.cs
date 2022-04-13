@@ -15,8 +15,10 @@ namespace Capstone.Controllers
     public class WorkoutController : ControllerBase
     {
         private readonly IWorkoutDAO workoutDAO;
-        public WorkoutController(IWorkoutDAO _workoutDAO)
+        private readonly IUserDao userDAO;
+        public WorkoutController(IWorkoutDAO _workoutDAO, IUserDao _userDAO)
         {
+            userDAO = _userDAO;
             workoutDAO = _workoutDAO;
         }
 

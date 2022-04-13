@@ -11,6 +11,7 @@
         public string WorkoutGoals { get; set; }
         public string WorkoutProfile { get; set; }
         public string Photo { get; set; }
+        public string CheckedIn { get; set; }
 
     }
 
