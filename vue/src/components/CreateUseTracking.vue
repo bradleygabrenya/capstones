@@ -6,6 +6,8 @@
           <option v-for="equipment in equipmentDetails" v-bind:key="equipment.equipmentId">{{equipment.name}}</option>
       </select>
       <button type="button" class="btn btn-primary btn-lg" v-on:click="startWorkout">Start Set</button>
+      <br>
+      <button type="button" class="btn btn-primary btn-lg" v-on:click="endWorkout">End Workout</button>
     </form>
     <form v-show="equipmentSelected">
       <label for="reps">Reps</label>
@@ -15,8 +17,6 @@
       <input type="number" id="weight" name="weight" min="0" step=".5" v-model.number="useTracking.weight">
       <br>
       <button type="button" class="btn btn-primary btn-lg" v-on:click="endTheSet">End Set</button>
-      <br>
-      <button type="button" class="btn btn-primary btn-lg" v-on:click="toggleEquipmentSelected">End Workout</button>
 
     </form>
 
@@ -72,6 +72,14 @@ methods:{
         this.useTracking.reps = 0;
         this.useTracking.weight = 0;
   },
+
+  endWorkout() {
+    workoutDetailsService.putDailyWorkout(this.workoutId).then((response) => {
+      if (response.status === 200) {
+        this.$router.push({name: "home"});
+      }
+    })
+  }
 
   
 },

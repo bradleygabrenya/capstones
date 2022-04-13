@@ -19,6 +19,7 @@ namespace Capstone.DAO
             " OUTPUT Inserted.tracking_id " +
             " VALUES (@user_id, @workout_id, @equipment_id, 0, 0, GETDATE(), '12/31/9999')";
         private string putUseTracking = "UPDATE use_tracking set reps = @reps, weight = @weight, use_stop = GETDATE() where tracking_id = @tracking_id";
+        private string putDailyWorkout = "UPDATE daily_workout SET check_out = GETDATE() WHERE workout_id = @workout_id";
 
         private readonly string connectionString;
 
@@ -121,6 +122,8 @@ namespace Capstone.DAO
             return workoutId;
         }
 
+
+
         public int CreateUseTracking(UseTracking useTracking)
         {
             int trackingId = 0;
@@ -166,6 +169,26 @@ namespace Capstone.DAO
                 throw;
             }
 
+            return "successful";
+        }
+
+        public string PutDailyWorkout(int workoutId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(putDailyWorkout, conn);
+                    cmd.Parameters.AddWithValue("@workout_id", workoutId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
             return "successful";
         }
 

@@ -13,7 +13,7 @@ namespace Capstone.DAO.Interfaces
         public int StartDailyWorkout(int userId);
         public int CreateUseTracking(UseTracking useTracking);
         public string PutUseTracking(UseTracking useTracking);
-
+        public string PutDailyWorkout(int workoutId);
         
     }
 }

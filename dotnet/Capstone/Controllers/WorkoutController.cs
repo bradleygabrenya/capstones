@@ -59,5 +59,12 @@ namespace Capstone.Controllers
             string completed = workoutDAO.PutUseTracking(useTracking);
             return completed;
         }
+
+        [HttpPut("/workoutdetails/{workoutId}")]
+        public string PutDailyWorkout(int workoutId)
+        {
+            string completed = workoutDAO.PutDailyWorkout(workoutId);
+            return completed;
+        }
     }
 }

@@ -14,6 +14,10 @@ export default {
 
     putUseTracking(useTracking) {
         return axios.put(path, useTracking)
-    }
+    },
+
+    putDailyWorkout(workoutId) {
+        return axios.put(path + '/' + workoutId)
+    },
 
 }
