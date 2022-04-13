@@ -14,15 +14,17 @@ export default {
   data() {
     return {
       workouts: [],
+      userId: this.$route.params.userId,
     };
   },
 
+  
   components: {
     DailyWorkoutDetails,
   },
 
   created() {
-    workoutService.getWorkouts(this.$store.state.user.userId).then((response) => {
+    workoutService.getWorkouts(this.userId).then((response) => {
         this.workouts = response.data;
     });
   },

@@ -31,7 +31,7 @@ namespace Capstone.Controllers
         }
 
         [HttpGet("/userList")]
-        //[Authorize]
+        [Authorize(Roles ="employee, admin")]
         public List<User> GetUserList()
         {
             List<User> users = userDao.GetUsers();

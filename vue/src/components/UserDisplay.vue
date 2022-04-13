@@ -4,7 +4,7 @@
           <thead>Gym Members: </thead>
           <tbody>
               <tr v-for="user in userList" v-bind:key="user.username">
-                  <td>{{user.username}}</td>
+                  <td>{{user.username}}: <router-link v-bind:to="{name: 'workouts', params: {userId: user.userId}}">View Details</router-link></td>
               </tr>
           </tbody>
       </table>
