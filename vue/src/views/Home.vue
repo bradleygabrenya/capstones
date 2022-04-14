@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <p>Welcome to your new home.</p>
+    <p>Click "Past Workouts" to view a preview of your past trips to the gym, or click "Logout" to log out!</p>
     <p>
-      In the initial configuration, this page can only be seen when logged in.
+      Click "Start Workout" to check-in to the gym and begin tracking your workout.
     </p>
     <todays-workout />
   </div>
