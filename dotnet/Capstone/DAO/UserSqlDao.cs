@@ -12,7 +12,8 @@ namespace Capstone.DAO
     {
         private readonly string connectionString;
         
-        private string checkOutUser = "UPDATE users SET check_in = 'false' WHERE user_id = @user_id";
+        private string checkOutUser = "UPDATE users SET check_in = 'false' WHERE user_id = @user_id;";
+        private string updateRole = "UPDATE users SET user_role = @new_role WHERE user_id = @user_id;";
         public UserSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;
@@ -91,10 +92,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@password_hash", hash.Password);
                     cmd.Parameters.AddWithValue("@salt", hash.Salt);
                     cmd.Parameters.AddWithValue("@user_role", role);
-                    //cmd.Parameters.AddWithValue("@email", email);
-                    //cmd.Parameters.AddWithValue("@workout_goals", workoutGoals);
-                    //cmd.Parameters.AddWithValue("@workout_profile", workoutProfile);
-                    //cmd.Parameters.AddWithValue("@photo", photo);
+
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -125,6 +123,31 @@ namespace Capstone.DAO
             return u;
         }
 
+        public void UpdateUserRole(User user)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
 
+                    SqlCommand cmd = new SqlCommand(updateRole, conn);
+                    cmd.Parameters.AddWithValue("@user_id", user.UserId);
+                    cmd.Parameters.AddWithValue("@new_role", user.Role);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+
+        }
+
+
+        //cmd.Parameters.AddWithValue("@email", email);
+        //cmd.Parameters.AddWithValue("@workout_goals", workoutGoals);
+        //cmd.Parameters.AddWithValue("@workout_profile", workoutProfile);
+        //cmd.Parameters.AddWithValue("@photo", photo);
     }
 }

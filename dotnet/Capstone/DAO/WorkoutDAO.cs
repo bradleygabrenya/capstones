@@ -26,11 +26,13 @@ namespace Capstone.DAO
         private string putUseTracking = "UPDATE use_tracking set reps = @reps, weight = @weight, use_stop = GETDATE() where tracking_id = @tracking_id";
 
         private string putDailyWorkout = "UPDATE daily_workout SET check_out = GETDATE() WHERE workout_id = @workout_id; " +
-            "UPDATE u SET u.check_in = 'false' from users u JOIN daily_workout dw ON dw.user_id = u.user_id WHERE dw.workout_id = @workout_id ";
+            "UPDATE u SET u.check_in = 'false' from users u JOIN daily_workout dw ON dw.user_id = u.user_id WHERE dw.workout_id = @workout_id; " +
+            "UPDATE use_tracking set use_stop = GETDATE() WHERE workout_id = @workout_id and use_stop > GETDATE()";
 
         private string putDailyWorkoutEmployee = "update dw set check_out = getdate() from daily_workout dw join users u on dw.user_id = u.user_id " +
             "where u.user_id = @user_id AND dw.check_out > getdate(); " +
-            "UPDATE users SET check_in = 'false' WHERE user_id = @user_id;";
+            "UPDATE users SET check_in = 'false' WHERE user_id = @user_id; " +
+            "UPDATE use_tracking set use_stop = GETDATE() WHERE user_id = @user_id and use_stop > GETDATE()";
         
 
         private readonly string connectionString;

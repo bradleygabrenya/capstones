@@ -9,6 +9,7 @@ import DailyWorkouts from '../views/DailyWorkouts.vue'
 import WorkoutDetails from '../views/WorkoutDetails.vue'
 import UserList from '../views/UsersView.vue'
 import UseTrackingForm from '../views/UseTrackingForm.vue'
+import UpdateUserRole from '../views/UpdateUserRole.vue'
 
 
 Vue.use(Router)
@@ -86,6 +87,14 @@ const router = new Router({
       path: "/usetrackingform/:workoutId",
       name: "use-tracking-form",
       component: UseTrackingForm,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/profile/admin",
+      name: "update-user-role",
+      component: UpdateUserRole,
       meta: {
         requiresAuth: false
       }
