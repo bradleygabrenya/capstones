@@ -70,7 +70,7 @@ namespace Capstone.Controllers
         }
 
         [HttpPut("/employeeCheckout/{userId}")]
-        [Authorize(Roles = "employee, admin")]
+        //[Authorize(Roles = "employee, admin")]
         public void EmployeePutDailyWorkout(int userId)
         {
             workoutDAO.EmployeePutDailyWorkout(userId);

@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default {
     employeeEndWorkout(userId) {
-        axios.put('/employeeCheckout/' + userId)
+        return axios.put('/employeeCheckout/' + userId)
     }
 }
 

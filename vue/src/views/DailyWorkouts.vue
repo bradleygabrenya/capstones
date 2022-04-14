@@ -24,8 +24,10 @@ export default {
   },
 
   created() {
+    console.log("Reached DailyWorkouts.vue", this.userId)
     workoutService.getWorkouts(this.userId).then((response) => {
-        this.workouts = response.data;
+      this.workouts = response.data;
+      console.log("WorkoutService works", this.workouts)
     });
   },
 };
