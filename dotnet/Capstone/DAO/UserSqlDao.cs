@@ -14,6 +14,8 @@ namespace Capstone.DAO
         
         private string checkOutUser = "UPDATE users SET check_in = 'false' WHERE user_id = @user_id;";
         private string updateRole = "UPDATE users SET user_role = @new_role WHERE user_id = @user_id;";
+        private string updateProfile = "UPDATE users SET email = @email, workout_goals = @workout_goals, workout_profile = @workout_profile, " +
+            "photo = @photo WHERE user_id = @user_id";
         public UserSqlDao(string dbConnectionString)
         {
             connectionString = dbConnectionString;
@@ -144,7 +146,29 @@ namespace Capstone.DAO
 
         }
 
+        public void UpdateUserProfile(User user)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
 
+                    SqlCommand cmd = new SqlCommand(updateProfile, conn);
+                    cmd.Parameters.AddWithValue("@user_id", user.UserId);
+                    cmd.Parameters.AddWithValue("@email", user.Email);
+                    cmd.Parameters.AddWithValue("@workout_goals", user.WorkoutGoals);
+                    cmd.Parameters.AddWithValue("@workout_profile", user.WorkoutProfile);
+                    cmd.Parameters.AddWithValue("@photo", user.Photo);
+                    
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
         //cmd.Parameters.AddWithValue("@email", email);
         //cmd.Parameters.AddWithValue("@workout_goals", workoutGoals);
         //cmd.Parameters.AddWithValue("@workout_profile", workoutProfile);

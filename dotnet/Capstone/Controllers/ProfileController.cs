@@ -16,7 +16,7 @@ namespace Capstone.Controllers
     {
 
         private readonly IUserDao userDAO;
-
+        
         public ProfileController(IUserDao _userDAO)
         {
             userDAO = _userDAO;
@@ -28,6 +28,12 @@ namespace Capstone.Controllers
         public void PutUserRole(User user)
         {
             userDAO.UpdateUserRole(user);       
+        }
+
+        [HttpPut("/profile/user")]
+        public void PutUserProfile(User user)
+        {
+            userDAO.UpdateUserProfile(user);
         }
     }
 }

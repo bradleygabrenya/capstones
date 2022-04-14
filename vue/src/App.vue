@@ -7,6 +7,7 @@
       <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> Logout </router-link>
       <router-link class="userlist" v-bind:to="{name: 'user-list'}" v-if="this.$store.state.user.role === 'admin' || this.$store.state.user.role==='employee'"> View Members </router-link>
       <router-link class="userlist" v-bind:to="{name: 'update-user-role'}" v-if="this.$store.state.user.role === 'admin' "> View Roles </router-link>
+      <router-link class = "userlist" v-bind:to="{ name: 'user-profile'}"> Profile </router-link>
     </div>
     <router-view />
   </div>

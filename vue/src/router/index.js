@@ -10,6 +10,7 @@ import WorkoutDetails from '../views/WorkoutDetails.vue'
 import UserList from '../views/UsersView.vue'
 import UseTrackingForm from '../views/UseTrackingForm.vue'
 import UpdateUserRole from '../views/UpdateUserRole.vue'
+import UserProfile from '../views/UserProfile.vue'
 
 
 Vue.use(Router)
@@ -99,6 +100,14 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+      path: "/profile/user",
+      name: "user-profile",
+      component: UserProfile,
+      meta: {
+        requiresAuth: false
+      }
+    }
   ]
 })
 

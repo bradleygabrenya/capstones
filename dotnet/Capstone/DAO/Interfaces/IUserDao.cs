@@ -9,5 +9,6 @@ namespace Capstone.DAO.Interfaces
         List<User> GetUsers();
         User AddUser(string username, string password, string role, string email, string workoutGoals, string workoutProfile, string photo);
         public void UpdateUserRole(User user);
+        public void UpdateUserProfile(User user);
     }
 }
