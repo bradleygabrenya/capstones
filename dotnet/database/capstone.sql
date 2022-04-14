@@ -21,10 +21,11 @@ CREATE TABLE users (
 	password_hash varchar(200) NOT NULL,
 	salt varchar(200) NOT NULL,
 	user_role varchar(50) NOT NULL,	
-	email varchar(max) NOT NULL,
-	workout_goals varchar(max) NOT NULL,
-	workout_profile varchar(max) NOT NULL,
-	photo varchar(max) NOT NULL,
+	email varchar(max),
+	workout_goals varchar(max),
+	workout_profile varchar(max),
+	photo varchar(max),
+	check_in varchar(10) DEFAULT 'false',
 	CONSTRAINT PK_user PRIMARY KEY (user_id)	
 )
 
