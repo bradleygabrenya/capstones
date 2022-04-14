@@ -68,5 +68,12 @@ namespace Capstone.Controllers
             string completed = workoutDAO.PutDailyWorkout(workoutId);
             return completed;
         }
+
+        [HttpPut("/employeeCheckout/{userId}")]
+        [Authorize(Roles = "employee, admin")]
+        public void EmployeePutDailyWorkout(int userId)
+        {
+            workoutDAO.EmployeePutDailyWorkout(userId);
+        }
     }
 }
