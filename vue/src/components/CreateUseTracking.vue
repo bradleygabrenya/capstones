@@ -1,22 +1,24 @@
 <template>
-  <div>
+  <div class="display">
     <form v-show="!equipmentSelected">
       <select class="form-control" v-model="equipmentName">
           <option selected>Select Equipment</option>
           <option v-for="equipment in equipmentDetails" v-bind:key="equipment.equipmentId">{{equipment.name}}</option>
       </select>
-      <button type="button" class="btn btn-primary btn-lg" v-on:click="startWorkout">Start Set</button>
-      <br>
-      <button type="button" class="btn btn-primary btn-lg" v-on:click="endWorkout">End Workout</button>
+      <div class="buttons">
+      <button id="start-set" type="button" class="btn btn-success btn-lg" v-on:click="startWorkout">Start Set</button>
+      
+      <button id="end-workout" type="button" class="btn btn-danger btn-lg" v-on:click="endWorkout">End Workout</button>
+      </div>
     </form>
     <form v-show="equipmentSelected">
-      <label for="reps">Reps</label>
+      <label for="reps">Reps:</label> &nbsp;
       <input type="number" id="reps" name="reps" min="0" v-model.number="useTracking.reps">
       <br>
-      <label for="weight">Weight</label>
+      <label for="weight">Weight:</label>&nbsp;
       <input type="number" id="weight" name="weight" min="0" step=".5" v-model.number="useTracking.weight">
       <br>
-      <button type="button" class="btn btn-primary btn-lg" v-on:click="endTheSet">End Set</button>
+      <button type="button" class="btn btn-danger btn-lg buttons" v-on:click="endTheSet">End Set</button>
 
     </form>
 
@@ -92,4 +94,31 @@ methods:{
 </script>
 
 <style>
+#reps{
+  display: inline-block;
+  align-self: right;
+  margin-bottom: 15px;
+}
+
+.buttons{
+  margin-top: 100px;
+  display: flexbox;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+#end-workout{
+  display: flex;
+  margin: auto;
+  float: right;
+}
+
+#start-set{
+  display: flex;
+  margin: auto;
+  float: left;
+}
+
+.display{
+  margin-top: 50px;
+}
 </style>

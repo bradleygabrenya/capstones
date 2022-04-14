@@ -5,7 +5,7 @@
     <p>
       Click "Start Workout" to check-in to the gym and begin tracking your workout.
     </p>
-    <todays-workout />
+    <todays-workout class="btn"/>
   </div>
 </template>
 
@@ -19,3 +19,21 @@ export default {
   
 };
 </script>
+
+<style scoped>
+.home{
+  text-align: center;
+  width: 100%;
+}
+
+h1{
+    text-align: center;
+}
+
+.btn{
+display: inline-block;
+align-self: center;
+margin: auto;
+}
+
+</style>

@@ -1,18 +1,27 @@
 <template>
     <div>
-        <table v-for="details in workoutDetails" v-bind:key="details.workoutId">
+        <h1>Workout Details</h1>
+        <table v-for="details in workoutDetails" v-bind:key="details.workoutId" class="card">
             <tbody>
                 <tr>
-                    <td>No. of Reps: {{details.reps}}</td>
+                    <td class="labels">Equipment Name: </td>
+                    <td class="empty"></td>
+                    <td align="right" class="values">{{details.equipmentName}}</td>
                 </tr>
                 <tr>
-                    <td>Weight: {{details.weight}} pounds</td>
+                    <td class="labels">No. of Reps: </td>
+                    <td class="empty"></td>
+                    <td align="right" class="values">{{details.reps}}</td>
                 </tr>
                 <tr>
-                    <td>{{(Date.parse(details.useStop) - Date.parse(details.useStart)) / 60000}} Minutes</td>
+                    <td class="labels">Weight: </td>
+                    <td class="empty"></td>
+                    <td align="right" class="values">{{details.weight}} pounds</td>
                 </tr>
                 <tr>
-                    <td>Equipment Name: {{details.equipmentName}}</td>
+                    <td class="labels">Set Duration: </td>
+                    <td class="empty"></td>
+                    <td align="right" class="values">{{Math.round((Date.parse(details.useStop) - Date.parse(details.useStart)) / 60000)}} Minutes</td>
                 </tr>
             </tbody>
         </table>
@@ -36,6 +45,26 @@ export default {
  }
 </script>
 
-<style>
+<style scoped>
+h1{
+    text-align: center;
+    font-weight: bold;
+}
 
+.card {
+    margin-bottom: 10px;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+.empty{
+    width: 0%
+}
+.values{
+    width:100%
+}
+.labels{
+    width:50%
+}
 </style>
