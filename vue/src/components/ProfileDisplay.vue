@@ -1,10 +1,10 @@
 <template>
   <div>
-      <table>
+      <table class="card">
           <thead></thead>
           <tbody>
               <tr>
-                  <td><img :src="this.$store.state.user.photo" alt=""></td>
+                  <div id="img"><td><img :src="this.$store.state.user.photo" alt=""></td></div>
               </tr>
               <tr>
                   <td>Username: </td>
@@ -23,15 +23,16 @@
                   <td>{{this.$store.state.user.workoutProfile}}</td>
               </tr>
           </tbody>
+          <button class = 'btn btn-primary' v-on:click="toggleShowForm()">Update Profile</button>
       </table>
-      <button class = 'btn btn-primary'>Update Profile</button>
-      <form action="submit" v-on:submit="updateProfile()">
+      
+      <form action="submit" v-show="showForm" v-on:submit="updateProfile()" class="card">
           <label for="email">Email: </label>
           <input type="email" id="email" name="email" v-model="user.email"><br>
           <label for="workoutProfile">Profile: </label>
-          <textarea name="workoutProfile" id="workoutProfile" cols="30" rows="10"  v-model="user.workoutProfile"></textarea><br>
+          <textarea name="workoutProfile" id="workoutProfile" cols="30" rows="5"  v-model="user.workoutProfile"></textarea><br>
           <label for="userGoals">Goal: </label>
-          <textarea name="userGoals" id="userGoals" cols="30" rows="10"  v-model="user.workoutGoals"></textarea><br>
+          <textarea name="userGoals" id="userGoals" cols="30" rows="5"  v-model="user.workoutGoals"></textarea><br>
           <label for="photo">Photo: </label>
           <input type="text" id="photo" name="photo" v-model="user.photo"><br>
           <button type='submit'>Submit</button>
@@ -45,20 +46,51 @@ export default {
 data() {
     return {
         user: this.$store.state.user,
-        
+        showForm: false
     }
 },
 methods: {
     updateProfile() {
         UserService.putUpdateProfile(this.user).then()
+    },
+    toggleShowForm() {
+        this.showForm = true
     }
 }
 }
 </script>
 
 <style>
-img{
-width: 200px;
+.card{
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
 
+.btn{  
+    margin-bottom: 5px;
+    margin-top: 5px;
+    display: inline-block;
+    align-self: end;
+    width:35%;
+}
+
+img{
+display: block;
+margin:0 auto;
+width: 200px;
+border-radius: 5%;
+}
+
+#img {
+    display: flex;
+    width: 100%;
+    align-self: center;
+}
+
+textarea{
+    vertical-align: top;
+    width: 100%
 }
 </style>

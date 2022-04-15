@@ -64,7 +64,7 @@ CREATE TABLE use_tracking (
 --populate default data
 -- user/password
 INSERT INTO users (username, password_hash, salt, user_role, email, workout_goals, workout_profile, photo)
-	VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user', 'userrole@com.com','get fit','user gets fit','https://photo.net' ); 
+	VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user', 'userrole@com.com','get fit','user gets fit','https://www.dmarge.com/wp-content/uploads/2021/01/dwayne-the-rock-.jpg' ); 
 
 -- admin/password
 INSERT INTO users (username, password_hash, salt, user_role, email, workout_goals, workout_profile, photo)
