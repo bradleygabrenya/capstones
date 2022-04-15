@@ -34,6 +34,40 @@
         </div>
       </tbody>
     </table>
+    <table>
+      <h3>Average Metrics</h3>
+
+      <tbody class="container card">
+        <div class="box1">
+          <tr>
+            <td class="labels">Visits during past 7 days:</td>
+            <td class="values"> {{avgSevenDayAllUsersCompletedMathProblemIsHere}} </td>
+          </tr>
+        </div>
+        <div class="box2">
+          <tr>
+            <td class="labels">Average workout duration past 7 days:</td>
+            <td class="values">
+              {{ Math.round(averageMetrics.sevenDaySum / 60) }} minutes
+            </td>
+          </tr>
+        </div>
+        <div class="box3">
+          <tr>
+            <td class="labels">Visits during past 30 days:</td>
+            <td class="values">{{ averageMetrics.sumThirtyDayVisits }}</td>
+          </tr>
+        </div>
+        <div class="box4">
+          <tr>
+            <td class="labels">Average workout duration past 30 days:</td>
+            <td class="values">
+              {{ Math.round(averageMetrics.thirtyDaySum / 60) }} minutes
+            </td>
+          </tr>
+        </div>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -48,9 +82,11 @@ export default {
         sumSevenDayVisits: 0,
         sumThirtyDayVisits: 0,
       },
+      averageMetrics: {
+      }
     };
   },
-
+  
   created() {
     MetricsService.getUserMetrics(this.$store.state.user.userId).then(
       (response) => {
@@ -59,7 +95,23 @@ export default {
         }
       }
     );
-  },
+  
+  MetricsService.getTotalUserMetrics().then(
+      (response) => {
+        if (response.status === 200) {
+          this.averageMetrics = response.data;
+        }
+      }
+    );
+},
+computed:{
+    
+    avgSevenDayAllUsersCompletedMathProblemIsHere(){ 
+      return Math.Round((this.averageMetrics.totalAverageSevenDayVisits / this.averageMetrics.totalUserCount),2)
+    }
+      
+    },
+
 };
 </script>
 

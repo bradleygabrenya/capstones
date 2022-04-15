@@ -98,6 +98,7 @@ namespace Capstone.Controllers
             totalAverageMetrics.TotalAverageThirtyDaySum = workoutDAO.TotalAverageSumThirtyDays();
             totalAverageMetrics.TotalAverageSevenDayVisits = workoutDAO.TotalAverageSevenDayVisits();
             totalAverageMetrics.TotalAverageThirtyDayVisits = workoutDAO.TotalAverageThirtyDayVisits();
+            totalAverageMetrics.TotalUserCount = userDAO.GetUsers().Count;
 
             return totalAverageMetrics;
         }

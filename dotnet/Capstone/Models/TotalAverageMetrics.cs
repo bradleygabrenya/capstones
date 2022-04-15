@@ -11,5 +11,6 @@ namespace Capstone.Models
         public int TotalAverageThirtyDaySum { get; set; }
         public int TotalAverageSevenDayVisits { get; set; }
         public int TotalAverageThirtyDayVisits { get; set; }
+        public int TotalUserCount { get; set; }
     }
 }

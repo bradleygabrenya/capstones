@@ -41,7 +41,7 @@ namespace Capstone.DAO
 
         private string getTotalAverageSevenDaySum = "SELECT DATEDIFF(second, check_in, check_out) FROM daily_workout WHERE check_in >= DATEADD(day, -7, GETDATE());";
         private string getTotalAverageThirtyDaySum = "SELECT DATEDIFF(second, check_in, check_out) FROM daily_workout WHERE check_in >= DATEADD(day, -30, GETDATE());";
-        private string getTotalAverageSevenDayVisits = "SELECT (COUNT(check_in)/(SELECT COUNT(*) FROM users)) FROM daily_workout WHERE check_in >= DATEADD(day, -7, GETDATE());";
+        private string getTotalAverageSevenDayVisits = "SELECT COUNT(check_in) FROM daily_workout WHERE check_in >= DATEADD(day, -7, GETDATE());";
         private string getTotalAverageThirtyDayVisits = "SELECT COUNT(check_in) FROM daily_workout WHERE check_in >= DATEADD(day, -30, GETDATE());";
 
         //todo calculate averages 
