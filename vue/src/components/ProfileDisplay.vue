@@ -1,6 +1,6 @@
 <template>
   <div>
-      <table class="card">
+      <table class="card" v-show="!showForm">
           <thead></thead>
           <tbody>
               <img :src="this.$store.state.user.photo" alt="">
@@ -27,7 +27,7 @@
           <button class = 'btn btn-primary' v-on:click="toggleShowForm()">Update Profile</button>
       </table>
       
-      <form action="submit" v-show="showForm" v-on:submit="updateProfile()" class="card">
+      <form action="submit" v-show="showForm" v-on:submit.prevent="updateProfile()" class="card">
           <label for="email">Email: </label>
           <input type="email" id="email" name="email" v-model="user.email"><br>
           <label for="workoutProfile">Profile: </label>
@@ -36,7 +36,8 @@
           <textarea name="userGoals" id="userGoals" cols="30" rows="5"  v-model="user.workoutGoals"></textarea><br>
           <label for="photo">Photo: </label>
           <input type="text" id="photo" name="photo" v-model="user.photo"><br>
-          <button type='submit'>Submit</button>
+          <button type='submit' v-on:click="toggleShowForm()">Submit</button>
+          <button class="btn btn-danger" v-on:click="toggleShowForm()">Cancel</button>
       </form>
   </div>
 </template>
@@ -55,7 +56,7 @@ methods: {
         UserService.putUpdateProfile(this.user).then()
     },
     toggleShowForm() {
-        this.showForm = true
+        this.showForm = !this.showForm
     }
 }
 }
