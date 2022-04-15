@@ -3,8 +3,9 @@
       <table class="card">
           <thead></thead>
           <tbody>
+              <img :src="this.$store.state.user.photo" alt="">
               <tr>
-                  <div id="img"><td><img :src="this.$store.state.user.photo" alt=""></td></div>
+                  
               </tr>
               <tr>
                   <td>Username: </td>
@@ -60,7 +61,7 @@ methods: {
 }
 </script>
 
-<style>
+<style scoped>
 .card{
     padding-left: 10%;
     padding-right: 10%;
@@ -83,11 +84,6 @@ width: 200px;
 border-radius: 5%;
 }
 
-#img {
-    display: flex;
-    width: 100%;
-    align-self: center;
-}
 
 textarea{
     vertical-align: top;
