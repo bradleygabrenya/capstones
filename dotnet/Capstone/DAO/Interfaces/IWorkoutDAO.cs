@@ -15,7 +15,9 @@ namespace Capstone.DAO.Interfaces
         public string PutUseTracking(UseTracking useTracking);
         public string PutDailyWorkout(int workoutId);
         public void EmployeePutDailyWorkout(int userId);
-
-
+        public int SumSevenDays(int userId);
+        public int SumThirtyDays(int userId);
+        public int SumSevenDayVisits(int userId);
+        public int SumThirtyDayVisits(int userId);
     }
 }

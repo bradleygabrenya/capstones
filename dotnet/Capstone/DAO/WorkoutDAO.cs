@@ -33,7 +33,11 @@ namespace Capstone.DAO
             "where u.user_id = @user_id AND dw.check_out > getdate(); " +
             "UPDATE users SET check_in = 'false' WHERE user_id = @user_id; " +
             "UPDATE use_tracking set use_stop = GETDATE() WHERE user_id = @user_id and use_stop > GETDATE()";
-        
+
+        private string getSevenDaySum = "SELECT DATEDIFF(second, check_in, check_out) FROM daily_workout WHERE check_in >= DATEADD(day, -7, GETDATE()) AND user_id = @user_id;";
+        private string getThirtyDaySum = "SELECT DATEDIFF(second, check_in, check_out) FROM daily_workout WHERE check_in >= DATEADD(day, -30, GETDATE()) AND user_id = @user_id;";
+        private string getSevenDayVisits = "SELECT COUNT(check_in) FROM daily_workout WHERE check_in >= DATEADD(day, -7, GETDATE()) AND user_id = @user_id;";
+        private string getThirtyDayVisits = "SELECT COUNT(check_in) FROM daily_workout WHERE check_in >= DATEADD(day, -30, GETDATE()) AND user_id = @user_id; ";
 
         private readonly string connectionString;
 
@@ -224,6 +228,102 @@ namespace Capstone.DAO
                 throw;
             }
             
+        }
+
+        public int SumSevenDays(int userId)
+        {
+
+            int result = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(getSevenDaySum, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+
+                    result = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch(SqlException)
+            {
+                throw;
+            }
+
+            return result;
+        }
+
+        public int SumThirtyDays(int userId)
+        {
+
+            int result = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(getThirtyDaySum, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+
+                    result = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+
+            return result;
+        }
+
+        public int SumSevenDayVisits(int userId)
+        {
+
+            int result = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(getSevenDayVisits, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+
+                    result = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+
+            return result;
+        }
+
+        public int SumThirtyDayVisits(int userId)
+        {
+
+            int result = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(getThirtyDayVisits, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+
+                    result = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+
+            return result;
         }
 
     }
