@@ -37,7 +37,15 @@ namespace Capstone.DAO
         private string getSevenDaySum = "SELECT DATEDIFF(second, check_in, check_out) FROM daily_workout WHERE check_in >= DATEADD(day, -7, GETDATE()) AND user_id = @user_id;";
         private string getThirtyDaySum = "SELECT DATEDIFF(second, check_in, check_out) FROM daily_workout WHERE check_in >= DATEADD(day, -30, GETDATE()) AND user_id = @user_id;";
         private string getSevenDayVisits = "SELECT COUNT(check_in) FROM daily_workout WHERE check_in >= DATEADD(day, -7, GETDATE()) AND user_id = @user_id;";
-        private string getThirtyDayVisits = "SELECT COUNT(check_in) FROM daily_workout WHERE check_in >= DATEADD(day, -30, GETDATE()) AND user_id = @user_id; ";
+        private string getThirtyDayVisits = "SELECT COUNT(check_in) FROM daily_workout WHERE check_in >= DATEADD(day, -30, GETDATE()) AND user_id = @user_id;";
+
+        private string getTotalAverageSevenDaySum = "SELECT DATEDIFF(second, check_in, check_out) FROM daily_workout WHERE check_in >= DATEADD(day, -7, GETDATE());";
+        private string getTotalAverageThirtyDaySum = "SELECT DATEDIFF(second, check_in, check_out) FROM daily_workout WHERE check_in >= DATEADD(day, -30, GETDATE());";
+        private string getTotalAverageSevenDayVisits = "SELECT (COUNT(check_in)/(SELECT COUNT(*) FROM users)) FROM daily_workout WHERE check_in >= DATEADD(day, -7, GETDATE());";
+        private string getTotalAverageThirtyDayVisits = "SELECT COUNT(check_in) FROM daily_workout WHERE check_in >= DATEADD(day, -30, GETDATE());";
+
+        //todo calculate averages 
+
 
         private readonly string connectionString;
 
@@ -227,7 +235,7 @@ namespace Capstone.DAO
             {
                 throw;
             }
-            
+
         }
 
         public int SumSevenDays(int userId)
@@ -246,7 +254,7 @@ namespace Capstone.DAO
                     result = (int)cmd.ExecuteScalar();
                 }
             }
-            catch(SqlException)
+            catch (SqlException)
             {
                 throw;
             }
@@ -326,5 +334,88 @@ namespace Capstone.DAO
             return result;
         }
 
+        public int TotalAverageSumSevenDays()
+        {
+            int result = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(getTotalAverageSevenDaySum, conn);
+
+                    result = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return result;
+        }
+
+        public int TotalAverageSumThirtyDays()
+        {
+            int result = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(getTotalAverageThirtyDaySum, conn);
+
+                    result = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return result;
+        }
+
+        public int TotalAverageSevenDayVisits()
+        {
+            int result = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(getTotalAverageSevenDayVisits, conn);
+
+                    result = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return result;
+        }
+
+        public int TotalAverageThirtyDayVisits()
+        {
+            int result = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(getTotalAverageThirtyDayVisits, conn);
+
+                    result = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return result;
+        }
     }
 }

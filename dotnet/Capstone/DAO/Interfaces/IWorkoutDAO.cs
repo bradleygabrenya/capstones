@@ -19,5 +19,9 @@ namespace Capstone.DAO.Interfaces
         public int SumThirtyDays(int userId);
         public int SumSevenDayVisits(int userId);
         public int SumThirtyDayVisits(int userId);
+        public int TotalAverageSumSevenDays();
+        public int TotalAverageSumThirtyDays();
+        public int TotalAverageSevenDayVisits();
+        public int TotalAverageThirtyDayVisits();
     }
 }

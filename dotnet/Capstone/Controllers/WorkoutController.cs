@@ -88,5 +88,18 @@ namespace Capstone.Controllers
 
             return userMetrics;
         }
+
+        [HttpGet("/totalusermetrics")]
+        public TotalAverageMetrics GetTotalUserMetrics()
+        {
+            TotalAverageMetrics totalAverageMetrics = new TotalAverageMetrics();
+
+            totalAverageMetrics.TotalAverageSevenDaySum = workoutDAO.TotalAverageSumSevenDays();
+            totalAverageMetrics.TotalAverageThirtyDaySum = workoutDAO.TotalAverageSumThirtyDays();
+            totalAverageMetrics.TotalAverageSevenDayVisits = workoutDAO.TotalAverageSevenDayVisits();
+            totalAverageMetrics.TotalAverageThirtyDayVisits = workoutDAO.TotalAverageThirtyDayVisits();
+
+            return totalAverageMetrics;
+        }
     }
 }

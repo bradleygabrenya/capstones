@@ -2,27 +2,36 @@
   <div>
     <table>
       <h3>Your Metrics</h3>
-      <tbody class="card">
-        <tr>
-          <td class="labels">Visits during past 7 days:</td>
-          <td class="empty"></td>
-          <td class="values">{{ userMetrics.sumSevenDayVisits }}</td>
-        </tr>
-        <tr>
-          <td class="labels">Average workout duration past 7 days:</td>
-          <td class="empty"></td>
-          <td class="values">{{ Math.round(userMetrics.sevenDaySum / 60) }} minutes</td>
-        </tr>
-        <tr>
-          <td class="labels">Visits during past 30 days:</td>
-          <td class="empty"></td>
-          <td class="values">{{ userMetrics.sumThirtyDayVisits }}</td>
-        </tr>
-        <tr>
-          <td class="labels">Average workout duration past 30 days:</td>
-          <td class="empty"></td>
-          <td class="values">{{ Math.round(userMetrics.thirtyDaySum / 60) }} minutes</td>
-        </tr>
+
+      <tbody class="container card">
+        <div class="box1">
+          <tr>
+            <td class="labels">Visits during past 7 days:</td>
+            <td class="values">{{ userMetrics.sumSevenDayVisits }}</td>
+          </tr>
+        </div>
+        <div class="box2">
+          <tr>
+            <td class="labels">Average workout duration past 7 days:</td>
+            <td class="values">
+              {{ Math.round(userMetrics.sevenDaySum / 60) }} minutes
+            </td>
+          </tr>
+        </div>
+        <div class="box3">
+          <tr>
+            <td class="labels">Visits during past 30 days:</td>
+            <td class="values">{{ userMetrics.sumThirtyDayVisits }}</td>
+          </tr>
+        </div>
+        <div class="box4">
+          <tr>
+            <td class="labels">Average workout duration past 30 days:</td>
+            <td class="values">
+              {{ Math.round(userMetrics.thirtyDaySum / 60) }} minutes
+            </td>
+          </tr>
+        </div>
       </tbody>
     </table>
   </div>
@@ -55,11 +64,44 @@ export default {
 </script>
 
 <style scoped>
-.card {
-  display: inline-block;
-  padding-left: 10%;
+.container {
+  display: grid;
+  grid-column-gap: 15px;
+  grid-template-areas:
+  "fr1 fr2"
+  "fr3 fr4";
+  /* padding-left: 10%;
   width: 100%;
-  padding-right: 10%;
+  padding-right: 10%; */
+}
+
+.box1 {
+  grid-area: fr1;
+  background-color: chartreuse;
+  text-align: center;
+  padding: 15px;
+  justify-content: auto;
+}
+
+.box2 {
+  grid-area: fr2;
+  background-color: chartreuse;
+  text-align: center;
+  padding: 30px;
+}
+
+.box3 {
+  grid-area: fr3;
+  background-color: chartreuse;
+  text-align: center;
+  padding: 45px;
+}
+
+.box4 {
+  grid-area: fr4;
+  background-color: chartreuse;
+  text-align: center;
+  padding: 60px;
 }
 
 table {
@@ -69,19 +111,19 @@ table {
 .empty {
   width: 25%;
 }
-.values {
-    display: inline-block;
+/* .values {
+  display: inline-block;
   width: 100%;
   align-content: end;
   text-align: end;
-}
+} */
 
-tr{
+/* tr{
     margin-top: 100px;
     margin-bottom: 5px;
-}
-
+} */
+/* 
 .labels {
   width: 50%;
-}
+} */
 </style>
