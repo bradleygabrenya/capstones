@@ -75,5 +75,18 @@ namespace Capstone.Controllers
         {
             workoutDAO.EmployeePutDailyWorkout(userId);
         }
+
+        [HttpGet("/usermetrics/{userId}")] 
+        public UserMetrics GetUserMetrics(int userId)
+        {
+            UserMetrics userMetrics = new UserMetrics();
+
+            userMetrics.SevenDaySum = workoutDAO.SumSevenDays(userId);
+            userMetrics.ThirtyDaySum = workoutDAO.SumThirtyDays(userId);
+            userMetrics.SumSevenDayVisits = workoutDAO.SumSevenDayVisits(userId);
+            userMetrics.SumThirtyDayVisits = workoutDAO.SumThirtyDayVisits(userId);
+
+            return userMetrics;
+        }
     }
 }
