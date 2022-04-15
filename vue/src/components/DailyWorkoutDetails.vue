@@ -1,6 +1,7 @@
 <template>
   <div class="display">
     <h1>Workout History</h1>
+    <h3> <router-link v-bind:to="{ name: 'user-metrics' }"> View Workout Metrics </router-link></h3>
     <h3 class="card">
       Lifetime Average Workout Duration: {{ averageWorkoutDuration }} Minutes
     </h3>
@@ -83,6 +84,10 @@ h1 {
   text-align: center;
   font-weight: bold;
 }
+h3{
+    text-align: center;
+}
+
 .btn {
   width: 50%;
   display: inline-block;
