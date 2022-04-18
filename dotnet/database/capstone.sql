@@ -33,6 +33,7 @@ CREATE TABLE equipment (
 	equipment_id int IDENTITY(2000,1) NOT NULL,
 	equipment_name varchar(200) NOT NULL,
 	description varchar(max) NOT NULL,
+	instructions_link varchar(max) NOT NULL,
 	CONSTRAINT PK_equipment_id PRIMARY KEY (equipment_id)
 )
 
@@ -94,23 +95,24 @@ INSERT INTO users (username, password_hash, salt, user_role, email, workout_goal
 INSERT INTO users (username, password_hash, salt, user_role, email, workout_goals, workout_profile, photo, check_in) VALUES ('Dan'	,'7P/Okxj3RfX/azo4PZxD+1PZ9yU='	,	'AX7nQfkSZwQ='	,	'employee'	,	'Dan@gmail.com'		,	'Dan wants to get fit.'		,	'Dan has been getting fit by coming to the gym'		,	'https://media-exp1.licdn.com/dms/image/C4D03AQHo9rqL9A8gyA/profile-displayphoto-shrink_200_200/0/1623287980689?e=1652313600&v=beta&t=4S_JLAa3S6IPxhxw8VTSCu9N6s7bm7i_TNCJfj9MwnY'		,	'FALSE');
 
 -- equipment table
-INSERT INTO equipment(equipment_name, description) VALUES ('Power Rack','Massive piece of equipment, used for various exercises.');
-INSERT INTO equipment(equipment_name, description) VALUES ('Squat Rack','Not as massive as the power rack; still gets the job done.');
-INSERT INTO equipment(equipment_name, description) VALUES ('Cable Crossover Machine','Pulley system, typically used for upper body.');
-INSERT INTO equipment(equipment_name, description) VALUES ('Adjustable Weight Bench','Holy grail; used for a whole range of exercises.');
-INSERT INTO equipment(equipment_name, description) VALUES ('Chest Press Machine','Standalone piece of equipment for chest.');
-INSERT INTO equipment(equipment_name, description) VALUES ('Preacher Curl Bench','Suns out, guns out.');
-INSERT INTO equipment(equipment_name, description) VALUES ('Lat Pulldown Machine','Back is just as important as chest; do not forget that.');
-INSERT INTO equipment(equipment_name, description) VALUES ('Leg Press Machine','Never neglect leg day.');
-INSERT INTO equipment(equipment_name, description) VALUES ('Calf Raise Machine','BAWK BAWK');
-INSERT INTO equipment(equipment_name, description) VALUES ('Abdominal Bench','Wait in line.');
-INSERT INTO equipment(equipment_name, description) VALUES ('Bench Press','I lied. This is the holy grail.');
-INSERT INTO equipment(equipment_name, description) VALUES ('Treadmill','Why we all hate the gym..');
-INSERT INTO equipment(equipment_name, description) VALUES ('Elliptical Machine','Slightly less hated cardio machine.');
-INSERT INTO equipment(equipment_name, description) VALUES ('Exercise Spin Bike','Get that music going!');
-INSERT INTO equipment(equipment_name, description) VALUES ('Rowing Machine','House of Cards.');
-INSERT INTO equipment(equipment_name, description) VALUES ('Vertical Climber','LeBron James.');
-INSERT INTO equipment(equipment_name, description) VALUES ('Dumbbells','Easily the most known free weights in the entire world.');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('Dumbbells', 'A type of free weight used in weight training; can be used individually or in pairs', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/dumbbells/');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('Barbell', 'A piece of equipment used in weight training, bodybuilding, weightlifting, and powerlifting; consists of a long bar, usually with weights attached at each end.', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/barbell/');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('Bench','A piece of equipment that has a resemblance to a normal park bench, but designed for weight training/exercise.', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/bench/');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('Resistance Bands/Cables', 'An item of equipment used in weight training or functional training.', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/resistance-bands-cables/');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('BOSU Trainer','A fitness training device often used for balance training.', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/bosu-trainer/');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('TRX','Also known as Total Resistance Exercises; refers to a specialized form of suspension training.', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/trx/');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('Box/Raised Platform', 'A piece of equipment used in plyometric training or jump training.', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/raised-platform-box/');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('Stability Ball','An exercise ball constructed of soft elastic; most often used in physical therapy, weight training, and exercise.', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/stability-ball/');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('Medicine Ball','A weighted ball; often used for rehabilitation and strength training', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/medicine-ball/');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('No Equipment/Bodyweight','Strength-training exercises that use an individuals own weight to provide resistance against gravity', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/no-equipment/');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('Cones', 'Often used for speed and agility drills.', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/cones/');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('Weight Machines','Exercise machine used for weight training that uses gravity as the primary source of resistance.', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/weight-machines-selectorized/');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('Pull-up Bar', 'Upper-body strength exercise where body is suspended in the air.', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/pull-up-bar/');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('Ladder', 'A piece of equipment that can be used to perform a wide number of agility drills', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/ladder/');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('Hurdles', 'Used in drills with the goal of improving the ability to change direction and acceleration', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/hurdles/');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('Kettlebells', 'A cast iron/steel ball with a handle attached to the top used to perform many types of exercises.', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/kettlebells/');
+INSERT INTO equipment(equipment_name, description, instructions_link) VALUES ('Ropes', 'Used for fitness training to increase full body strength and conditioning.', 'https://www.acefitness.org/resources/everyone/exercise-library/equipment/heavy-ropes/');
+
 
 -- daily_workout table
 INSERT INTO daily_workout (user_id,check_in,check_out) VALUES (1,'2022-04-04 10:13:32','2022-04-04 10:47:33');
