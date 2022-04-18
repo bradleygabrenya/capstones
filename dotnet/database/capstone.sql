@@ -61,6 +61,16 @@ CREATE TABLE use_tracking (
 	CONSTRAINT FK_workout_id FOREIGN KEY (workout_id) REFERENCES daily_workout(workout_id)
 )
 
+CREATE TABLE class_schedule (
+	class_id int IDENTITY (6000,1) NOT NULL,
+	class_name varchar(max) NOT NULL,
+	class_description nvarchar(max) NOT NULL,
+	day_of_week varchar(20) NOT NULL,
+	class_time varchar(20) NOT NULL,
+	CONSTRAINT PK_class_id PRIMARY KEY (class_id),
+
+)
+
 
 --populate default data
 --users
@@ -926,5 +936,45 @@ insert into use_tracking (user_id, workout_id, equipment_id, reps, weight, use_s
 insert into use_tracking (user_id, workout_id, equipment_id, reps, weight, use_start, use_stop) VALUES ((select max(user_id)   from use_tracking),(select max(workout_id)   from use_tracking),2009,04,06.50,'2022-04-13 10:29:34.000','2022-04-13 10:31:33.000')
 insert into use_tracking (user_id, workout_id, equipment_id, reps, weight, use_start, use_stop) VALUES ((select max(user_id)   from use_tracking),(select max(workout_id)   from use_tracking),2011,09,15.00,'2022-04-13 10:31:34.000','2022-04-13 10:57:26.000')
 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Yoga', 'Sunrise yoga', 'Monday', '5:00am-6:00am')
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Pilates', 'Full body workout', 'Monday', '7:00am-8:00am')
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Group fitness', 'Full body challenge', 'Monday', '9:00am-10:00am')
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Cycling', 'Mountain trail', 'Monday', '11:00am-12:00pm')
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Yoga', 'Relaxtion and meditation', 'Monday', '3:00pm-4:00pm')
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Barre', 'Ballet bar challenge', 'Monday', '6:00pm-7:00pm')
+
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Yoga', 'Starting Stretch', 'Wednesday', '5:00am-6:00am') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Soccer', 'Open Soccer', 'Wednesday', '6:30am-8:30am') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Running', 'Never Stop Running!', 'Wednesday', '8:00am-9:30am') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Basketball', 'Open Basketball', 'Wednesday', '10:00am-10:50am') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Calisthenics', 'Shred Zone', 'Wednesday', '12:00pm-1:00pm') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Running', 'More Running!', 'Wednesday', '5:00pm-6:00pm') 
+
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Yoga', 'Sunrise yoga', 'Friday', '5:00am-6:00am') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Abs on Fire', 'Blast those abs!', 'Friday', '8:00am-8:45am') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Weight On My Shoulders', '30 minute circuit', 'Friday', '10:00am-10:30am') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('You Call the Shots', 'Members design the program', 'Friday', '12:00am-1:00am') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Essential Stretching', 'Do not neglect this aspect of training', 'Friday', '3:00am-3:30am') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Weekend Warrior', 'Full body circuit training to get you ready for the weekend', 'Friday', '6:00am-7:15am') 
+
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Spin Class', 'Cycling on stationary bikes', 'Thursday', '4:30pm-5:30pm') 
+
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('HIIT', 'Early morning high intensity interval training', 'Thursday', '6:30am-7:15am') 
+
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Basketball', 'Open Gym Basketball', 'Thursday', '2:30pm-4:30pm') 
+
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Running', 'Build cardiovascular strength', 'Thursday', '11:30am-12:30pm') 
+
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Freeweight 101', 'Learn best practices for freeweight exercises', 'Thursday', '1:30pm-2:30pm') 
+
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Flexibility', 'Wind down with some stretching', 'Thursday', '6:30pm-7:30pm') 
+
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Running', 'New Day, New You', 'Tuesday', '5:00am-6:00am') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Soccer', 'Open Soccer', 'Tuesday', '6:30am-8:30am') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Swimming', 'No Lifeguard Danger Swim', 'Tuesday', '8:00am-9:30am') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Basketball', 'Open Basketball', 'Tuesday', '10:00am-10:50am') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Cycling', 'Don''t sue us Peloton', 'Tuesday', '12:00pm-1:00pm') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Boxing', 'Self defense', 'Tuesday', '5:00pm-6:00pm') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Boxing', 'Non-Self offense', 'Tuesday', '6:00pm-7:00pm') 
 
 GO

@@ -13,7 +13,7 @@ import UpdateUserRole from '../views/UpdateUserRole.vue'
 import UserProfile from '../views/UserProfile.vue'
 import UserMetrics from '../views/UserMetrics.vue'
 import EquipmentMetrics from '../views/EquipmentMetrics.vue'
-
+import Classes from '../views/Classes.vue'
 Vue.use(Router)
 
 /**
@@ -121,6 +121,14 @@ const router = new Router({
       path: '/equipmentMetrics',
       name: 'equipment-metrics',
       component: EquipmentMetrics,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/classes',
+      name: 'classes',
+      component: Classes,
       meta: {
         requiresAuth: false
       }

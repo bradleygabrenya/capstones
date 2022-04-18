@@ -4,11 +4,13 @@
       <br>
       <router-link class="home" v-bind:to="{ name: 'home' }"> Home </router-link>
       <router-link class="workouts"  v-bind:to="{ name: 'workouts', params: {userId: this.$store.state.user.userId}}" v-if="$store.state.token != ''"> Workout History </router-link>
-      <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> Logout </router-link>
+      
       <router-link class="userlist" v-bind:to="{name: 'user-list'}" v-if="this.$store.state.user.role === 'admin' || this.$store.state.user.role==='employee'"> View Members </router-link>
       <router-link class="userlist" v-bind:to="{name: 'update-user-role'}" v-if="this.$store.state.user.role === 'admin' "> View Roles </router-link>
       <router-link class = "userlist" v-bind:to="{ name: 'user-profile'}"> Profile </router-link>
       <router-link class = "userlist" v-bind:to="{ name: 'equipment-metrics'}" v-if="this.$store.state.user.role === 'admin' || this.$store.state.user.role==='employee'"> Equipment Metrics </router-link>
+      <router-link class = "userlist" v-bind:to="{ name: 'classes'}"> Classes </router-link>
+      <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> Logout </router-link>
     </div>
     <router-view />
   </div>

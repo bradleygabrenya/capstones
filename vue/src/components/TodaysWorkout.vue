@@ -1,7 +1,7 @@
 <template>
   <div>
-      <button type="button" class="btn btn-primary btn-lg" v-show="this.$store.state.user.checkedIn == 'false' " v-on:click="startWorkout">Start Workout</button>
-      <button type="button" class="btn btn-primary btn-lg" v-show="this.$store.state.user.checkedIn == 'true'" v-on:click="continueWorkout">Continue Workout</button>
+      <button type="button" class="btn btn-primary btn-lg" v-show="this.$store.state.user.checkedIn == 'FALSE' " v-on:click="startWorkout">Start Workout</button>
+      <button type="button" class="btn btn-primary btn-lg" v-show="this.$store.state.user.checkedIn == 'TRUE'" v-on:click="continueWorkout">Continue Workout</button>
   </div>
 </template>
 

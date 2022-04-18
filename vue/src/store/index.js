@@ -41,10 +41,10 @@ export default new Vuex.Store({
       axios.defaults.headers.common = {};
     },
     CHANGE_CHECKIN_TRUE(state) {
-      state.user.checkedIn = 'true';
+      state.user.checkedIn = 'TRUE';
     },
     CHANGE_CHECKIN_FALSE(state) {
-      state.user.checkedIn = 'false';
+      state.user.checkedIn = 'FALSE';
     },
     SAVE_WORKOUT_ID(state, workoutId) {
       state.workoutId = workoutId;
