@@ -34,13 +34,13 @@ namespace Capstone.DAO
             "UPDATE users SET check_in = 'false' WHERE user_id = @user_id; " +
             "UPDATE use_tracking set use_stop = GETDATE() WHERE user_id = @user_id and use_stop > GETDATE()";
 
-        private string getSevenDaySum = "SELECT DATEDIFF(second, check_in, check_out) FROM daily_workout WHERE check_in >= DATEADD(day, -7, GETDATE()) AND user_id = @user_id;";
-        private string getThirtyDaySum = "SELECT DATEDIFF(second, check_in, check_out) FROM daily_workout WHERE check_in >= DATEADD(day, -30, GETDATE()) AND user_id = @user_id;";
+        private string getSevenDaySum = "SELECT SUM(DATEDIFF(second, check_in, check_out)) FROM daily_workout WHERE check_in >= DATEADD(day, -7, GETDATE()) AND user_id = @user_id;";
+        private string getThirtyDaySum = "SELECT SUM(DATEDIFF(second, check_in, check_out)) FROM daily_workout WHERE check_in >= DATEADD(day, -30, GETDATE()) AND user_id = @user_id;";
         private string getSevenDayVisits = "SELECT COUNT(check_in) FROM daily_workout WHERE check_in >= DATEADD(day, -7, GETDATE()) AND user_id = @user_id;";
         private string getThirtyDayVisits = "SELECT COUNT(check_in) FROM daily_workout WHERE check_in >= DATEADD(day, -30, GETDATE()) AND user_id = @user_id;";
 
-        private string getTotalAverageSevenDaySum = "SELECT DATEDIFF(second, check_in, check_out) FROM daily_workout WHERE check_in >= DATEADD(day, -7, GETDATE());";
-        private string getTotalAverageThirtyDaySum = "SELECT DATEDIFF(second, check_in, check_out) FROM daily_workout WHERE check_in >= DATEADD(day, -30, GETDATE());";
+        private string getTotalAverageSevenDaySum = "SELECT SUM(DATEDIFF(second, check_in, check_out)) FROM daily_workout WHERE check_in >= DATEADD(day, -7, GETDATE());";
+        private string getTotalAverageThirtyDaySum = "SELECT SUM(DATEDIFF(second, check_in, check_out)) FROM daily_workout WHERE check_in >= DATEADD(day, -30, GETDATE());";
         private string getTotalAverageSevenDayVisits = "SELECT COUNT(check_in) FROM daily_workout WHERE check_in >= DATEADD(day, -7, GETDATE());";
         private string getTotalAverageThirtyDayVisits = "SELECT COUNT(check_in) FROM daily_workout WHERE check_in >= DATEADD(day, -30, GETDATE());";
 

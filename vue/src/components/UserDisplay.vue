@@ -3,10 +3,11 @@
       <table>
           <thead>Gym Members: </thead>
           <tbody>
-              <tr v-for="user in userList" v-bind:key="user.username">
-                  <td>{{user.username}}: <router-link v-bind:to="{name: 'workouts', params: {userId: user.userId}}">View Details</router-link>
-                  <button v-show="user.checkedIn != 'true'" v-on:click="employeeStartWorkout(user)">Check-in</button>
-                  <button v-show="user.checkedIn == 'true'" v-on:click="employeeEndWorkout(user)">Check-out</button>
+              <tr class="card" v-for="user in userList" v-bind:key="user.username">
+                  <td>{{user.username}}:
+                  <button class="btn float-right btn-success" v-show="user.checkedIn != 'true'" v-on:click="employeeStartWorkout(user)" data-container="body" data-toggle="popover" data-placement="right" data-content="User has been checked in.">Check-in</button>
+                  <button class="btn float-right btn-danger" v-show="user.checkedIn == 'true'" v-on:click="employeeEndWorkout(user)">Check-out</button>
+                  <router-link class="btn btn-info float-right" v-bind:to="{name: 'workouts', params: {userId: user.userId}}">View Details</router-link>
                   </td>
                   
               </tr>
@@ -44,5 +45,30 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.card{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    width: 375px;
+}
+
+button{
+    align-content: right;
+    margin-left: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    justify-items: center;
+}
+
+.btn-info{
+    align-content: right;
+    margin-left: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
 </style>

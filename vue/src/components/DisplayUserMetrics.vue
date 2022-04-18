@@ -14,7 +14,7 @@
           <tr>
             <td class="labels">Average workout duration past 7 days:</td>
             <td class="values">
-              {{ Math.round(userMetrics.sevenDaySum / 60) }} minutes
+              {{ Math.round((this.userMetrics.sevenDaySum / this.userMetrics.sumSevenDayVisits) / 60) }} minutes
             </td>
           </tr>
         </div>
@@ -28,7 +28,7 @@
           <tr>
             <td class="labels">Average workout duration past 30 days:</td>
             <td class="values">
-              {{ Math.round(userMetrics.thirtyDaySum / 60) }} minutes
+              {{ Math.round((this.userMetrics.thirtyDaySum / this.userMetrics.sumThirtyDayVisits) / 60) }} minutes
             </td>
           </tr>
         </div>
@@ -41,28 +41,29 @@
         <div class="box1">
           <tr>
             <td class="labels">Visits during past 7 days:</td>
-            <td class="values"> {{avgSevenDayAllUsersCompletedMathProblemIsHere}} </td>
+            <td class="values"> {{Math.round((this.averageMetrics.totalAverageSevenDayVisits / this.averageMetrics.totalUserCount),2)
+            }} </td>
           </tr>
         </div>
         <div class="box2">
           <tr>
             <td class="labels">Average workout duration past 7 days:</td>
             <td class="values">
-              {{ Math.round(averageMetrics.sevenDaySum / 60) }} minutes
+              {{ Math.round((this.averageMetrics.totalAverageSevenDaySum / this.averageMetrics.totalAverageSevenDayVisits) / 60) }} minutes
             </td>
           </tr>
         </div>
         <div class="box3">
           <tr>
             <td class="labels">Visits during past 30 days:</td>
-            <td class="values">{{ averageMetrics.sumThirtyDayVisits }}</td>
+            <td class="values">{{ Math.round((this.averageMetrics.totalAverageThirtyDayVisits / this.averageMetrics.totalUserCount),2)}}</td>
           </tr>
         </div>
         <div class="box4">
           <tr>
             <td class="labels">Average workout duration past 30 days:</td>
             <td class="values">
-              {{ Math.round(averageMetrics.thirtyDaySum / 60) }} minutes
+              {{ Math.round((this.averageMetrics.totalAverageThirtyDaySum / this.averageMetrics.totalAverageThirtyDayVisits) / 60) }} minutes
             </td>
           </tr>
         </div>
@@ -104,15 +105,7 @@ export default {
       }
     );
 },
-computed:{
-    
-    avgSevenDayAllUsersCompletedMathProblemIsHere(){ 
-      return Math.Round((this.averageMetrics.totalAverageSevenDayVisits / this.averageMetrics.totalUserCount),2)
-    }
-      
-    },
-
-};
+}
 </script>
 
 <style scoped>
@@ -120,49 +113,42 @@ computed:{
   display: grid;
   grid-column-gap: 15px;
   grid-template-areas:
-  "fr1 fr2"
+  "fr1 fr2" 
   "fr3 fr4";
+  margin-bottom: 30px;
+  padding-left: 10%;
+  padding-right: 10%;
   /* padding-left: 10%;
   width: 100%;
   padding-right: 10%; */
 }
 
 .box1 {
-  grid-area: fr1;
-  background-color: chartreuse;
+  grid-area: "fr1";
+  padding-bottom: 15px;
   text-align: center;
-  padding: 15px;
   justify-content: auto;
 }
 
 .box2 {
-  grid-area: fr2;
-  background-color: chartreuse;
+  grid-area: "fr2";
   text-align: center;
-  padding: 30px;
 }
 
 .box3 {
-  grid-area: fr3;
-  background-color: chartreuse;
+  grid-area: "fr3";
   text-align: center;
-  padding: 45px;
 }
 
 .box4 {
-  grid-area: fr4;
-  background-color: chartreuse;
+  grid-area: "fr4";
   text-align: center;
-  padding: 60px;
 }
 
 table {
   width: 100%;
 }
 
-.empty {
-  width: 25%;
-}
 /* .values {
   display: inline-block;
   width: 100%;

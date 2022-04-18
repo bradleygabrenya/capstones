@@ -5,7 +5,7 @@
         Gym Members:
       </thead>
       <tbody>
-        <tr v-for="user in userList" v-bind:key="user.username">
+        <tr v-for="user in userList" v-bind:key="user.username" class="card">
           <td>
             {{ user.username }}
             <select class="form-control" v-model="user.role">
@@ -14,7 +14,7 @@
               <option value="employee">Employee</option>
               <option value="admin">Admin</option>
             </select>
-            <button value="Change Role" v-on:click="changeUserRole(user)">
+            <button class="btn btn-primary" value="Change Role" v-on:click="changeUserRole(user)">
               Change Role
             </button>
           </td>
@@ -39,5 +39,18 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.card{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 25%;
+    padding-right: 25%;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    width: 375px;
+}
+
+button{
+  margin-top: 5px;
+}
 </style>

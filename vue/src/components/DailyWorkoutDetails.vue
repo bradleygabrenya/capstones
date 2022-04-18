@@ -3,7 +3,7 @@
     <h1>Workout History</h1>
     <h3> <router-link v-bind:to="{ name: 'user-metrics' }"> View Workout Metrics </router-link></h3>
     <h3 class="card">
-      Lifetime Average Workout Duration: {{ averageWorkoutDuration }} Minutes
+      Lifetime Average Workout Duration: {{ Math.round(averageWorkoutDuration) }} Minutes
     </h3>
     <table
       v-for="workout in workouts"

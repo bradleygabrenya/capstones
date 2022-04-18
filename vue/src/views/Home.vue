@@ -1,10 +1,10 @@
 <template>
-  <div class="home">
+  <div class="home card">
     <h1>Home</h1>
-    <p>Click "Workout History" to view a preview of your past trips to the gym, or click "Logout" to log out!</p>
-    <p>
+    <h5>Click "Workout History" to view a preview of your past trips to the gym, or click "Logout" to log out!</h5>
+    <h5>
       Click "Start Workout" to check-in to the gym and begin tracking your workout.
-    </p>
+    </h5>
     <todays-workout class="btn"/>
   </div>
 </template>
@@ -30,10 +30,20 @@ h1{
     text-align: center;
 }
 
+h5{
+  margin-top: 25px;
+}
+
 .btn{
 display: inline-block;
 align-self: center;
 margin: auto;
+margin-top: 10px;
+}
+
+.card{
+  padding-right: 5%;
+  padding-left: 5%;
 }
 
 </style>
