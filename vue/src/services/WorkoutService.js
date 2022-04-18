@@ -11,6 +11,4 @@ export default {
     addDailyWorkout(userId) {
         return axios.post(path + '/' + userId)
     },
-
-    
 }

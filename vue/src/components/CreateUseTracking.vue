@@ -90,6 +90,8 @@ methods:{
   endWorkout() {
     workoutDetailsService.putDailyWorkout(this.workoutId).then((response) => {
       if (response.status === 200) {
+        this.$store.commit("CHANGE_CHECKIN_FALSE")
+        this.$store.commit("SAVE_WORKOUT_ID", 0)
         this.$router.push({name: "home"});
       }
     })

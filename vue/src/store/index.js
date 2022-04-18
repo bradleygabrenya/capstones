@@ -19,7 +19,8 @@ if (currentToken != null) {
 export default new Vuex.Store({
   state: {
     token: currentToken || '',
-    user: currentUser || {}
+    user: currentUser || {},
+    workoutId: 0,
   },
 
   mutations: {
@@ -38,6 +39,15 @@ export default new Vuex.Store({
       state.token = '';
       state.user = {};
       axios.defaults.headers.common = {};
+    },
+    CHANGE_CHECKIN_TRUE(state) {
+      state.user.checkedIn = 'true';
+    },
+    CHANGE_CHECKIN_FALSE(state) {
+      state.user.checkedIn = 'false';
+    },
+    SAVE_WORKOUT_ID(state, workoutId) {
+      state.workoutId = workoutId;
     }
   }
 })
