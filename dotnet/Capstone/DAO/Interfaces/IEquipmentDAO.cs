@@ -9,5 +9,6 @@ namespace Capstone.DAO.Interfaces
     public interface IEquipmentDAO
     {
         public List<Equipment> GetEquipmentDetails();
+        public List<EquipmentMetrics> GetEquipmentMetrics();
     }
 }

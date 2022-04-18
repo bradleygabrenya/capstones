@@ -34,6 +34,20 @@ export default {
   methods: {
     changeUserRole(user) {
       EmployeeService.updateUserRole(user);
+      this.$toast("Role successfully changed!", {
+  position: "top-right",
+  timeout: 4000,
+  closeOnClick: true,
+  pauseOnFocusLoss: true,
+  pauseOnHover: true,
+  draggable: true,
+  draggablePercent: 0.6,
+  showCloseButtonOnHover: false,
+  hideProgressBar: false,
+  closeButton: "button",
+  icon: true,
+  rtl: false
+});
     },
   },
 };

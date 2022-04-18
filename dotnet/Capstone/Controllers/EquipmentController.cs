@@ -1,5 +1,6 @@
 ﻿using Capstone.DAO.Interfaces;
 using Capstone.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -25,6 +26,14 @@ namespace Capstone.Controllers
         {
             List<Equipment> equipmentDetails = equipmentDAO.GetEquipmentDetails();
             return equipmentDetails;
+        }
+
+        [HttpGet("/equipmentMetrics")]
+        [Authorize(Roles ="admin, employee")]
+        public List<EquipmentMetrics> GetEquipmentMetrics()
+        {
+            List<EquipmentMetrics> equipmentMetrics = equipmentDAO.GetEquipmentMetrics();
+            return equipmentMetrics;
         }
 
     }

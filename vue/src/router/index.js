@@ -12,6 +12,7 @@ import UseTrackingForm from '../views/UseTrackingForm.vue'
 import UpdateUserRole from '../views/UpdateUserRole.vue'
 import UserProfile from '../views/UserProfile.vue'
 import UserMetrics from '../views/UserMetrics.vue'
+import EquipmentMetrics from '../views/EquipmentMetrics.vue'
 
 Vue.use(Router)
 
@@ -112,6 +113,14 @@ const router = new Router({
       path: '/usermetrics',
       name: 'user-metrics',
       component: UserMetrics,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: '/equipmentMetrics',
+      name: 'equipment-metrics',
+      component: EquipmentMetrics,
       meta: {
         requiresAuth: false
       }
