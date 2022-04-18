@@ -41,6 +41,7 @@ namespace Capstone.DAO
                         equipment.EquipmentId = Convert.ToInt32(reader["equipment_id"]);
                         equipment.Name = Convert.ToString(reader["equipment_name"]);
                         equipment.Details = Convert.ToString(reader["description"]);
+                        equipment.InstructionsLink = Convert.ToString(reader["instructions_link"]);
                         equipmentDetails.Add(equipment);
                     }
                 }

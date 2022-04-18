@@ -10,6 +10,7 @@ namespace Capstone.Models
         public int EquipmentId { get; set; }
         public string Name { get; set; }
         public string Details { get; set; }
+        public string InstructionsLink { get; set; }
 
 
     }

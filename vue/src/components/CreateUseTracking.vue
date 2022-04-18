@@ -1,13 +1,15 @@
 <template>
   <div class="display">
     <form v-show="!equipmentSelected">
-      <select class="form-control" v-model="equipmentName">
+      <select class="form-control" v-model="equipmentName" v-on:change="sendToInstructions">
           <option selected>Select Equipment</option>
           <option v-for="equipment in equipmentDetails" v-bind:key="equipment.equipmentId">{{equipment.name}}</option>
       </select>
       <div class="buttons">
       <button id="start-set" type="button" class="btn btn-success btn-lg" v-on:click="startWorkout">Start Set</button>
-      
+      <a class="btn btn-lg btn-info" v-bind:href="instructionsLink" target="_blank" >Instructions</a>
+
+
       <button id="end-workout" type="button" class="btn btn-danger btn-lg" v-on:click="endWorkout">End Workout</button>
       </div>
     </form>
@@ -42,11 +44,21 @@ data(){
       workoutId: parseInt(this.workoutId)
     },
 
-    equipmentName: ""
+    equipmentName: "",
+    instructionsLink:""
   }
 },
 
 methods:{
+  sendToInstructions(){
+    this.equipmentDetails.forEach((e) => {
+      if(e.name == this.equipmentName){
+        this.instructionsLink = e.instructionsLink
+      }
+    })
+    
+  },
+
   toggleEquipmentSelected(){
     this.equipmentSelected = true;
     this.equipmentDetails.forEach((e) => {
