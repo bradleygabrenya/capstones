@@ -27,6 +27,7 @@ export default {
     console.log("Reached DailyWorkouts.vue", this.userId)
     workoutService.getWorkouts(this.userId).then((response) => {
       this.workouts = response.data;
+      this.workouts = this.workouts.filter((w) => w.checkOut !="9999-12-31T00:00:00")
       console.log("WorkoutService works", this.workouts)
     });
   },
