@@ -101,6 +101,7 @@ export default {
   opacity: 95%;
   background-color: rgb(24,26,27);
   color: #d1cdc7;
+  margin-bottom: 10px;
 }
 h1{
   color: #d1cdc7;

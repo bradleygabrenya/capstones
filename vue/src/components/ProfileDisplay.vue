@@ -9,19 +9,19 @@
               </div>
               <div id="user-display">
                 <tr>
-                    <td>Username: </td>
+                    <td><span style="font-weight:bold">Username: </span></td>
                     <td>{{this.$store.state.user.username}}</td>
                 </tr>
                 <tr>
-                    <td>Email: </td>
+                    <td><span style="font-weight:bold">Email: </span></td>
                     <td>{{this.$store.state.user.email}}</td>
                 </tr>
                 <tr>
-                    <td>User Goals: </td>
+                    <td><span style="font-weight:bold">Goals: </span></td>
                     <td>{{this.$store.state.user.workoutGoals}}</td>
                 </tr>
                 <tr>
-                    <td>Workout Profile: </td>
+                    <td><span style="font-weight:bold">Profile: </span></td>
                     <td>{{this.$store.state.user.workoutProfile}}</td>
                 </tr>
               </div>
@@ -31,16 +31,19 @@
       </table>
       
       <form id="user-display-form" action="submit" v-show="showForm" v-on:submit.prevent="updateProfile()" class="card">
-          <label for="email">Email: </label>
-          <input type="email" id="email" name="email" v-model="user.email"><br>
-          <label for="workoutProfile">Profile: </label>
-          <textarea name="workoutProfile" id="workoutProfile" cols="30" rows="5"  v-model="user.workoutProfile"></textarea><br>
-          <label for="userGoals">Goal: </label>
-          <textarea name="userGoals" id="userGoals" cols="30" rows="5"  v-model="user.workoutGoals"></textarea><br>
           <label for="photo">Photo: </label>
           <input type="text" id="photo" name="photo" v-model="user.photo"><br>
+          <label for="email">Email: </label>
+          <input type="email" id="email" name="email" v-model="user.email"><br>
+          <label for="userGoals">Goals: </label>
+          <textarea name="userGoals" id="userGoals" cols="30" rows="5"  v-model="user.workoutGoals"></textarea><br>
+          <label for="workoutProfile">Profile: </label>
+          <textarea name="workoutProfile" id="workoutProfile" cols="30" rows="5"  v-model="user.workoutProfile"></textarea><br>
+          
+          <div class="btn-container">
           <button type='submit' class="btn btn-success" v-on:click="toggleShowForm()">Submit</button>
           <button class="btn btn-danger" v-on:click="toggleShowForm()">Cancel</button>
+          </div>
       </form>
   </div>
 </template>
@@ -66,13 +69,20 @@ methods: {
 </script>
 
 <style scoped>
+td {
+    padding-right: 10px;
+}
+.btn-container {
+    display: flex;
+    justify-content: space-evenly;
+}
 .container{
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-template-areas: 
     "profile pic"
     "profile pic"
-    "btn pic";
+    "btn btn";
     grid-area: main-container;
 }
 

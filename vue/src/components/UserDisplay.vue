@@ -46,6 +46,9 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+    color: #d1cdc7;
+}
 .card{
     opacity: 95%;
     padding-top: 5px;

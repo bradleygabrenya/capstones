@@ -12,7 +12,7 @@ namespace Capstone.DAO
     {
         private string getDetails = "SELECT ut.*,e.equipment_name FROM use_tracking ut JOIN equipment e ON ut.equipment_id = e.equipment_id WHERE ut.workout_id = @workout_id ";
 
-        private string getWorkouts = "SELECT * FROM daily_workout WHERE user_id = @user_id";
+        private string getWorkouts = "SELECT * FROM daily_workout WHERE user_id = @user_id ORDER BY check_in DESC;";
 
         private string addDailyWorkout = "INSERT INTO daily_workout(user_id, check_in, check_out) " +
             " OUTPUT Inserted.workout_id " +
