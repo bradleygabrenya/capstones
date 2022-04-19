@@ -1,5 +1,5 @@
 <template>
-  <div class="display">
+  <div class="display card">
     <form v-show="!equipmentSelected">
       <select class="form-control" v-model="equipmentName" v-on:change="sendToInstructions">
           <option selected>Select Equipment</option>
@@ -14,10 +14,10 @@
       </div>
     </form>
     <form v-show="equipmentSelected">
-      <label for="reps">Reps:</label> &nbsp;
+      <label for="reps"><span style="font-weight:bold">Reps:</span></label> &nbsp;
       <input type="number" id="reps" name="reps" min="0" v-model.number="useTracking.reps">
       <br>
-      <label for="weight">Weight:</label>&nbsp;
+      <label for="weight"><span style="font-weight:bold">Weight:</span></label>&nbsp;
       <input type="number" id="weight" name="weight" min="0" step=".5" v-model.number="useTracking.weight">
       <br>
       <button type="button" class="btn btn-danger btn-lg buttons" v-on:click="endTheSet">End Set</button>
@@ -108,6 +108,27 @@ methods:{
 </script>
 
 <style scoped>
+
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 10px;
+}
+
+.card{
+  opacity: 95%;
+  background-color: rgb(24,26,27);
+  color: #d1cdc7;
+}
+
+.form-control {
+    color: rgb(181, 175, 166);
+    background-color: rgb(24, 26, 27);
+    border-color: rgb(60, 65, 68); 
+    grid-area: form;
+}
+
 #reps{
   display: inline-block;
   align-self: right;
