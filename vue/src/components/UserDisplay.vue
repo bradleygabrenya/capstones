@@ -1,7 +1,7 @@
 <template>
   <div>
       <table>
-          <thead>Gym Members: </thead>
+          <thead><h1>Gym Members: </h1></thead>
           <tbody>
               <tr class="card" v-for="user in userList" v-bind:key="user.username">
                   <td>{{user.username}}:

@@ -83,6 +83,7 @@ export default {
 h1 {
   text-align: center;
   font-weight: bold;
+  color:#d1cdc7;
 }
 h3{
     text-align: center;

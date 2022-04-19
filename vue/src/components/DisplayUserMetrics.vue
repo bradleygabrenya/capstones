@@ -149,6 +149,15 @@ table {
   width: 100%;
 }
 
+h3{
+  color: #d1cdc7;
+}
+
+.card{
+  background-color: rgb(24,26,27);
+    color: #d1cdc7;
+}
+
 /* .values {
   display: inline-block;
   width: 100%;

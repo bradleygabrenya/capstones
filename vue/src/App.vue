@@ -2,29 +2,14 @@
   <div id="app">
     <div id="nav">
       <br />
-
-      <!-- <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Menu
-        <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li> <router-link class="home" v-bind:to="{ name: 'home' }"> Home </router-link></li>
-            <li><router-link class="workouts"  v-bind:to="{ name: 'workouts', params: {userId: this.$store.state.user.userId}}" v-if="$store.state.token != ''"> Workout History </router-link></li>
-            <li><router-link class="userlist" v-bind:to="{name: 'user-list'}" v-if="this.$store.state.user.role === 'admin' || this.$store.state.user.role==='employee'"> View Members </router-link></li>
-            <li><router-link class="userlist" v-bind:to="{name: 'update-user-role'}" v-if="this.$store.state.user.role === 'admin' "> View Roles </router-link></li>
-            <li><router-link class = "userlist" v-bind:to="{ name: 'user-profile'}" v-if="$store.state.token != ''"> Profile </router-link></li>
-            <li><router-link class = "userlist" v-bind:to="{ name: 'equipment-metrics'}" v-if="this.$store.state.user.role === 'admin' || this.$store.state.user.role==='employee'"> Equipment Metrics </router-link></li>
-            <li><router-link class = "userlist" v-bind:to="{ name: 'classes'}"> Classes </router-link></li>
-            <li><router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> Logout </router-link></li>
-          </ul>
-      </div> -->
       <div id="main">
         <button class="openbtn" v-on:click="openNav()">☰ Menu</button>
       </div>
-      <div id="mySidebar" class="sidebar">
+      <div id="mySidebar" class="sidebar" v-on:click="closeNav()">
         <a href="javascript:void(0)" class="closebtn" v-on:click="closeNav()"
           >×</a
         >
-        <router-link class="home" v-bind:to="{ name: 'home' }">
+        <router-link class="home" v-bind:to="{ name: 'home' }" >
           Home
         </router-link>
         <router-link
@@ -89,7 +74,6 @@ methods: {
 
   openNav() {
     document.getElementById("mySidebar").style.width = "300px";
-    document.getElementById("main").style.marginLeft = "300px";
   },
   
   closeNav() {

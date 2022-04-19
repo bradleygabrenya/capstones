@@ -1,5 +1,6 @@
 <template>
   <div>
+      <h1>Your Profile</h1>
       <table class="card" v-show="!showForm">
           <thead></thead>
           <tbody class="container">
@@ -122,4 +123,9 @@ textarea {
     background-color: rgb(59,59,59);
     color: #d1cdc7;
 } 
+h1{
+    color: #d1cdc7;
+    font-weight: bold;
+    text-align: center;
+}
 </style>

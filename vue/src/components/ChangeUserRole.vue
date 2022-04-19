@@ -1,19 +1,21 @@
 <template>
   <div>
-    <table>
-      <thead>
-        Gym Members:
-      </thead>
+    <h1>Gym Members:</h1>
+    <table class="card">
       <tbody>
-        <tr v-for="user in userList" v-bind:key="user.username" class="card">
-          <td>
+        <tr v-for="user in userList" v-bind:key="user.username" >
+          <td class="name data">
             {{ user.username }}
+          </td>
+          <td class="data">
             <select class="form-control" v-model="user.role">
               <option selected>{{ user.role }}</option>
               <option value="user">User</option>
               <option value="employee">Employee</option>
               <option value="admin">Admin</option>
             </select>
+          </td>
+          <td  class="data">
             <button class="btn btn-primary" value="Change Role" v-on:click="changeUserRole(user)">
               Change Role
             </button>
@@ -55,25 +57,50 @@ export default {
 </script>
 
 <style scoped>
+tr{
+  width: 100%
+}
 .card{
     padding-top: 5px;
     padding-bottom: 5px;
-    padding-left: 25%;
-    padding-right: 25%;
+    padding-left: 5%;
+    padding-right: 5%;
     margin-top: 10px;
     margin-bottom: 2px;
-    width: 375px;
+    width: 50%;
     background-color: rgb(24,26,27);
     color: #d1cdc7;
+    display: grid;
+    grid-template-columns: 
+    "1fr 3fr 2fr";
+    grid-template-areas: 
+    "name form btn";
 }
 
 .form-control {
     color: rgb(181, 175, 166);
     background-color: rgb(24, 26, 27);
     border-color: rgb(60, 65, 68); 
+    grid-area: form;
+}
+.name{
+  grid-area: name;
 }
 
 button{
   margin-top: 5px;
+  grid-area: btn;
+}
+
+
+h1{
+  color: #d1cdc7;
+}
+
+@media screen and (max-width: 820px) {
+    .card {
+  width: 375px;
+  font-family: "Verdana", sans-serif;
+  }
 }
 </style>
