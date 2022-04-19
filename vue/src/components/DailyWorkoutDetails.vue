@@ -115,5 +115,7 @@ table {
   padding-left: 20%;
   padding-right: 20%;
   padding-top: 2%;
+  background-color: rgb(24,26,27);
+  color: #d1cdc7;
 }
 </style>

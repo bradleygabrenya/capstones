@@ -107,7 +107,7 @@ methods:{
 
 </script>
 
-<style>
+<style scoped>
 #reps{
   display: inline-block;
   align-self: right;

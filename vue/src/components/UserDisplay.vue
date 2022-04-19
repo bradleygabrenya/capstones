@@ -54,6 +54,8 @@ export default {
     margin-top: 10px;
     margin-bottom: 2px;
     width: 375px;
+    background-color: rgb(24,26,27);
+    color: #d1cdc7;
 }
 
 button{

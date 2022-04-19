@@ -71,6 +71,13 @@
   width: 200px;
 }
 
+.dropdown-menu {
+    color: rgb(209, 205, 199);
+    list-style-image: initial;
+    background-color: rgb(24, 26, 27);
+    border-color: rgba(140, 130, 115, 0.15);
+} 
+
 @media screen and (max-width: 768px) {
     #app {
   margin: auto;

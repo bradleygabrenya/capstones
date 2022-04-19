@@ -57,6 +57,8 @@ h1{
     padding-right: 20%;
     padding-top: 2%;
     padding-bottom: 2%;
+    background-color: rgb(24,26,27);
+    color: #d1cdc7;
 }
 .empty{
     width: 0%

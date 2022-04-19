@@ -95,7 +95,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 td {
     padding-right: 15px;
     padding-left: 20px;
