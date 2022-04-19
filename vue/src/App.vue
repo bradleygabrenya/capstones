@@ -2,15 +2,22 @@
   <div id="app">
     <div id="nav">
       <br>
-      <router-link class="home" v-bind:to="{ name: 'home' }"> Home </router-link>
-      <router-link class="workouts"  v-bind:to="{ name: 'workouts', params: {userId: this.$store.state.user.userId}}" v-if="$store.state.token != ''"> Workout History </router-link>
-      
-      <router-link class="userlist" v-bind:to="{name: 'user-list'}" v-if="this.$store.state.user.role === 'admin' || this.$store.state.user.role==='employee'"> View Members </router-link>
-      <router-link class="userlist" v-bind:to="{name: 'update-user-role'}" v-if="this.$store.state.user.role === 'admin' "> View Roles </router-link>
-      <router-link class = "userlist" v-bind:to="{ name: 'user-profile'}"> Profile </router-link>
-      <router-link class = "userlist" v-bind:to="{ name: 'equipment-metrics'}" v-if="this.$store.state.user.role === 'admin' || this.$store.state.user.role==='employee'"> Equipment Metrics </router-link>
-      <router-link class = "userlist" v-bind:to="{ name: 'classes'}"> Classes </router-link>
-      <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> Logout </router-link>
+
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Menu
+        <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li> <router-link class="home" v-bind:to="{ name: 'home' }"> Home </router-link></li>
+            <li><router-link class="workouts"  v-bind:to="{ name: 'workouts', params: {userId: this.$store.state.user.userId}}" v-if="$store.state.token != ''"> Workout History </router-link></li>
+            <li><router-link class="userlist" v-bind:to="{name: 'user-list'}" v-if="this.$store.state.user.role === 'admin' || this.$store.state.user.role==='employee'"> View Members </router-link></li>
+            <li><router-link class="userlist" v-bind:to="{name: 'update-user-role'}" v-if="this.$store.state.user.role === 'admin' "> View Roles </router-link></li>
+            <li><router-link class = "userlist" v-bind:to="{ name: 'user-profile'}" v-if="$store.state.token != ''"> Profile </router-link></li>
+            <li><router-link class = "userlist" v-bind:to="{ name: 'equipment-metrics'}" v-if="this.$store.state.user.role === 'admin' || this.$store.state.user.role==='employee'"> Equipment Metrics </router-link></li>
+            <li><router-link class = "userlist" v-bind:to="{ name: 'classes'}"> Classes </router-link></li>
+            <li><router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> Logout </router-link></li>
+          </ul>
+      </div>
+
     </div>
     <router-view />
   </div>
@@ -34,9 +41,7 @@
 }
 
 .workouts {
-  border: solid;
   padding: 10px;
-  border-left-width: 2px;
   border-right-width: 0px;
   border-bottom-width: 0px;
   border-top-width: 0px;
@@ -44,7 +49,6 @@
 }
 
 .logout {
-  border: solid;
   padding: 10px;
   border-left-width: 2px;
   border-right-width: 0px;
@@ -54,13 +58,17 @@
 }
 
 .userlist {
-  border: solid;
+
   padding: 10px;
   border-left-width: 2px;
   border-right-width: 0px;
   border-bottom-width: 0px;
   border-top-width: 0px;
   display: inline-block;
+}
+
+.dropdown-toggle{
+  width: 200px;
 }
 
 @media screen and (max-width: 768px) {
