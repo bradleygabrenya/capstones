@@ -953,9 +953,9 @@ insert into class_schedule (class_name, class_description, day_of_week, class_ti
 insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Yoga', 'Sunrise yoga', 'Friday', '5:00am-6:00am') 
 insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Abs on Fire', 'Blast those abs!', 'Friday', '8:00am-8:45am') 
 insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Weight On My Shoulders', '30 minute circuit', 'Friday', '10:00am-10:30am') 
-insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('You Call the Shots', 'Members design the program', 'Friday', '12:00am-1:00am') 
-insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Essential Stretching', 'Do not neglect this aspect of training', 'Friday', '3:00am-3:30am') 
-insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Weekend Warrior', 'Full body circuit training to get you ready for the weekend', 'Friday', '6:00am-7:15am') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('You Call the Shots', 'Members design the program', 'Friday', '12:00pm-1:00pm') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Essential Stretching', 'Do not neglect this aspect of training', 'Friday', '3:00pm-3:30pm') 
+insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Weekend Warrior', 'Full body circuit training to get you ready for the weekend', 'Friday', '6:00pm-7:15pm') 
 
 insert into class_schedule (class_name, class_description, day_of_week, class_time) VALUES ('Spin Class', 'Cycling on stationary bikes', 'Thursday', '4:30pm-5:30pm') 
 

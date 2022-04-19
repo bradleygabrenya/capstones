@@ -32,7 +32,7 @@
         required
       />
       <router-link :to="{ name: 'register' }">Need an account?</router-link>
-      <button id="sign-in" type="submit">Sign in</button>
+      <button class="btn btn-success" id="sign-in" type="submit">Sign in</button>
     </form>
   </div>
 </template>
@@ -78,15 +78,23 @@ export default {
 <style scoped>
 #username{
   margin-top: 5px;
-  margin-bottom: 5px
+  margin-bottom: 5px;
+  background-color: rgb(24,26,27);
+  color: #d1cdc7;
 }
 
 #password{
   margin-top: 5px;
   margin-bottom: 10px;
+  background-color: rgb(24,26,27);
+  color: #d1cdc7;
 }
 
 #sign-in{
   margin-left: 20px;
+}
+
+h1{
+  color: #d1cdc7;
 }
 </style>

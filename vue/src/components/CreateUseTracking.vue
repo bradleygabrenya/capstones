@@ -107,7 +107,7 @@ methods:{
 
 </script>
 
-<style>
+<style scoped>
 #reps{
   display: inline-block;
   align-self: right;
@@ -134,5 +134,14 @@ methods:{
 
 .display{
   margin-top: 50px;
+}
+
+input {
+    background-color: rgb(59,59,59);
+    color: #d1cdc7;
+} 
+
+label {
+  color: #d1cdc7
 }
 </style>

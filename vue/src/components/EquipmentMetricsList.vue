@@ -1,9 +1,7 @@
 <template>
   <div>
-      <table >
-          <th>
-              Equipment use over the past 30 days
-          </th>
+      <h1>Equipment Use Over the Past 30 Days</h1>
+      <table class="card">
           <tbody>
               <tr>
               <td >Equipment Name</td>
@@ -44,12 +42,25 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 table{
     margin-top: 20px;
 }
 
 .td_two_three{
+    padding-left: 15px;
+}
+
+.card{
+    opacity: 95%;
+    padding-top: 10px;
+    padding-bottom: 10px;;
     padding-left: 10px;
+    background-color: rgb(24,26,27);
+    color: #d1cdc7;
+}
+
+h1{
+  color: #d1cdc7;
 }
 </style>

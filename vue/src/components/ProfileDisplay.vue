@@ -1,5 +1,6 @@
 <template>
   <div>
+      <h1>Your Profile</h1>
       <table class="card" v-show="!showForm">
           <thead></thead>
           <tbody class="container">
@@ -38,7 +39,7 @@
           <textarea name="userGoals" id="userGoals" cols="30" rows="5"  v-model="user.workoutGoals"></textarea><br>
           <label for="photo">Photo: </label>
           <input type="text" id="photo" name="photo" v-model="user.photo"><br>
-          <button type='submit' v-on:click="toggleShowForm()">Submit</button>
+          <button type='submit' class="btn btn-success" v-on:click="toggleShowForm()">Submit</button>
           <button class="btn btn-danger" v-on:click="toggleShowForm()">Cancel</button>
       </form>
   </div>
@@ -80,10 +81,13 @@ methods: {
 }
 
 .card{
+    opacity: 95%;
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 3%;
     padding-bottom: 3%;
+    background-color: rgb(24,26,27);
+    color: #d1cdc7;
 }
 
 .btn-primary{
@@ -98,8 +102,9 @@ methods: {
 }
 
 img{
-    width:100%;
+    width: 100%;
     height: 100%;
+    object-fit: contain;
 }
 
 .pic{
@@ -108,8 +113,20 @@ img{
     grid-area: pic;
 }
 
-textarea{
+input {
+    background-color: rgb(59,59,59);
+    color: #d1cdc7;
+} 
+
+textarea {
     vertical-align: top;
-    width: 100%
+    width: 100%;
+    background-color: rgb(59,59,59);
+    color: #d1cdc7;
+} 
+h1{
+    color: #d1cdc7;
+    font-weight: bold;
+    text-align: center;
 }
 </style>

@@ -83,6 +83,7 @@ export default {
 h1 {
   text-align: center;
   font-weight: bold;
+  color:#d1cdc7;
 }
 h3{
     text-align: center;
@@ -111,9 +112,12 @@ table {
 }
 
 .card {
+  opacity: 95%;
   margin-bottom: 10px;
   padding-left: 20%;
   padding-right: 20%;
   padding-top: 2%;
+  background-color: rgb(24,26,27);
+  color: #d1cdc7;
 }
 </style>

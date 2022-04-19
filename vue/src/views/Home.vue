@@ -42,8 +42,11 @@ margin-top: 10px;
 }
 
 .card{
+  opacity: 95%;
   padding-right: 5%;
   padding-left: 5%;
+  background-color: rgb(24,26,27);
+  color: #d1cdc7;
 }
 
 </style>

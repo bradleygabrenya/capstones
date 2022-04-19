@@ -49,14 +49,18 @@ export default {
 h1{
     text-align: center;
     font-weight: bold;
+    color: #d1cdc7;
 }
 
 .card {
+    opacity: 95%;
     margin-bottom: 10px;
     padding-left: 20%;
     padding-right: 20%;
     padding-top: 2%;
     padding-bottom: 2%;
+    background-color: rgb(24,26,27);
+    color: #d1cdc7;
 }
 .empty{
     width: 0%

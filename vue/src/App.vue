@@ -1,25 +1,68 @@
 <template>
   <div id="app">
     <div id="nav">
-      <br>
-
-<div id="main">
-  <button class="openbtn" v-on:click="openNav()">☰ Menu</button>  
- 
-</div>
-      <div id="mySidebar" class="sidebar">
-  <a href="javascript:void(0)" class="closebtn" v-on:click="closeNav()">×</a>
-      <router-link class="home" v-bind:to="{ name: 'home' }"> Home </router-link>
-      <router-link class="workouts"  v-bind:to="{ name: 'workouts', params: {userId: this.$store.state.user.userId}}" v-if="$store.state.token != ''"> Workout History </router-link>
-      <router-link class="userlist" v-bind:to="{name: 'user-list'}" v-if="this.$store.state.user.role === 'admin' || this.$store.state.user.role==='employee'"> View Members </router-link>
-      <router-link class="userlist" v-bind:to="{name: 'update-user-role'}" v-if="this.$store.state.user.role === 'admin' "> View Roles </router-link>
-      <router-link class = "userlist" v-bind:to="{ name: 'user-profile'}"> Profile </router-link>
-      <router-link class = "userlist" v-bind:to="{ name: 'equipment-metrics'}" v-if="this.$store.state.user.role === 'admin' || this.$store.state.user.role==='employee'"> Equipment Metrics </router-link>
-      <router-link class = "userlist" v-bind:to="{ name: 'classes'}"> Classes </router-link>
-      <router-link class="logout" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> Logout </router-link>
-
-</div>
-
+      <br />
+      <div id="main">
+        <button class="openbtn" v-on:click="openNav()">☰ Menu</button>
+      </div>
+      <div id="mySidebar" class="sidebar" v-on:click="closeNav()">
+        <a href="javascript:void(0)" class="closebtn" v-on:click="closeNav()"
+          >×</a
+        >
+        <router-link class="home" v-bind:to="{ name: 'home' }" >
+          Home
+        </router-link>
+        <router-link
+          class="workouts"
+          v-bind:to="{
+            name: 'workouts',
+            params: { userId: this.$store.state.user.userId },
+          }"
+          v-if="$store.state.token != ''"
+        >
+          Workout History
+        </router-link>
+        <router-link
+          class="userlist"
+          v-bind:to="{ name: 'user-list' }"
+          v-if="
+            this.$store.state.user.role === 'admin' ||
+            this.$store.state.user.role === 'employee'
+          "
+        >
+          View Members
+        </router-link>
+        <router-link
+          class="userlist"
+          v-bind:to="{ name: 'update-user-role' }"
+          v-if="this.$store.state.user.role === 'admin'"
+        >
+          View Roles
+        </router-link>
+        <router-link class="userlist" v-bind:to="{ name: 'user-profile' }">
+          Profile
+        </router-link>
+        <router-link
+          class="userlist"
+          v-bind:to="{ name: 'equipment-metrics' }"
+          v-if="
+            this.$store.state.user.role === 'admin' ||
+            this.$store.state.user.role === 'employee'
+          "
+        >
+          Equipment Metrics
+        </router-link>
+        <router-link class="userlist" v-bind:to="{ name: 'classes' }">
+          Classes
+        </router-link>
+        <router-link
+          class="logout"
+          v-bind:to="{ name: 'logout' }"
+          v-if="$store.state.token != ''"
+        >
+          Logout
+        </router-link>
+      </div>
     </div>
     <router-view />
   </div>
@@ -31,7 +74,6 @@ methods: {
 
   openNav() {
     document.getElementById("mySidebar").style.width = "300px";
-    document.getElementById("main").style.marginLeft = "300px";
   },
   
   closeNav() {
@@ -40,11 +82,16 @@ methods: {
   }
 }
 }
-</script>
+</script> 
 
-<style scoped>
+<style>
 
-
+body {
+  background-image: url("./assets/TechElevator.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+} 
 .sidebar {
   height: 100%;
   width: 0;
@@ -113,9 +160,7 @@ methods: {
 }
 
 .workouts {
-  border: solid;
   padding: 10px;
-  border-left-width: 2px;
   border-right-width: 0px;
   border-bottom-width: 0px;
   border-top-width: 0px;
@@ -123,7 +168,6 @@ methods: {
 }
 
 .logout {
-  border: solid;
   padding: 10px;
   border-left-width: 2px;
   border-right-width: 0px;
@@ -133,7 +177,7 @@ methods: {
 }
 
 .userlist {
-  border: solid;
+
   padding: 10px;
   border-left-width: 2px;
   border-right-width: 0px;
@@ -143,7 +187,6 @@ methods: {
 }
 
 
-
 @media screen and (max-width: 768px) {
     #app {
   margin: auto;
@@ -151,4 +194,4 @@ methods: {
   }
 }
 
-</style>
+</style> 

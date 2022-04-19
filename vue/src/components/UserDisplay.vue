@@ -1,12 +1,12 @@
 <template>
   <div>
       <table>
-          <thead>Gym Members: </thead>
+          <thead><h1>Gym Members: </h1></thead>
           <tbody>
               <tr class="card" v-for="user in userList" v-bind:key="user.username">
                   <td>{{user.username}}:
-                  <button class="btn float-right btn-success" v-show="user.checkedIn != 'true'" v-on:click="employeeStartWorkout(user)" data-container="body" data-toggle="popover" data-placement="right" data-content="User has been checked in.">Check-in</button>
-                  <button class="btn float-right btn-danger" v-show="user.checkedIn == 'true'" v-on:click="employeeEndWorkout(user)">Check-out</button>
+                  <button class="btn float-right btn-success" v-show="user.checkedIn.toUpperCase() == 'FALSE'" v-on:click="employeeStartWorkout(user)" data-container="body" data-toggle="popover" data-placement="right" data-content="User has been checked in.">Check-in</button>
+                  <button class="btn float-right btn-danger" v-show="user.checkedIn.toUpperCase() == 'TRUE'" v-on:click="employeeEndWorkout(user)">Check-out</button>
                   <router-link class="btn btn-info float-right" v-bind:to="{name: 'workouts', params: {userId: user.userId}}">View Details</router-link>
                   </td>
                   
@@ -28,14 +28,14 @@ export default {
         employeeStartWorkout(user) {
         WorkoutService.addDailyWorkout(user.userId).then((response) => {
             if(response.status === 200) {
-                user.checkedIn = "true";
+                user.checkedIn = "TRUE";
             }
         })
     },
     employeeEndWorkout(user) {
         EmployeeService.employeeEndWorkout(user.userId).then((response) => {
             if (response.status ===200) {
-                user.checkedIn = "false";
+                user.checkedIn = "FALSE";
             }
         })
     }
@@ -47,6 +47,7 @@ export default {
 
 <style scoped>
 .card{
+    opacity: 95%;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 10px;
@@ -54,6 +55,8 @@ export default {
     margin-top: 10px;
     margin-bottom: 2px;
     width: 375px;
+    background-color: rgb(24,26,27);
+    color: #d1cdc7;
 }
 
 button{

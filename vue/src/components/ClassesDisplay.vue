@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Weekly Class Schedule</h1>
     <table class="card">
       <thead>
         Monday's Classes
@@ -95,7 +96,16 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.card{
+  opacity: 95%;
+  background-color: rgb(24,26,27);
+  color: #d1cdc7;
+}
+h1{
+  color: #d1cdc7;
+  font-weight: bold;
+}
 td {
     padding-right: 15px;
     padding-left: 20px;
