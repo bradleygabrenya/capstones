@@ -138,5 +138,18 @@ h1{
     color: #d1cdc7;
     font-weight: bold;
     text-align: center;
+    text-shadow: 1px 0 0 rgb(46, 46, 46), 0 -1px 0 rgb(46, 46, 46), 0 1px 0 rgb(46, 46, 46), -1px 0 0 rgb(46, 46, 46); 
+}
+
+@media screen and (max-width: 820px) {
+    .container {
+        grid-template-areas: "pic"
+        "profile"
+        "btn";
+        grid-template-columns: "1fr";
+    }
+    .btn-primary {
+        align-self: center;
+    }
 }
 </style>
