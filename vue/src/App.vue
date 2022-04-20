@@ -191,6 +191,7 @@ body {
     #app {
   margin: auto;
   font-family: "Verdana", sans-serif;
+  font-size: 75%;
   }
 }
 
