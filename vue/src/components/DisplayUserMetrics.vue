@@ -6,13 +6,13 @@
       <tbody class="container card">
         <div class="box1">
           <tr>
-            <td class="labels">Visits during past 7 days:</td>
+            <td class="labels"><span style="font-weight: bold">Visits during past 7 days: </span> </td>&nbsp;
             <td class="values">{{ userMetrics.sumSevenDayVisits }}</td>
           </tr>
         </div>
         <div class="box2">
           <tr>
-            <td class="labels">Average workout duration past 7 days:</td>
+            <td class="labels"><span style="font-weight: bold">Average workout duration past 7 days: </span> </td> &nbsp;
             <td class="values">
               {{ Math.round((this.userMetrics.sevenDaySum / this.userMetrics.sumSevenDayVisits) / 60) }} minutes
             </td>
@@ -20,13 +20,13 @@
         </div>
         <div class="box3">
           <tr>
-            <td class="labels">Visits during past 30 days:</td>
+            <td class="labels"><span style="font-weight: bold">Visits during past 30 days: </span> </td>&nbsp;
             <td class="values">{{ userMetrics.sumThirtyDayVisits }}</td>
           </tr>
         </div>
         <div class="box4">
           <tr>
-            <td class="labels">Average workout duration past 30 days:</td>
+            <td class="labels"><span style="font-weight: bold">Average workout duration past 30 days: </span> </td>&nbsp;
             <td class="values">
               {{ Math.round((this.userMetrics.thirtyDaySum / this.userMetrics.sumThirtyDayVisits) / 60) }} minutes
             </td>
@@ -40,14 +40,14 @@
       <tbody class="container card">
         <div class="box1">
           <tr>
-            <td class="labels">Visits during past 7 days:</td>
+            <td class="labels"><span style="font-weight: bold">Visits during past 7 days:</span></td>
             <td class="values"> {{Math.round((this.averageMetrics.totalAverageSevenDayVisits / this.averageMetrics.totalUserCount),2)
             }} </td>
           </tr>
         </div>
         <div class="box2">
           <tr>
-            <td class="labels">Average workout duration past 7 days:</td>
+            <td class="labels"><span style="font-weight: bold">Average workout duration past 7 days:</span></td>
             <td class="values">
               {{ Math.round((this.averageMetrics.totalAverageSevenDaySum / this.averageMetrics.totalAverageSevenDayVisits) / 60) }} minutes
             </td>
@@ -55,13 +55,13 @@
         </div>
         <div class="box3">
           <tr>
-            <td class="labels">Visits during past 30 days:</td>
+            <td class="labels"><span style="font-weight: bold">Visits during past 30 days:</span></td>
             <td class="values">{{ Math.round((this.averageMetrics.totalAverageThirtyDayVisits / this.averageMetrics.totalUserCount),2)}}</td>
           </tr>
         </div>
         <div class="box4">
           <tr>
-            <td class="labels">Average workout duration past 30 days:</td>
+            <td class="labels"><span style="font-weight: bold">Average workout duration past 30 days:</span></td>
             <td class="values">
               {{ Math.round((this.averageMetrics.totalAverageThirtyDaySum / this.averageMetrics.totalAverageThirtyDayVisits) / 60) }} minutes
             </td>
@@ -118,9 +118,6 @@ export default {
   margin-bottom: 30px;
   padding-left: 10%;
   padding-right: 10%;
-  /* padding-left: 10%;
-  width: 100%;
-  padding-right: 10%; */
 }
 
 .box1 {
@@ -156,22 +153,9 @@ h3{
 .card{
   opacity: 95%;
   background-color: rgb(24,26,27);
-    color: #d1cdc7;
+  color: #d1cdc7;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
-/* .values {
-  display: inline-block;
-  width: 100%;
-  align-content: end;
-  text-align: end;
-} */
-
-/* tr{
-    margin-top: 100px;
-    margin-bottom: 5px;
-} */
-/* 
-.labels {
-  width: 50%;
-} */
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="display">
     <h1>Workout History</h1>
-    <h3> <router-link v-bind:to="{ name: 'user-metrics' }"> View Workout Metrics </router-link></h3>
+    <h3> <router-link v-bind:to="{ name: 'user-metrics' }" class="btn btn-success"> View Workout Metrics </router-link></h3>
     <h3 class="card">
       Lifetime Average Workout Duration: {{ Math.round(averageWorkoutDuration) }} Minutes
     </h3>
@@ -12,28 +12,28 @@
     >
       <tbody>
         <tr>
-          <td class="labels">Date:</td>
+          <td class="labels"><span style="font-weight: bold">Date:</span></td>
           <td class="empty"></td>
           <td align="right" class="values">
             {{ workout.checkIn.substring(0, 10) }}
           </td>
         </tr>
         <tr>
-          <td class="labels">Check-in:</td>
+          <td class="labels"><span style="font-weight: bold">Check-in:</span></td>
           <td class="empty"></td>
           <td align="right" class="values">
             {{ workout.checkIn.substring(11, 19) }}
           </td>
         </tr>
         <tr>
-          <td class="labels">Check-out:</td>
+          <td class="labels"><span style="font-weight: bold">Check-out:</span></td>
           <td class="empty"></td>
           <td align="right" class="values">
             {{ workout.checkOut.substring(11, 19) }}
           </td>
         </tr>
         <tr>
-          <td class="labels">Total Workout Duration:</td>
+          <td class="labels"><span style="font-weight: bold">Total Workout Duration:</span></td>
           <td class="empty"></td>
           <td align="right" class="values">
             {{

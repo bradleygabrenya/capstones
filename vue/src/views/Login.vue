@@ -31,7 +31,7 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
+      <router-link class="btn btn-info" :to="{ name: 'register' }">Need an account?</router-link>
       <button class="btn btn-success" id="sign-in" type="submit">Sign in</button>
     </form>
   </div>

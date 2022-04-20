@@ -4,22 +4,22 @@
         <table v-for="details in workoutDetails" v-bind:key="details.workoutId" class="card">
             <tbody>
                 <tr>
-                    <td class="labels">Equipment Name: </td>
+                    <td class="labels"><span style= "font-weight: bold"> Name: </span> </td>
                     <td class="empty"></td>
                     <td align="right" class="values">{{details.equipmentName}}</td>
                 </tr>
                 <tr>
-                    <td class="labels">No. of Reps: </td>
+                    <td class="labels"><span style= "font-weight: bold">No. of Reps: </span></td>
                     <td class="empty"></td>
                     <td align="right" class="values">{{details.reps}}</td>
                 </tr>
                 <tr>
-                    <td class="labels">Weight: </td>
+                    <td class="labels"><span style= "font-weight: bold">Weight: </span></td>
                     <td class="empty"></td>
                     <td align="right" class="values">{{details.weight}} pounds</td>
                 </tr>
                 <tr>
-                    <td class="labels">Set Duration: </td>
+                    <td class="labels"><span style= "font-weight: bold">Set Duration: </span></td>
                     <td class="empty"></td>
                     <td align="right" class="values">{{Math.round((Date.parse(details.useStop) - Date.parse(details.useStart)) / 60000)}} Minutes</td>
                 </tr>
@@ -35,13 +35,6 @@ export default {
     methods: {
         
     },
-//     computed: {
-//         difference: {
-//             end: new Date.parse(this.details.useStop),
-//             start: new Date.parse(this.details.useStart),
-//             difference: (this.end - this.start) / 60000,
-//         }
-//     },
  }
 </script>
 
@@ -50,6 +43,7 @@ h1{
     text-align: center;
     font-weight: bold;
     color: #d1cdc7;
+    text-shadow: 1px 0 0 rgb(46, 46, 46), 0 -1px 0 rgb(46, 46, 46), 0 1px 0 rgb(46, 46, 46), -1px 0 0 rgb(46, 46, 46); 
 }
 
 .card {

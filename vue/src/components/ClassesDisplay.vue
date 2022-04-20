@@ -1,11 +1,11 @@
 <template>
   <div>
     <h1>Weekly Class Schedule</h1>
-    <table class="card">
-      <thead class="title">
+    <table class="card" >
+      <thead class="title btn" data-toggle="collapse" href="#mondayClassList" role="button" aria-expanded="false">
         Monday's Classes
       </thead>
-      <tbody >
+      <tbody class="collapse" id="mondayClassList" >
         <tr v-for="classes in mondayList" v-bind:key="classes.classId" class="monday-grid">
           <td class="name">{{ classes.className }}</td>
           <td class="description">{{ classes.classDescription }}</td>
@@ -14,10 +14,10 @@
       </tbody>
     </table>
     <table class="card">
-      <thead class="title">
+      <thead class="title btn" data-toggle="collapse" href="#tuesdayClassList" role="button" aria-expanded="false">
         Tuesday's Classes
       </thead>
-      <tbody>
+      <tbody class="collapse" id="tuesdayClassList">
         <tr v-for="classes in tuesdayList" v-bind:key="classes.classId" class="tuesday-grid">
           <td class="name">{{ classes.className }}</td>
           <td class="description">{{ classes.classDescription }}</td>
@@ -26,10 +26,10 @@
       </tbody>
     </table>
     <table class="card">
-      <thead class="title">
+      <thead class="title btn" data-toggle="collapse" href="#wednesdayClassList" role="button" aria-expanded="false">
         Wednesday's Classes
       </thead>
-      <tbody>
+      <tbody class="collapse" id="wednesdayClassList">
         <tr v-for="classes in wednesdayList" v-bind:key="classes.classId" class="wednesday-grid">
           <td class="name">{{ classes.className }}</td>
           <td class="description">{{ classes.classDescription }}</td>
@@ -38,10 +38,10 @@
       </tbody>
     </table>
     <table class="card">
-      <thead class="title">
+      <thead class="title btn" data-toggle="collapse" href="#thursdayClassList" role="button" aria-expanded="false">
         Thursday's Classes
       </thead>
-      <tbody>
+      <tbody class="collapse" id="thursdayClassList">
         <tr v-for="classes in thursdayList" v-bind:key="classes.classId" class="thursday-grid">
           <td class="name">{{ classes.className }}</td>
           <td class="description">{{ classes.classDescription }}</td>
@@ -50,10 +50,10 @@
       </tbody>
     </table>
     <table class="card">
-      <thead class="title">
+      <thead class="title btn" data-toggle="collapse" href="#fridayClassList" role="button" aria-expanded="false">
         Friday's Classes
       </thead>
-      <tbody>
+      <tbody class="collapse" id="fridayClassList">
         <tr v-for="classes in fridayList" v-bind:key="classes.classId" class="friday-grid">
           <td class="name">{{ classes.className }}</td>
           <td class="description">{{ classes.classDescription }}</td>
@@ -90,6 +90,11 @@ export default {
       }
     });
     
+  },
+  methods:{
+    toggleMondayClasses(){
+
+    }
   },
 
   
