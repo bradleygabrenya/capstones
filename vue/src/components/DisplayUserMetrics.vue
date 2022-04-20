@@ -148,6 +148,8 @@ table {
 
 h3{
   color: #d1cdc7;
+  text-shadow: 1px 0 0 rgb(46, 46, 46), 0 -1px 0 rgb(46, 46, 46),
+    0 1px 0 rgb(46, 46, 46), -1px 0 0 rgb(46, 46, 46);
 }
 
 .card{

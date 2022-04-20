@@ -2,11 +2,11 @@
   <div class="display card">
     <form v-show="!equipmentSelected">
       <select class="form-control" v-model="equipmentName" v-on:change="sendToInstructions">
-          <option selected>Select Equipment</option>
+        <option selected >{{equipmentName}} </option>
           <option v-for="equipment in equipmentDetails" v-bind:key="equipment.equipmentId">{{equipment.name}}</option>
       </select>
       <div class="buttons">
-      <button id="start-set" type="button" class="btn btn-success btn-lg" v-on:click="startWorkout">Start Set</button>
+      <button id="start-set" type="button" class="btn btn-success btn-lg" v-on:click="startWorkout"> Start Set </button>
       <a class="btn btn-lg btn-info" v-bind:href="instructionsLink" target="_blank" >Instructions</a>
 
 
@@ -44,7 +44,7 @@ data(){
       workoutId: parseInt(this.workoutId)
     },
 
-    equipmentName: "",
+    equipmentName: "Select Equipment",
     instructionsLink:""
   }
 },
@@ -69,13 +69,16 @@ methods:{
   },
 
     startWorkout() {
-      this.toggleEquipmentSelected();
-        workoutDetailsService.postUseTracking(this.useTracking).then((response) => {
+      
+      if(this.equipmentName != "Select Equipment")      
+        {
+          this.toggleEquipmentSelected();
+          workoutDetailsService.postUseTracking(this.useTracking).then((response) => {
             if(response.status === 200) {
               this.useTracking.trackingId = response.data;
             }
         })
-    },
+    }},
 
   endTheSet(){
     workoutDetailsService.putUseTracking(this.useTracking).then((response) => {
