@@ -39,7 +39,9 @@
         >
           View Roles
         </router-link>
-        <router-link class="userlist" v-bind:to="{ name: 'user-profile' }">
+        <router-link class="userlist" v-bind:to="{ name: 'user-profile' }"
+        v-if="$store.state.token != ''"
+        >
           Profile
         </router-link>
         <router-link

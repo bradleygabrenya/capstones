@@ -32,7 +32,7 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
+      <router-link :to="{ name: 'login' }" class="btn btn-info btn-lg btn-block">Have an account?</router-link>
       <button class="btn btn-lg btn-primary btn-block" type="submit">
         Create Account
       </button>
@@ -90,4 +90,18 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+h1{
+  color: #d1cdc7;
+  font-weight: bold;
+  text-shadow: 1px 0 0 rgb(46, 46, 46), 0 -1px 0 rgb(46, 46, 46), 0 1px 0 rgb(46, 46, 46), -1px 0 0 rgb(46, 46, 46); 
+}
+.btn-info{
+  margin-top: 10px;
+}
+input {
+    background-color: rgb(59,59,59) !important;
+    color: #d1c7c8 !important;
+} 
+
+</style>
