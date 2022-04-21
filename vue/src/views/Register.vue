@@ -90,7 +90,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 h1{
   color: #d1cdc7;
   font-weight: bold;
